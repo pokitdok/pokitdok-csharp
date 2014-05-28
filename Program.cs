@@ -15,6 +15,11 @@ class MainClass
 			client.Authenticate();
 
 			Console.WriteLine(
+				client.activities("").body
+			);
+			Console.WriteLine("=======");
+
+			Console.WriteLine(
 				client.eligibility(
 					new Dictionary<string, object> {
 						{  "payer_id", "MOCKPAYER" },
@@ -26,23 +31,36 @@ class MainClass
 						{  "provider_type", "Person" },
 						{  "member_birth_date", "05/21/1975" },
 						{  "service_types", new string[] { "Health Benefit Plan Coverage" } }
-					}
-				).body
+				}).body
 			);
 			Console.WriteLine("=======");
 
 			Console.WriteLine(
 				client.providers(
 					new Dictionary<string, string> {
-						{"zipcode", "29464"},
-						{"radius", "5mi"}
-					}).body
+						{"zip_code", "29464"},
+						{"radius", "15mi"}
+				}).body
+			);
+			Console.WriteLine("=======");
+
+			Console.WriteLine(
+				client.providers("1467560003").body
 			);
 			Console.WriteLine("=======");
 
 			Console.WriteLine(
 				string.Format("rate_limit_amount = {0}", client.usage().rate_limit_amount)
 			);
+			Console.WriteLine("=======");
+
+			ResponseData resp = client.files(
+				"MOCKPAYER",
+				"/Users/timdunlevy/pd/pokitdok-csharp/general-physician-office-visit.270"
+			);
+			Console.WriteLine(resp.body);
+			Console.WriteLine(resp.status);
+			Console.WriteLine("=======");
 		}
 		catch (Exception ex) 
 		{

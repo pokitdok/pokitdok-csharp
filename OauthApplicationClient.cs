@@ -227,12 +227,15 @@ namespace pokitdokcsharp
 				webRequest.Timeout = _requestTimeout;
 				webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
 				webRequest.Method = "GET";
-				webRequest.ContentType = "application/json";
+				//webRequest.ContentType = "application/json";
 				webRequest.UserAgent = this._userAgent;
 
 				using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse) {
 					ProcessResponse(response);
 				}
+			}
+			catch (WebException wex) {
+				ProcessResponse((HttpWebResponse)wex.Response);
 			}
 			catch (Exception ex) 
 			{
@@ -242,7 +245,7 @@ namespace pokitdokcsharp
 			return _responseData;
 		}
 
-		public ResponseData PostRequest(string requestPath, string postFileName)
+		public ResponseData PostRequest(string requestPath, string postFilePath, Dictionary<string,string> parameters = null)
 		{
 			if (isAccessTokenExpired()) {
 				Authenticate();
@@ -257,20 +260,39 @@ namespace pokitdokcsharp
 				webRequest.Timeout = _requestTimeout;
 				webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
 				webRequest.Method = "POST";
-				webRequest.ContentType = "type=text/plain;filename=" + Path.GetFileName(postFileName);
+				string boundary = "----------------------------" + DateTime.Now.Ticks.ToString("x");
+				webRequest.ContentType = "multipart/form-data; boundary=" + boundary;
 				webRequest.UserAgent = this._userAgent;
 
-				using (FileStream postData = File.OpenRead(postFileName)) {
-					using (Stream postStream = webRequest.GetRequestStream()) {
-						postData.CopyTo(postStream);
-						postStream.Close();
+				NameValueCollection formData = new NameValueCollection();
+				if (parameters != null) {
+					foreach (KeyValuePair<string, string> query_param in parameters) {
+						formData[query_param.Key] = query_param.Value;
 					}
-					postData.Close();
 				}
+
+				using (Stream postDataStream = GetPostStream(postFilePath, formData, boundary)) {
+					webRequest.ContentLength = postDataStream.Length;
+					using (Stream reqStream = webRequest.GetRequestStream()) {
+						postDataStream.Position = 0;
+						byte[] buffer = new byte[1024];
+						int bytesRead = 0;
+						while ((bytesRead = postDataStream.Read(buffer, 0, buffer.Length)) != 0)
+						{
+							reqStream.Write(buffer, 0, bytesRead);
+						}
+						reqStream.Close();
+					}
+					postDataStream.Close();
+				}
+
 				using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse) {
 					ProcessResponse(response);
 				}
 			} 
+			catch (WebException wex) {
+				ProcessResponse((HttpWebResponse)wex.Response);
+			}
 			catch (Exception ex) {
 				throw new PokitDokException(string.Format("PostRequest({0}) Error: {1}", request_uri, ex.Message));
 			}
@@ -307,12 +329,61 @@ namespace pokitdokcsharp
 					ProcessResponse(response);
 				}
 			}
+			catch (WebException wex) {
+				ProcessResponse((HttpWebResponse)wex.Response);
+			}
 			catch (Exception ex)
 			{
 				throw new PokitDokException(string.Format("PostRequest({0}) Error: {1}", request_uri, ex.Message));
 			}
 
 			return _responseData;
+		}
+
+		private static Stream GetPostStream(string filePath, NameValueCollection formData, string boundary)
+		{
+			Stream postDataStream = new System.IO.MemoryStream();
+
+			//adding form data
+			string formDataHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
+				"Content-Disposition: form-data; name=\"{0}\";" + Environment.NewLine + Environment .NewLine + "{1}";
+
+			foreach (string key in formData.Keys)
+			{
+				byte[] formItemBytes = System.Text.Encoding.UTF8.GetBytes(string.Format(formDataHeaderTemplate,
+					key, formData[key]));
+				postDataStream.Write(formItemBytes, 0, formItemBytes.Length);
+			}
+
+			//adding file data
+			FileInfo fileInfo = new FileInfo(filePath);
+
+			string fileHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
+				"Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"" +
+				Environment.NewLine + "Content-Type: application/EDI-X12" + Environment.NewLine + Environment.NewLine;
+
+			byte[] fileHeaderBytes = System.Text.Encoding.UTF8.GetBytes(string.Format(fileHeaderTemplate,
+				"file", fileInfo.FullName));
+
+			postDataStream.Write(fileHeaderBytes, 0, fileHeaderBytes.Length);
+
+			FileStream fileStream = fileInfo.OpenRead();
+
+			byte[] buffer = new byte[1024];
+
+			int bytesRead = 0;
+
+			while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+			{
+				postDataStream.Write(buffer, 0, bytesRead);
+			}
+
+			fileStream.Close();
+
+			byte[] endBoundaryBytes = System.Text.Encoding.UTF8.GetBytes("--" + boundary + "--");
+			postDataStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
+
+			return postDataStream;
 		}
 
 		private ResponseData ProcessResponse(HttpWebResponse response)
@@ -330,10 +401,6 @@ namespace pokitdokcsharp
 				_responseData.header.Add(key, response.Headers[key]);
 			}
 			_responseData.status = (int) response.StatusCode;
-
-			if (_responseData.status > 299) {
-				throw new PokitDokException(_responseData.body);
-			}
 
 			return _responseData;
 		}

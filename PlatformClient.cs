@@ -29,6 +29,8 @@ namespace pokitdokcsharp
 		private string _tokenPath = POKITDOK_PLATFORM_API_TOKEN_PATH;
 
 		private dynamic _usage = null;
+		private dynamic _data = null;
+		private dynamic _errors = null;
 
 
 		public PlatformClient(
@@ -88,9 +90,14 @@ namespace pokitdokcsharp
 			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PROVIDERS, parameters));
 		}
 
-		public ResponseData files(string filename)
+		public ResponseData files(string trading_partner_id, string filename)
 		{
-			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_FILES, filename));
+			return applyResponse(
+				PostRequest(
+					POKITDOK_PLATFORM_API_ENDPOINT_FILES, 
+					filename, 
+					new Dictionary<string, string> {{"trading_partner_id", trading_partner_id}}
+			));
 		}
 
 		public dynamic usage()
@@ -102,14 +109,30 @@ namespace pokitdokcsharp
 			return _usage;
 		}
 
+		public dynamic Errors {
+			get {
+				return this._errors;
+			}
+			set {
+				_errors = value;
+			}
+		}
+
+		public dynamic Data {
+			get {
+				return this._data;
+			}
+			set {
+				_data = value;
+			}
+		}
+
 		public ResponseData applyResponse(ResponseData response)
 		{
 			dynamic responseObject = JsonConvert.DeserializeObject(response.body);
-
 			_usage = responseObject.meta;
-			if (responseObject.error != null) {
-				throw new PokitDokException(JsonConvert.SerializeObject(responseObject.error));
-			}
+			_data = responseObject.data;
+			_errors = _data.GetType().GetProperty("errors");
 
 			return response;
 		}
