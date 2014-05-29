@@ -56,7 +56,7 @@ class MainClass
 
 			ResponseData resp = client.files(
 				"MOCKPAYER",
-				"/Users/timdunlevy/pd/pokitdok-csharp/general-physician-office-visit.270"
+				"../../tests/files/general-physician-office-visit.270"
 			);
 			Console.WriteLine(resp.body);
 			Console.WriteLine(resp.status);

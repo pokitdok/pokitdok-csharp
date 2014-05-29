@@ -90,12 +90,14 @@ namespace pokitdokcsharp
 			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PROVIDERS, parameters));
 		}
 
-		public ResponseData files(string trading_partner_id, string filename)
+		public ResponseData files(string trading_partner_id, string filepath)
 		{
 			return applyResponse(
 				PostRequest(
 					POKITDOK_PLATFORM_API_ENDPOINT_FILES, 
-					filename, 
+					filepath, 
+					"file",
+					"application/EDI-X12",
 					new Dictionary<string, string> {{"trading_partner_id", trading_partner_id}}
 			));
 		}
