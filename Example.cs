@@ -17,7 +17,7 @@ class MainClass
 			Console.WriteLine(
 				client.eligibility(
 					new Dictionary<string, object> {
-						//						{  "payer_id", "MOCKPAYER" },
+						{  "payer_id", "MOCKPAYER" },
 						{  "member_id", "W34237875729" },
 						{  "provider_id", "1467560003" },
 						{  "provider_name", "AYA-AY" },

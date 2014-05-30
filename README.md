@@ -53,7 +53,7 @@ You may have luck with other CLI frameworks - let us know how it goes.
 The PokitDok Platform API C# Client requires [Json.Net][jnk], a popular high-performance JSON framework for .NET.
 * [Json.Net 6.0.3][json.net].
 
-Tests written using NUnit[nunit].
+Tests written using [NUnit][nunit].
 * [NUnit 2.6.3][nunit263]
 
 [jnk]: http://james.newtonking.com/json
