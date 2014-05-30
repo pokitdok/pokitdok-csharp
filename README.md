@@ -5,7 +5,7 @@ PokitDok [Platform API][apidocs] Client for C#
 
 ## Installation
 See dependencies section below.
-Build with Xamarin[xamarin] Studio 5.0.
+Build with [Xamarin][xamarin] Studio 5.0.
 
 [xamarin]: http://xamarin.com/
 
@@ -22,6 +22,8 @@ nunit-console.exe bin/Debug/pokitdok-csharp.exe
 [issues]: https://github.com/PokitDokInc/pokitdok-csharp/issues
 
 ## Usage Example
+
+	using pokitdokcsharp;
 
 	PlatformClient client = new PlatformClient("your client id", "your client secret");
 	ResponseData resp = client.eligibility (
@@ -48,11 +50,11 @@ This library aims to support and is tested against these .Net (ECMA-335 CLI) fra
 You may have luck with other CLI frameworks - let us know how it goes.
 
 ## Dependencies
-The PokitDok Platform API C# Client requires Json.Net[jnk], a popular high-performance JSON framework for .NET.
-* Json.Net 6.0.3[json.net].
+The PokitDok Platform API C# Client requires [Json.Net][jnk], a popular high-performance JSON framework for .NET.
+* [Json.Net 6.0.3][json.net].
 
 Tests written using NUnit[nunit].
-* NUnit 2.6.3[nunit263]
+* [NUnit 2.6.3][nunit263]
 
 [jnk]: http://james.newtonking.com/json
 [json.net]: https://github.com/JamesNK/Newtonsoft.Json/tree/6.0.3
@@ -60,6 +62,6 @@ Tests written using NUnit[nunit].
 [nunit263]: http://launchpad.net/nunitv2/trunk/2.6.3/+download/NUnit-2.6.3.zip
 
 ## License
-Copyright (c) 2014 PokitDok Inc. See LICENSE[license] for details.
+Copyright (c) 2014 PokitDok Inc. See [LICENSE][license] for details.
 
 [license]: LICENSE.txt
