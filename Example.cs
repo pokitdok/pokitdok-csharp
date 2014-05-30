@@ -13,17 +13,11 @@ class MainClass
 			client.ApiSite = "http://me.pokitdok.com:5002";
 			client.Authenticate();
 
-			Console.WriteLine("==Begin Activities=======");
-			Console.WriteLine(
-				client.activities("").body
-			);
-			Console.WriteLine("==End Activities=======");
-
 			Console.WriteLine("==Begin eligibility=======");
 			Console.WriteLine(
 				client.eligibility(
 					new Dictionary<string, object> {
-						{  "payer_id", "MOCKPAYER" },
+						//						{  "payer_id", "MOCKPAYER" },
 						{  "member_id", "W34237875729" },
 						{  "provider_id", "1467560003" },
 						{  "provider_name", "AYA-AY" },
@@ -67,6 +61,12 @@ class MainClass
 			Console.WriteLine(resp.body);
 			Console.WriteLine(resp.status);
 			Console.WriteLine("==End Files=======");
+
+			Console.WriteLine("==Begin Activities=======");
+			Console.WriteLine(
+				client.activities("").body
+			);
+			Console.WriteLine("==End Activities=======");
 		}
 		catch (Exception ex) 
 		{

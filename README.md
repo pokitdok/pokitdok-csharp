@@ -23,6 +23,21 @@ nunit-console.exe bin/Debug/pokitdok-csharp.exe
 
 ## Usage Example
 
+	PlatformClient client = new PlatformClient("your client id", "your client secret");
+	ResponseData resp = client.eligibility (
+		new Dictionary<string, object> {
+			{ "payer_id", "MOCKPAYER" },
+			{ "member_id", "W34237875729" },
+			{ "provider_id", "1467560003" },
+			{ "provider_name", "AYA-AY" },
+			{ "provider_first_name", "JEROME" },
+			{ "member_name", "JOHN DOE" },
+			{ "provider_type", "Person" },
+			{ "member_birth_date", "05/21/1975" },
+			{ "service_types", new string[] { "Health Benefit Plan Coverage" } }
+	});
+	Console.WriteLine(resp.body);
+
 
 ## Supported .Net Versions
 This library aims to support and is tested against these .Net (ECMA-335 CLI) framework versions:
@@ -48,5 +63,3 @@ Tests written using NUnit[nunit].
 Copyright (c) 2014 PokitDok Inc. See LICENSE[license] for details.
 
 [license]: LICENSE.txt
-
-

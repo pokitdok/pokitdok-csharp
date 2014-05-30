@@ -39,59 +39,88 @@ namespace pokitdokcsharp
 			int requestTimeout = DEFAULT_TIMEOUT, 
 			OauthAccessToken accessToken = null) : base(clientId, clientSecret, requestTimeout, accessToken)
 		{
+			init();
+
 			this.ApiBaseUrl = _apiSite + _versionPath;
 			this.ApiTokenUrl = _apiSite + _tokenPath;
 
 			this.UserAgent = string.Format("csharp-pokitdok/{0}", typeof(PlatformClient).Assembly.GetName().Version);
 		}
 
+		public void init()
+		{
+			_usage = null;
+			_data = null;
+			_errors = null;
+		}
+
 		public ResponseData activities(string activityId)
 		{
+			init();
+
 			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES + activityId));
 		}
 
 		public ResponseData activities(Dictionary<string, string> parameters)
 		{
+			init();
+
 			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES, parameters));
 		}
 
 		public ResponseData cashPrices()
 		{
+			init();
+
 			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PRICE_CASH));
 		}
 
 		public ResponseData claims(Dictionary<string, object> postData)
 		{
+			init();
+
 			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS, postData));
 		}
 
 		public ResponseData claimsStatus(Dictionary<string, object> postData)
 		{
+			init();
+
 			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_STATUS, postData));
 		}
 
 		public ResponseData eligibility(Dictionary<string, object> postData)
 		{
+			init();
+
 			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_ELIGIBILITY, postData));
 		}
 
 		public ResponseData enrollment(Dictionary<string, object> postData)
 		{
+			init();
+
 			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT, postData));
 		}
 
 		public ResponseData providers(string npi)
 		{
+			init();
+
 			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PROVIDERS + npi));
 		}
 
 		public ResponseData providers(Dictionary<string, string> parameters)
 		{
+			init();
+
 			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PROVIDERS, parameters));
 		}
 
 		public ResponseData files(string trading_partner_id, string filepath)
 		{
+			init();
+
 			return applyResponse(
 				PostRequest(
 					POKITDOK_PLATFORM_API_ENDPOINT_FILES, 
@@ -132,9 +161,14 @@ namespace pokitdokcsharp
 		public ResponseData applyResponse(ResponseData response)
 		{
 			dynamic responseObject = JsonConvert.DeserializeObject(response.body);
-			_usage = responseObject.meta;
-			_data = responseObject.data;
-			_errors = _data.GetType().GetProperty("errors");
+			_usage = responseObject["meta"];
+			_data = responseObject["data"];
+
+			if (_data is Newtonsoft.Json.Linq.JObject) {
+				_errors = _data["errors"];
+			} else {
+				_errors = null;
+			}
 
 			return response;
 		}

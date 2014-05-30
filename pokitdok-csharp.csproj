@@ -43,11 +43,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlatformClient.cs" />
     <Compile Include="OauthApplicationClient.cs" />
     <Compile Include="tests\PlatformClientTest.cs" />
+    <Compile Include="Example.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
