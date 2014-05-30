@@ -1,4 +1,6 @@
 bin/
 obj/
 Json60r3/
+NUnit-2.6.3/
 pokitdok-csharp.userprefs
+TestResult.xml
