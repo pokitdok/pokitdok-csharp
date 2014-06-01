@@ -4,11 +4,17 @@ using System.IO;
 using pokitdokcsharp;
 using NUnit.Framework;
 
+/// <summary>
+/// Platform client test.
+/// </summary>
 [TestFixture]
 class PlatformClientTest
 {
 	PlatformClient client;
 
+	/// <summary>
+	/// Init this instance.
+	/// </summary>
 	[SetUp]
 	public void Init()
 	{
@@ -17,6 +23,9 @@ class PlatformClientTest
 		client.Authenticate();
 	}
 
+	/// <summary>
+	/// Eligibility test using MOCKPAYER.
+	/// </summary>
 	[Test]
 	public void Eligibility()
 	{
@@ -39,6 +48,9 @@ class PlatformClientTest
 		Assert.AreEqual(200, resp.status);
 	}
 
+	/// <summary>
+	/// Activities test.
+	/// </summary>
 	[Test]
 	public void Activities()
 	{
@@ -48,6 +60,9 @@ class PlatformClientTest
 		Assert.AreEqual(200, resp.status);
 	}
 
+	/// <summary>
+	/// Providers JSON test.
+	/// </summary>
 	[Test]
 	public void ProvidersJson()
 	{
@@ -61,6 +76,9 @@ class PlatformClientTest
 		Assert.AreEqual(200, resp.status);
 	}
 
+	/// <summary>
+	/// Providers identifier test.
+	/// </summary>
 	[Test]
 	public void ProvidersId()
 	{
@@ -70,6 +88,9 @@ class PlatformClientTest
 		Assert.AreEqual(200, resp.status);
 	}
 
+	/// <summary>
+	/// Usage test.
+	/// </summary>
 	[Test]
 	public void Usage()
 	{
@@ -83,6 +104,9 @@ class PlatformClientTest
 		Assert.IsInstanceOf<Newtonsoft.Json.Linq.JValue>(usage.credits_billed);
 	}
 
+	/// <summary>
+	/// Files test.
+	/// </summary>
 	[Test]
 	public void Files()
 	{

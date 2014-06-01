@@ -18,6 +18,13 @@
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="monodocer -pretty -importslashdoc:bin/Debug/pokitdok-csharp.xml -assembly:bin/Debug/pokitdok-csharp.exe -path:docs/en" workingdir="${ProjectDir}" />
+        <Command type="AfterBuild" command="mdoc export-html -o htmldocs/ docs/en/" workingdir="${ProjectDir}" />
+      </CustomCommands>
+    </CustomCommands>
+    <DocumentationFile>bin\Debug\pokitdok-csharp.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>full</DebugType>

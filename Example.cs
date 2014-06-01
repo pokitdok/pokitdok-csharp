@@ -1,4 +1,14 @@
-﻿using System;
+﻿// Copyright (C) 2014, All Rights Reserved, PokitDok, Inc.
+// http://www.pokitdok.com
+//
+// Please see the LICENSE.txt file for more information.
+// All other rights reserved.
+//
+//	PokitDok Platform Client for C# Example Application
+//		Consume the REST based PokitDok platform API
+//		https://platform.pokitdok.com/login#/documentation
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using pokitdokcsharp;
@@ -64,7 +74,10 @@ class MainClass
 
 			Console.WriteLine("==Begin Activities=======");
 			Console.WriteLine(
-				client.activities("").body
+				client.activities(new Dictionary<string, string> {
+					{"limit", "1"},
+					{"offset", "0"}
+				}).body
 			);
 			Console.WriteLine("==End Activities=======");
 		}

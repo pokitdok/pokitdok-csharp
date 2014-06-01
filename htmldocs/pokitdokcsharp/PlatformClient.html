@@ -1,0 +1,1563 @@
+<html>
+  <head>
+    <title>pokitdokcsharp.PlatformClient</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+      a { text-decoration: none }
+
+      div.SideBar {
+        padding-left: 1em;
+        padding-right: 1em;
+        right: 0;
+        float: right;
+        border: thin solid black;
+        background-color: #f2f2f2;
+      }
+    
+      .CollectionTitle { font-weight: bold }
+      .PageTitle { font-size: 150%; font-weight: bold }
+
+      .Summary { }
+      .Signature { }          
+      .Remarks { }
+      .Members { }
+      .Copyright { }
+      
+      .Section { font-size: 125%; font-weight: bold }
+      p.Summary {
+        margin-left: 1em;
+      }
+      .SectionBox { margin-left: 2em }
+      .NamespaceName { font-size: 105%; font-weight: bold }
+      .NamespaceSumary { }
+      .MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+      .Subsection { font-size: 105%; font-weight: bold }
+      .SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+      .CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+      
+      .TypesListing {
+        border-collapse: collapse;
+      }
+
+      td {
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+      }
+
+      .TypesListing td { 
+        margin: 0px;  
+        padding: .25em;
+        border: solid gray 1px;
+      }
+
+      .TypesListing th { 
+        margin: 0px;  
+        padding: .25em;
+        background-color: #f2f2f2;
+        border: solid gray 1px;
+      }
+
+      div.Footer {
+        border-top: 1px solid gray;
+        margin-top: 1.5em;
+        padding-top: 0.6em;
+        text-align: center;
+        color: gray;
+      }
+
+      span.NotEntered /* Documentation for this section has not yet been entered */ {
+        font-style: italic;
+        color: red;	
+      }
+
+      div.Header {
+        background: #B0C4DE;
+        border: double;
+        border-color: white;
+        border-width: 7px;
+        padding: 0.5em;
+      }
+
+      div.Header * {
+        font-size: smaller;
+      }
+
+      div.Note {
+      }
+
+      i.ParamRef {
+      }
+
+      i.subtitle {
+      }
+
+      ul.TypeMembersIndex {
+        text-align: left;
+        background: #F8F8F8;
+      }
+
+      ul.TypeMembersIndex li {
+        display: inline;
+        margin:  0.5em;
+      }
+
+      table.HeaderTable {
+      }
+
+      table.SignatureTable {
+      }
+
+      table.Documentation, table.Enumeration, table.TypeDocumentation {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table.Documentation tr th, table.TypeMembers tr th, table.Enumeration tr th, table.TypeDocumentation tr th {
+        background: whitesmoke;
+        padding: 0.8em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: bottom;
+      }
+
+      table.Documentation tr td, table.TypeMembers tr td, table.Enumeration tr td, table.TypeDocumentation tr td {
+        padding: 0.5em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      table.TypeMembers {
+        border: 1px solid #C0C0C0;
+        width: 100%;
+      }
+
+      table.TypeMembers tr td {
+        background: #F8F8F8;
+        border: white;
+      }
+
+      table.Documentation {
+      }
+
+      table.TypeMembers {
+      }
+
+      div.CodeExample {
+        width: 100%;
+        border: 1px solid #DDDDDD;
+        background-color: #F8F8F8;
+      }
+
+      div.CodeExample p {
+        margin: 0.5em;
+        border-bottom: 1px solid #DDDDDD;
+      }
+
+      div.CodeExample div {
+        margin: 0.5em;
+      }
+
+      h4 {
+        margin-bottom: 0;
+      }
+
+      div.Signature {
+        border: 1px solid #C0C0C0;
+        background: #F2F2F2;
+        padding: 1em;
+      }
+    </style>
+    <script type="text/JavaScript">
+      function toggle_display (block) {
+        var w = document.getElementById (block);
+        var t = document.getElementById (block + ":toggle");
+        if (w.style.display == "none") {
+          w.style.display = "block";
+          t.innerHTML = "⊟";
+        } else {
+          w.style.display = "none";
+          t.innerHTML = "⊞";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">pokitdok-csharp</a> : <a href="index.html">pokitdokcsharp Namespace</a></div>
+    <div class="SideBar">
+      <p>
+        <a href="#T:pokitdokcsharp.PlatformClient">Overview</a>
+      </p>
+      <p>
+        <a href="#T:pokitdokcsharp.PlatformClient:Signature">Signature</a>
+      </p>
+      <p>
+        <a href="#T:pokitdokcsharp.PlatformClient:Docs">Remarks</a>
+      </p>
+      <p>
+        <a href="#Members">Members</a>
+      </p>
+      <p>
+        <a href="#T:pokitdokcsharp.PlatformClient:Members">Member Details</a>
+      </p>
+    </div>
+    <h1 class="PageTitle" id="T:pokitdokcsharp.PlatformClient">PlatformClient  Class</h1>
+    <p class="Summary" id="T:pokitdokcsharp.PlatformClient:Summary">
+            	PokitDok Platform Client for C#
+            		Consumes the REST based PokitDok platform API
+            		https://platform.pokitdok.com/login#/documentation
+            </p>
+    <div>
+      <h2>Syntax</h2>
+      <div class="Signature" id="T:pokitdokcsharp.PlatformClient:Signature">public class  <b>PlatformClient</b> : <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a></div>
+    </div>
+    <div class="Remarks" id="T:pokitdokcsharp.PlatformClient:Docs">
+      <h2 class="Section">Remarks</h2>
+      <div class="SectionBox" id="T:pokitdokcsharp.PlatformClient:Docs:Remarks">
+        <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+      </div>
+      <h2 class="Section">Requirements</h2>
+      <div class="SectionBox" id="T:pokitdokcsharp.PlatformClient:Docs:Version Information">
+        <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+      <h2 class="Section" id="Members">Members</h2>
+      <div class="SectionBox" id="_Members">
+        <p>
+								See Also: Inherited members from
+								<a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.
+							</p>
+        <h2 class="Section">Public Constructors</h2>
+        <div class="SectionBox" id="Public Constructors">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <b>
+                      <a href="#C:pokitdokcsharp.PlatformClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken)">PlatformClient</a>
+                    </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a>)</div>
+                </td>
+                <td>
+            Initializes a new instance of the <a href="../pokitdokcsharp/PlatformClient.html">pokitdokcsharp.PlatformClient</a> class.
+            </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Fields</h2>
+        <div class="SectionBox" id="Public Fields">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>const </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#F:pokitdokcsharp.OauthApplicationClient.DEFAULT_TIMEOUT">DEFAULT_TIMEOUT</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                  </i> (90000). 
+            The default http request timeout.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>const </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_SITE">POKITDOK_PLATFORM_API_SITE</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            The default PokitDok API site url.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>const </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_TOKEN_PATH">POKITDOK_PLATFORM_API_TOKEN_PATH</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            The Oauth token path.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>const </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_VERSION_PATH">POKITDOK_PLATFORM_API_VERSION_PATH</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            The default current PokitDok API version path.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>const </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#F:pokitdokcsharp.OauthApplicationClient.REFRESH_TOKEN_DURATION">REFRESH_TOKEN_DURATION</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                  </i> (55). 
+            The Oauth refresh token interval.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Properties</h2>
+        <div class="SectionBox" id="Public Properties">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#P:pokitdokcsharp.OauthApplicationClient.AccessToken">AccessToken</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a>
+                  </i>. 
+            Gets or sets the access token.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#P:pokitdokcsharp.OauthApplicationClient.ApiBaseUrl">ApiBaseUrl</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the API base URL.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.PlatformClient.ApiSite">ApiSite</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the API base url site.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#P:pokitdokcsharp.OauthApplicationClient.ApiTokenUrl">ApiTokenUrl</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the API token URL.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#P:pokitdokcsharp.OauthApplicationClient.ClientId">ClientId</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the client identifier.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#P:pokitdokcsharp.OauthApplicationClient.ClientSecret">ClientSecret</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the client secret.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.PlatformClient.Data">Data</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>
+                  </i>. 
+            Gets application API data.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>[read-only]<div></div></td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.PlatformClient.Errors">Errors</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>
+                  </i>. 
+            Gets application API errors.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#P:pokitdokcsharp.OauthApplicationClient.RequestTimeout">RequestTimeout</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                  </i>. 
+            Gets or sets the request timeout.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.PlatformClient.TokenPath">TokenPath</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the token path.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#P:pokitdokcsharp.OauthApplicationClient.UserAgent">UserAgent</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the user agent.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.PlatformClient.VersionPath">VersionPath</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the version path.
+            </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Methods</h2>
+        <div class="SectionBox" id="Public Methods">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.activities(System.Collections.Generic.Dictionary{System.String,System.String})">activities</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Call the activities endpoint to get a listing of current activities,
+            a query string parameter ‘parent_id’ may also be used with this API to get information about
+            sub-activities that were initiated from a batch file upload.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.activities(System.String)">activities</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Call the activities endpoint for a specific activityId.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#M:pokitdokcsharp.OauthApplicationClient.Authenticate()">Authenticate</a>
+                  </b>()<nobr> : <a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a></nobr><blockquote>
+            Get an access token and setup a timer to refresh the token
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.claims(System.Collections.Generic.Dictionary{System.String,System.Object})">claims</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Create a new claim, via the filing of an EDI 837 Professional Claims, to the designated Payer.
+            (Not yet implemented)
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.claimsStatus(System.Collections.Generic.Dictionary{System.String,System.Object})">claimsStatus</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Ascertain the status of the specified claim, via the filing of an EDI 276 Claims Status.
+            (Not yet implemented)
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.eligibility(System.Collections.Generic.Dictionary{System.String,System.Object})">eligibility</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Determine eligibility via an EDI 270 Request For Eligibility.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.enrollment(System.Collections.Generic.Dictionary{System.String,System.Object})">enrollment</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            File an EDI 834 benefit enrollment.
+            (Not yet implemented)
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.files(System.String,System.String,System.String)">files</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Submit X12 formatted EDI file for batch processing.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#M:pokitdokcsharp.OauthApplicationClient.GetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">GetRequest</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Perform a GET request given the http request path and a dictionary of query parameters.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.init()">init</a>
+                  </b>()<blockquote>
+            Init this instance.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">PostRequest</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Perform a POST request given the http request path and a dictionary representing the JSON post body.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="../pokitdokcsharp/OauthApplicationClient.html#M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">PostRequest</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Perform a POST request given the http request path and a file to post with optional form field parameters.
+             (<i>Inherited from <a href="../pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>.</i>)</blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.priceCash(System.Collections.Generic.Dictionary{System.String,System.String})">priceCash</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Return a list of cash prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
+            (Not yet implemented)
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.priceInsurance(System.Collections.Generic.Dictionary{System.String,System.String})">priceInsurance</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Return a list of insurance prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
+            (Not yet implemented)
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.providers(System.Collections.Generic.Dictionary{System.String,System.String})">providers</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Get a list of providers meeting certain search criteria.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.providers(System.String)">providers</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Retrieve the data for a specified provider.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.PlatformClient.usage()">usage</a>
+                  </b>()<nobr> : <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a></nobr><blockquote>
+            Usage statistics for most recent request.
+            </blockquote></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Members" id="T:pokitdokcsharp.PlatformClient:Members">
+      <h2 class="Section" id="MemberDetails">Member Details</h2>
+      <div class="SectionBox" id="_MemberDetails">
+        <h3 id="C:pokitdokcsharp.PlatformClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken)">PlatformClient Constructor</h3>
+        <blockquote id="C:pokitdokcsharp.PlatformClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken):member">
+          <p class="Summary">
+            Initializes a new instance of the <a href="../pokitdokcsharp/PlatformClient.html">pokitdokcsharp.PlatformClient</a> class.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public  <b>PlatformClient</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> clientId, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> clientSecret, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> requestTimeout, <a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a> accessToken)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="C:pokitdokcsharp.PlatformClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken):Parameters">
+            <dl>
+              <dt>
+                <i>clientId</i>
+              </dt>
+              <dd>Client identifier.</dd>
+              <dt>
+                <i>clientSecret</i>
+              </dt>
+              <dd>Client secret.</dd>
+              <dt>
+                <i>requestTimeout</i>
+              </dt>
+              <dd>Request timeout.</dd>
+              <dt>
+                <i>accessToken</i>
+              </dt>
+              <dd>Access token.</dd>
+            </dl>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="C:pokitdokcsharp.PlatformClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="C:pokitdokcsharp.PlatformClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.activities(System.Collections.Generic.Dictionary{System.String,System.String})">activities Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.activities(System.Collections.Generic.Dictionary{System.String,System.String}):member">
+          <p class="Summary">
+            Call the activities endpoint to get a listing of current activities,
+            a query string parameter ‘parent_id’ may also be used with this API to get information about
+            sub-activities that were initiated from a batch file upload.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>activities</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a> parameters)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.activities(System.Collections.Generic.Dictionary{System.String,System.String}):Parameters">
+            <dl>
+              <dt>
+                <i>parameters</i>
+              </dt>
+              <dd>
+            Query paramters:
+            _id, {string} ID of this Activity
+            name, {string} Activity name
+            callback_url, {string} URL that will be invoked to notify the client application that this Activity has completed.
+            	We recommend that you always use https for callback URLs used by your application.
+            file_url, {string} URL where batch transactions that were uploaded to be processed within this activity are stored.
+            	X12 files uploaded via the /files endpoint are stored here.
+            history, {list} Historical status of the progress of this Activity
+            state, {dict} Current state of this Activity
+            transition_path, {list} The list of state transitions that will be used for this Activity.
+            remaining_transitions, {list} The list of remaining state transitions that the activity has yet to go through.
+            parameters, {dict} The parameters that were originally supplied to the activity
+            units_of_work, {int} The number of ‘units of work’ that the activity is operating on.
+            	This will typically be 1 for real-time requests like /eligibility.
+            	When uploading batch X12 files via the /files endpoint, this will be the number of ‘transactions’ within
+            	that file.  For example, if a client application POSTs a file of 20 eligibility requests to the /files API,
+            	the units_of_work value for that activity will be 20 after the X12 file has been analyzed.  If an activity
+            	does show a value greater than 1 for units_of_work, the client application can fetch detailed information
+            	about each one of the activities processing those units of work by using the
+            	/activities/?parent_id=&lt;activity_id&gt; API
+            </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.activities(System.Collections.Generic.Dictionary{System.String,System.String}):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.activities(System.Collections.Generic.Dictionary{System.String,System.String}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.activities(System.Collections.Generic.Dictionary{System.String,System.String}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.activities(System.Collections.Generic.Dictionary{System.String,System.String}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.activities(System.String)">activities Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.activities(System.String):member">
+          <p class="Summary">
+            Call the activities endpoint for a specific activityId.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>activities</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> activityId)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.activities(System.String):Parameters">
+            <dl>
+              <dt>
+                <i>activityId</i>
+              </dt>
+              <dd>Activity identifier.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.activities(System.String):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.activities(System.String):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.activities(System.String):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.activities(System.String):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.PlatformClient.ApiSite">ApiSite Property</h3>
+        <blockquote id="P:pokitdokcsharp.PlatformClient.ApiSite:member">
+          <p class="Summary">
+            Gets or sets the API base url site.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>ApiSite</b>  { get; set; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.PlatformClient.ApiSite:Value">The API site.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.PlatformClient.ApiSite:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.PlatformClient.ApiSite:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.claims(System.Collections.Generic.Dictionary{System.String,System.Object})">claims Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.claims(System.Collections.Generic.Dictionary{System.String,System.Object}):member">
+          <p class="Summary">
+            Create a new claim, via the filing of an EDI 837 Professional Claims, to the designated Payer.
+            (Not yet implemented)
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>claims</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a> postData)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.claims(System.Collections.Generic.Dictionary{System.String,System.Object}):Parameters">
+            <dl>
+              <dt>
+                <i>postData</i>
+              </dt>
+              <dd>Dictionary representing JSON post data.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.claims(System.Collections.Generic.Dictionary{System.String,System.Object}):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.claims(System.Collections.Generic.Dictionary{System.String,System.Object}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.claims(System.Collections.Generic.Dictionary{System.String,System.Object}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.claims(System.Collections.Generic.Dictionary{System.String,System.Object}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.claimsStatus(System.Collections.Generic.Dictionary{System.String,System.Object})">claimsStatus Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.claimsStatus(System.Collections.Generic.Dictionary{System.String,System.Object}):member">
+          <p class="Summary">
+            Ascertain the status of the specified claim, via the filing of an EDI 276 Claims Status.
+            (Not yet implemented)
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>claimsStatus</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a> postData)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.claimsStatus(System.Collections.Generic.Dictionary{System.String,System.Object}):Parameters">
+            <dl>
+              <dt>
+                <i>postData</i>
+              </dt>
+              <dd>Dictionary representing JSON post data.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.claimsStatus(System.Collections.Generic.Dictionary{System.String,System.Object}):Returns">The status.The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            The status.The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.claimsStatus(System.Collections.Generic.Dictionary{System.String,System.Object}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.claimsStatus(System.Collections.Generic.Dictionary{System.String,System.Object}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.claimsStatus(System.Collections.Generic.Dictionary{System.String,System.Object}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.PlatformClient.Data">Data Property</h3>
+        <blockquote id="P:pokitdokcsharp.PlatformClient.Data:member">
+          <p class="Summary">
+            Gets application API data.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> <b>Data</b>  { get; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.PlatformClient.Data:Value">The data.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.PlatformClient.Data:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.PlatformClient.Data:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.eligibility(System.Collections.Generic.Dictionary{System.String,System.Object})">eligibility Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.eligibility(System.Collections.Generic.Dictionary{System.String,System.Object}):member">
+          <p class="Summary">
+            Determine eligibility via an EDI 270 Request For Eligibility.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>eligibility</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a> postData)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.eligibility(System.Collections.Generic.Dictionary{System.String,System.Object}):Parameters">
+            <dl>
+              <dt>
+                <i>postData</i>
+              </dt>
+              <dd>
+            Dictionary Post data form fields:
+            	trading_partner_id, Unique id for the intended trading partner, as specified by the Payers resource.
+            	provider_id, Unique identifier for the provider , such as NPI, a PokitDok provider id, etc.
+            	member_id, The named insured’s member identifier
+            	member_name, The named insured’s name as specified on their policy
+            	member_birth_date, The named insured’s birth date as specified on their policy
+            	service_types, The line of coverage in the insurance policy this eligibility request is being made against
+            </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.eligibility(System.Collections.Generic.Dictionary{System.String,System.Object}):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.eligibility(System.Collections.Generic.Dictionary{System.String,System.Object}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.eligibility(System.Collections.Generic.Dictionary{System.String,System.Object}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.eligibility(System.Collections.Generic.Dictionary{System.String,System.Object}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.enrollment(System.Collections.Generic.Dictionary{System.String,System.Object})">enrollment Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.enrollment(System.Collections.Generic.Dictionary{System.String,System.Object}):member">
+          <p class="Summary">
+            File an EDI 834 benefit enrollment.
+            (Not yet implemented)
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>enrollment</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a> postData)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.enrollment(System.Collections.Generic.Dictionary{System.String,System.Object}):Parameters">
+            <dl>
+              <dt>
+                <i>postData</i>
+              </dt>
+              <dd>Post data.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.enrollment(System.Collections.Generic.Dictionary{System.String,System.Object}):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.enrollment(System.Collections.Generic.Dictionary{System.String,System.Object}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.enrollment(System.Collections.Generic.Dictionary{System.String,System.Object}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.enrollment(System.Collections.Generic.Dictionary{System.String,System.Object}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.PlatformClient.Errors">Errors Property</h3>
+        <blockquote id="P:pokitdokcsharp.PlatformClient.Errors:member">
+          <p class="Summary">
+            Gets application API errors.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> <b>Errors</b>  { get; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.PlatformClient.Errors:Value">The errors.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.PlatformClient.Errors:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.PlatformClient.Errors:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.files(System.String,System.String,System.String)">files Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.files(System.String,System.String,System.String):member">
+          <p class="Summary">
+            Submit X12 formatted EDI file for batch processing.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>files</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> tradingPartnerId, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> filepath, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> callbackUrl)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.files(System.String,System.String,System.String):Parameters">
+            <dl>
+              <dt>
+                <i>tradingPartnerId</i>
+              </dt>
+              <dd>Trading_partner_id.</dd>
+              <dt>
+                <i>filepath</i>
+              </dt>
+              <dd>Full filesytem path of file to be submitted.</dd>
+              <dt>
+                <i>callbackUrl</i>
+              </dt>
+              <dd>Optional notification url to be called when the asynchronous processing is complete.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.files(System.String,System.String,System.String):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.files(System.String,System.String,System.String):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.files(System.String,System.String,System.String):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.files(System.String,System.String,System.String):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.init()">init Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.init():member">
+          <p class="Summary">
+            Init this instance.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>init</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.init():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.init():Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_SITE">POKITDOK_PLATFORM_API_SITE Field</h3>
+        <blockquote id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_SITE:member">
+          <p class="Summary">
+            The default PokitDok API site url.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public const <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>POKITDOK_PLATFORM_API_SITE</b> </div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_SITE:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_SITE:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_TOKEN_PATH">POKITDOK_PLATFORM_API_TOKEN_PATH Field</h3>
+        <blockquote id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_TOKEN_PATH:member">
+          <p class="Summary">
+            The Oauth token path.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public const <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>POKITDOK_PLATFORM_API_TOKEN_PATH</b> </div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_TOKEN_PATH:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_TOKEN_PATH:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_VERSION_PATH">POKITDOK_PLATFORM_API_VERSION_PATH Field</h3>
+        <blockquote id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_VERSION_PATH:member">
+          <p class="Summary">
+            The default current PokitDok API version path.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public const <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>POKITDOK_PLATFORM_API_VERSION_PATH</b> </div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_VERSION_PATH:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="F:pokitdokcsharp.PlatformClient.POKITDOK_PLATFORM_API_VERSION_PATH:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.priceCash(System.Collections.Generic.Dictionary{System.String,System.String})">priceCash Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.priceCash(System.Collections.Generic.Dictionary{System.String,System.String}):member">
+          <p class="Summary">
+            Return a list of cash prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
+            (Not yet implemented)
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>priceCash</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a> parameters)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.priceCash(System.Collections.Generic.Dictionary{System.String,System.String}):Parameters">
+            <dl>
+              <dt>
+                <i>parameters</i>
+              </dt>
+              <dd>
+            Query params:
+            	cpt_code, {string} The CPT code of the procedure in question.
+            		zipcode, {string} Postal code in which to search for procedures
+            </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.priceCash(System.Collections.Generic.Dictionary{System.String,System.String}):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.priceCash(System.Collections.Generic.Dictionary{System.String,System.String}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.priceCash(System.Collections.Generic.Dictionary{System.String,System.String}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.priceCash(System.Collections.Generic.Dictionary{System.String,System.String}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.priceInsurance(System.Collections.Generic.Dictionary{System.String,System.String})">priceInsurance Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.priceInsurance(System.Collections.Generic.Dictionary{System.String,System.String}):member">
+          <p class="Summary">
+            Return a list of insurance prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
+            (Not yet implemented)
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>priceInsurance</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a> parameters)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.priceInsurance(System.Collections.Generic.Dictionary{System.String,System.String}):Parameters">
+            <dl>
+              <dt>
+                <i>parameters</i>
+              </dt>
+              <dd>
+            Query params:
+            	cpt_code, {string} The CPT code of the procedure in question.
+            		zipcode, {string} Postal code in which to search for procedures
+            </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.priceInsurance(System.Collections.Generic.Dictionary{System.String,System.String}):Returns">The insurance.The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            The insurance.The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.priceInsurance(System.Collections.Generic.Dictionary{System.String,System.String}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.priceInsurance(System.Collections.Generic.Dictionary{System.String,System.String}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.priceInsurance(System.Collections.Generic.Dictionary{System.String,System.String}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.providers(System.Collections.Generic.Dictionary{System.String,System.String})">providers Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.providers(System.Collections.Generic.Dictionary{System.String,System.String}):member">
+          <p class="Summary">
+            Get a list of providers meeting certain search criteria.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>providers</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a> parameters)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.providers(System.Collections.Generic.Dictionary{System.String,System.String}):Parameters">
+            <dl>
+              <dt>
+                <i>parameters</i>
+              </dt>
+              <dd>
+            Query Parameters:
+            	name, Provider full name, any or all parts
+            		first_name, Provider first name
+            		middle_name, Provider middle name
+            		last_name, Provider first name
+            		specialty, Provider specialty name from NUCC/NPI taxonomy
+            		city, Provider city
+            		state, Provider state
+            		zipcode, Provider 5-digit zip code
+            		radius, Search distance from geographic centerpoint, with unit (e.g. “1mi” or “50mi”)
+            			(Only used when city, state, or zipcode is passed)
+            		gender, Provider gender
+            		npi_id, Provider NPI identifier
+            </dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.providers(System.Collections.Generic.Dictionary{System.String,System.String}):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.providers(System.Collections.Generic.Dictionary{System.String,System.String}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.providers(System.Collections.Generic.Dictionary{System.String,System.String}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.providers(System.Collections.Generic.Dictionary{System.String,System.String}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.providers(System.String)">providers Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.providers(System.String):member">
+          <p class="Summary">
+            Retrieve the data for a specified provider.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>providers</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> npi)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.providers(System.String):Parameters">
+            <dl>
+              <dt>
+                <i>npi</i>
+              </dt>
+              <dd>Provider NPI identifier.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.providers(System.String):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.
+            	The body is JSON formatted data.
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.providers(System.String):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.providers(System.String):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.providers(System.String):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.PlatformClient.TokenPath">TokenPath Property</h3>
+        <blockquote id="P:pokitdokcsharp.PlatformClient.TokenPath:member">
+          <p class="Summary">
+            Gets or sets the token path.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>TokenPath</b>  { get; set; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.PlatformClient.TokenPath:Value">The token path.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.PlatformClient.TokenPath:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.PlatformClient.TokenPath:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.PlatformClient.usage()">usage Method</h3>
+        <blockquote id="M:pokitdokcsharp.PlatformClient.usage():member">
+          <p class="Summary">
+            Usage statistics for most recent request.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a> <b>usage</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.usage():Returns">
+            dynamic object with members:
+            	rate_limit_cap, {int} The amount of requests available per hour
+            	rate_limit_reset, {int} The time (Unix Timestamp) when the rate limit amount resets
+            		rate_limit_amount, {int} The amount of requests made during the current rate limit period
+            		credits_billed, {int} The amount of credits billed for this request
+            		credits_remaining, {int} The amount of credits remaining on your API account
+            		processing_time, {int} The time to process the request in milliseconds
+            		next, {string}, A url pointing to the next page of results
+            		previous, {string} A url pointing to the previous page of results
+            </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.PlatformClient.usage():Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.usage():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.PlatformClient.usage():Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.PlatformClient.VersionPath">VersionPath Property</h3>
+        <blockquote id="P:pokitdokcsharp.PlatformClient.VersionPath:member">
+          <p class="Summary">
+            Gets or sets the version path.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>VersionPath</b>  { get; set; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.PlatformClient.VersionPath:Value">The version path.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.PlatformClient.VersionPath:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.PlatformClient.VersionPath:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

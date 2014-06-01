@@ -1,0 +1,869 @@
+<html>
+  <head>
+    <title>pokitdokcsharp.OauthApplicationClient</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+      a { text-decoration: none }
+
+      div.SideBar {
+        padding-left: 1em;
+        padding-right: 1em;
+        right: 0;
+        float: right;
+        border: thin solid black;
+        background-color: #f2f2f2;
+      }
+    
+      .CollectionTitle { font-weight: bold }
+      .PageTitle { font-size: 150%; font-weight: bold }
+
+      .Summary { }
+      .Signature { }          
+      .Remarks { }
+      .Members { }
+      .Copyright { }
+      
+      .Section { font-size: 125%; font-weight: bold }
+      p.Summary {
+        margin-left: 1em;
+      }
+      .SectionBox { margin-left: 2em }
+      .NamespaceName { font-size: 105%; font-weight: bold }
+      .NamespaceSumary { }
+      .MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+      .Subsection { font-size: 105%; font-weight: bold }
+      .SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+      .CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+      
+      .TypesListing {
+        border-collapse: collapse;
+      }
+
+      td {
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+      }
+
+      .TypesListing td { 
+        margin: 0px;  
+        padding: .25em;
+        border: solid gray 1px;
+      }
+
+      .TypesListing th { 
+        margin: 0px;  
+        padding: .25em;
+        background-color: #f2f2f2;
+        border: solid gray 1px;
+      }
+
+      div.Footer {
+        border-top: 1px solid gray;
+        margin-top: 1.5em;
+        padding-top: 0.6em;
+        text-align: center;
+        color: gray;
+      }
+
+      span.NotEntered /* Documentation for this section has not yet been entered */ {
+        font-style: italic;
+        color: red;	
+      }
+
+      div.Header {
+        background: #B0C4DE;
+        border: double;
+        border-color: white;
+        border-width: 7px;
+        padding: 0.5em;
+      }
+
+      div.Header * {
+        font-size: smaller;
+      }
+
+      div.Note {
+      }
+
+      i.ParamRef {
+      }
+
+      i.subtitle {
+      }
+
+      ul.TypeMembersIndex {
+        text-align: left;
+        background: #F8F8F8;
+      }
+
+      ul.TypeMembersIndex li {
+        display: inline;
+        margin:  0.5em;
+      }
+
+      table.HeaderTable {
+      }
+
+      table.SignatureTable {
+      }
+
+      table.Documentation, table.Enumeration, table.TypeDocumentation {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table.Documentation tr th, table.TypeMembers tr th, table.Enumeration tr th, table.TypeDocumentation tr th {
+        background: whitesmoke;
+        padding: 0.8em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: bottom;
+      }
+
+      table.Documentation tr td, table.TypeMembers tr td, table.Enumeration tr td, table.TypeDocumentation tr td {
+        padding: 0.5em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      table.TypeMembers {
+        border: 1px solid #C0C0C0;
+        width: 100%;
+      }
+
+      table.TypeMembers tr td {
+        background: #F8F8F8;
+        border: white;
+      }
+
+      table.Documentation {
+      }
+
+      table.TypeMembers {
+      }
+
+      div.CodeExample {
+        width: 100%;
+        border: 1px solid #DDDDDD;
+        background-color: #F8F8F8;
+      }
+
+      div.CodeExample p {
+        margin: 0.5em;
+        border-bottom: 1px solid #DDDDDD;
+      }
+
+      div.CodeExample div {
+        margin: 0.5em;
+      }
+
+      h4 {
+        margin-bottom: 0;
+      }
+
+      div.Signature {
+        border: 1px solid #C0C0C0;
+        background: #F2F2F2;
+        padding: 1em;
+      }
+    </style>
+    <script type="text/JavaScript">
+      function toggle_display (block) {
+        var w = document.getElementById (block);
+        var t = document.getElementById (block + ":toggle");
+        if (w.style.display == "none") {
+          w.style.display = "block";
+          t.innerHTML = "⊟";
+        } else {
+          w.style.display = "none";
+          t.innerHTML = "⊞";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="../index.html">pokitdok-csharp</a> : <a href="index.html">pokitdokcsharp Namespace</a></div>
+    <div class="SideBar">
+      <p>
+        <a href="#T:pokitdokcsharp.OauthApplicationClient">Overview</a>
+      </p>
+      <p>
+        <a href="#T:pokitdokcsharp.OauthApplicationClient:Signature">Signature</a>
+      </p>
+      <p>
+        <a href="#T:pokitdokcsharp.OauthApplicationClient:Docs">Remarks</a>
+      </p>
+      <p>
+        <a href="#Members">Members</a>
+      </p>
+      <p>
+        <a href="#T:pokitdokcsharp.OauthApplicationClient:Members">Member Details</a>
+      </p>
+    </div>
+    <h1 class="PageTitle" id="T:pokitdokcsharp.OauthApplicationClient">OauthApplicationClient  Class</h1>
+    <p class="Summary" id="T:pokitdokcsharp.OauthApplicationClient:Summary">
+            Oauth 2.0 Client implementing Client Credentials Grant Authorization
+            		http://tools.ietf.org/html/rfc6749#section-4.4
+            </p>
+    <div>
+      <h2>Syntax</h2>
+      <div class="Signature" id="T:pokitdokcsharp.OauthApplicationClient:Signature">public class  <b>OauthApplicationClient</b></div>
+    </div>
+    <div class="Remarks" id="T:pokitdokcsharp.OauthApplicationClient:Docs">
+      <h2 class="Section">Remarks</h2>
+      <div class="SectionBox" id="T:pokitdokcsharp.OauthApplicationClient:Docs:Remarks">
+        <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+      </div>
+      <h2 class="Section">Requirements</h2>
+      <div class="SectionBox" id="T:pokitdokcsharp.OauthApplicationClient:Docs:Version Information">
+        <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+      <h2 class="Section" id="Members">Members</h2>
+      <div class="SectionBox" id="_Members">
+        <p>
+								See Also: Inherited members from
+								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+							</p>
+        <h2 class="Section">Public Constructors</h2>
+        <div class="SectionBox" id="Public Constructors">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <b>
+                      <a href="#C:pokitdokcsharp.OauthApplicationClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken)">OauthApplicationClient</a>
+                    </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>, <a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a>)</div>
+                </td>
+                <td>
+            Initializes a new instance of the <a href="../pokitdokcsharp/OauthApplicationClient.html">pokitdokcsharp.OauthApplicationClient</a> class.
+            </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Fields</h2>
+        <div class="SectionBox" id="Public Fields">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>const </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:pokitdokcsharp.OauthApplicationClient.DEFAULT_TIMEOUT">DEFAULT_TIMEOUT</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                  </i> (90000). 
+            The default http request timeout.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>const </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:pokitdokcsharp.OauthApplicationClient.REFRESH_TOKEN_DURATION">REFRESH_TOKEN_DURATION</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                  </i> (55). 
+            The Oauth refresh token interval.
+            </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Properties</h2>
+        <div class="SectionBox" id="Public Properties">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.OauthApplicationClient.AccessToken">AccessToken</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a>
+                  </i>. 
+            Gets or sets the access token.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.OauthApplicationClient.ApiBaseUrl">ApiBaseUrl</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the API base URL.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.OauthApplicationClient.ApiTokenUrl">ApiTokenUrl</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the API token URL.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.OauthApplicationClient.ClientId">ClientId</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the client identifier.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.OauthApplicationClient.ClientSecret">ClientSecret</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the client secret.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.OauthApplicationClient.RequestTimeout">RequestTimeout</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a>
+                  </i>. 
+            Gets or sets the request timeout.
+            </td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#P:pokitdokcsharp.OauthApplicationClient.UserAgent">UserAgent</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. 
+            Gets or sets the user agent.
+            </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Methods</h2>
+        <div class="SectionBox" id="Public Methods">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.OauthApplicationClient.Authenticate()">Authenticate</a>
+                  </b>()<nobr> : <a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a></nobr><blockquote>
+            Get an access token and setup a timer to refresh the token
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.OauthApplicationClient.GetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">GetRequest</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Perform a GET request given the http request path and a dictionary of query parameters.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">PostRequest</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Perform a POST request given the http request path and a dictionary representing the JSON post body.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">PostRequest</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a>)<nobr> : <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a></nobr><blockquote>
+            Perform a POST request given the http request path and a file to post with optional form field parameters.
+            </blockquote></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Members" id="T:pokitdokcsharp.OauthApplicationClient:Members">
+      <h2 class="Section" id="MemberDetails">Member Details</h2>
+      <div class="SectionBox" id="_MemberDetails">
+        <h3 id="C:pokitdokcsharp.OauthApplicationClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken)">OauthApplicationClient Constructor</h3>
+        <blockquote id="C:pokitdokcsharp.OauthApplicationClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken):member">
+          <p class="Summary">
+            Initializes a new instance of the <a href="../pokitdokcsharp/OauthApplicationClient.html">pokitdokcsharp.OauthApplicationClient</a> class.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public  <b>OauthApplicationClient</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> clientId, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> clientSecret, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> requestTimeout, <a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a> accessToken)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="C:pokitdokcsharp.OauthApplicationClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken):Parameters">
+            <dl>
+              <dt>
+                <i>clientId</i>
+              </dt>
+              <dd>Client identifier.</dd>
+              <dt>
+                <i>clientSecret</i>
+              </dt>
+              <dd>Client secret.</dd>
+              <dt>
+                <i>requestTimeout</i>
+              </dt>
+              <dd>Request timeout.</dd>
+              <dt>
+                <i>accessToken</i>
+              </dt>
+              <dd>Access token.</dd>
+            </dl>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="C:pokitdokcsharp.OauthApplicationClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="C:pokitdokcsharp.OauthApplicationClient(System.String,System.String,System.Int32,pokitdokcsharp.OauthAccessToken):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.OauthApplicationClient.AccessToken">AccessToken Property</h3>
+        <blockquote id="P:pokitdokcsharp.OauthApplicationClient.AccessToken:member">
+          <p class="Summary">
+            Gets or sets the access token.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a> <b>AccessToken</b>  { get; set; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.OauthApplicationClient.AccessToken:Value">The access token.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.AccessToken:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.AccessToken:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.OauthApplicationClient.ApiBaseUrl">ApiBaseUrl Property</h3>
+        <blockquote id="P:pokitdokcsharp.OauthApplicationClient.ApiBaseUrl:member">
+          <p class="Summary">
+            Gets or sets the API base URL.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>ApiBaseUrl</b>  { get; set; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ApiBaseUrl:Value">The API base URL.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ApiBaseUrl:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ApiBaseUrl:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.OauthApplicationClient.ApiTokenUrl">ApiTokenUrl Property</h3>
+        <blockquote id="P:pokitdokcsharp.OauthApplicationClient.ApiTokenUrl:member">
+          <p class="Summary">
+            Gets or sets the API token URL.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>ApiTokenUrl</b>  { get; set; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ApiTokenUrl:Value">The API token URL.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ApiTokenUrl:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ApiTokenUrl:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.OauthApplicationClient.Authenticate()">Authenticate Method</h3>
+        <blockquote id="M:pokitdokcsharp.OauthApplicationClient.Authenticate():member">
+          <p class="Summary">
+            Get an access token and setup a timer to refresh the token
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a> <b>Authenticate</b> ()</div>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.Authenticate():Returns">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.Authenticate():Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when authentication fails or
+            when some unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.OauthApplicationClient.Authenticate():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.OauthApplicationClient.Authenticate():Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.OauthApplicationClient.ClientId">ClientId Property</h3>
+        <blockquote id="P:pokitdokcsharp.OauthApplicationClient.ClientId:member">
+          <p class="Summary">
+            Gets or sets the client identifier.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>ClientId</b>  { get; set; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ClientId:Value">The client identifier.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ClientId:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ClientId:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.OauthApplicationClient.ClientSecret">ClientSecret Property</h3>
+        <blockquote id="P:pokitdokcsharp.OauthApplicationClient.ClientSecret:member">
+          <p class="Summary">
+            Gets or sets the client secret.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>ClientSecret</b>  { get; set; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ClientSecret:Value">The client secret.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ClientSecret:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.ClientSecret:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:pokitdokcsharp.OauthApplicationClient.DEFAULT_TIMEOUT">DEFAULT_TIMEOUT Field</h3>
+        <blockquote id="F:pokitdokcsharp.OauthApplicationClient.DEFAULT_TIMEOUT:member">
+          <p class="Summary">
+            The default http request timeout.
+            </p>
+          <p>
+            <b>Value: </b>90000</p>
+          <h2>Syntax</h2>
+          <div class="Signature">public const <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>DEFAULT_TIMEOUT</b> </div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="F:pokitdokcsharp.OauthApplicationClient.DEFAULT_TIMEOUT:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="F:pokitdokcsharp.OauthApplicationClient.DEFAULT_TIMEOUT:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.OauthApplicationClient.GetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">GetRequest Method</h3>
+        <blockquote id="M:pokitdokcsharp.OauthApplicationClient.GetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String}):member">
+          <p class="Summary">
+            Perform a GET request given the http request path and a dictionary of query parameters.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>GetRequest</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> requestPath, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a> parameters)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.GetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String}):Parameters">
+            <dl>
+              <dt>
+                <i>requestPath</i>
+              </dt>
+              <dd>Request path.</dd>
+              <dt>
+                <i>parameters</i>
+              </dt>
+              <dd>Dictionary of query parameters.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.GetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String}):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.</blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.GetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.OauthApplicationClient.GetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.OauthApplicationClient.GetRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.String}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">PostRequest Method</h3>
+        <blockquote id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}):member">
+          <p class="Summary">
+            Perform a POST request given the http request path and a dictionary representing the JSON post body.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>PostRequest</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> requestPath, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, object&gt;</a> postData)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}):Parameters">
+            <dl>
+              <dt>
+                <i>requestPath</i>
+              </dt>
+              <dd>Request path.</dd>
+              <dt>
+                <i>postData</i>
+              </dt>
+              <dd>Post data: dictionary representing JSON data</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}):Returns">The http response as a <a href="../pokitdokcsharp/ResponseData.html">pokitdokcsharp.ResponseData</a> object.</blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">PostRequest Method</h3>
+        <blockquote id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String}):member">
+          <p class="Summary">
+            Perform a POST request given the http request path and a file to post with optional form field parameters.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="../pokitdokcsharp/ResponseData.html">ResponseData</a> <b>PostRequest</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> requestPath, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> postFilePath, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> postFileContentDispositionName, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> postFileContentType, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Collections.Generic.Dictionary`2">Dictionary&lt;string, string&gt;</a> parameters)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String}):Parameters">
+            <dl>
+              <dt>
+                <i>requestPath</i>
+              </dt>
+              <dd>Request path.</dd>
+              <dt>
+                <i>postFilePath</i>
+              </dt>
+              <dd>File system path of file data to be posted.</dd>
+              <dt>
+                <i>postFileContentDispositionName</i>
+              </dt>
+              <dd>Post file content disposition name.</dd>
+              <dt>
+                <i>postFileContentType</i>
+              </dt>
+              <dd>Post file content type.</dd>
+              <dt>
+                <i>parameters</i>
+              </dt>
+              <dd>Dictionary of form data parameters.</dd>
+            </dl>
+          </blockquote>
+          <h4 class="Subsection">Returns</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String}):Returns">The request.</blockquote>
+          <h4 class="Subsection">Exceptions</h4>
+          <blockquote class="SubsectionBox" id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String}):Exceptions">
+            <table class="TypeDocumentation">
+              <tr>
+                <th>Type</th>
+                <th>Reason</th>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <a href="../pokitdokcsharp/PokitDokException.html">pokitdokcsharp.PokitDokException</a>
+                </td>
+                <td>Thrown when unknown system error occurs.</td>
+              </tr>
+            </table>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String}):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:pokitdokcsharp.OauthApplicationClient.PostRequest(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String}):Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:pokitdokcsharp.OauthApplicationClient.REFRESH_TOKEN_DURATION">REFRESH_TOKEN_DURATION Field</h3>
+        <blockquote id="F:pokitdokcsharp.OauthApplicationClient.REFRESH_TOKEN_DURATION:member">
+          <p class="Summary">
+            The Oauth refresh token interval.
+            </p>
+          <p>
+            <b>Value: </b>55</p>
+          <h2>Syntax</h2>
+          <div class="Signature">public const <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>REFRESH_TOKEN_DURATION</b> </div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="F:pokitdokcsharp.OauthApplicationClient.REFRESH_TOKEN_DURATION:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="F:pokitdokcsharp.OauthApplicationClient.REFRESH_TOKEN_DURATION:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.OauthApplicationClient.RequestTimeout">RequestTimeout Property</h3>
+        <blockquote id="P:pokitdokcsharp.OauthApplicationClient.RequestTimeout:member">
+          <p class="Summary">
+            Gets or sets the request timeout.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Int32">int</a> <b>RequestTimeout</b>  { get; set; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.OauthApplicationClient.RequestTimeout:Value">The request timeout.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.RequestTimeout:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.RequestTimeout:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="P:pokitdokcsharp.OauthApplicationClient.UserAgent">UserAgent Property</h3>
+        <blockquote id="P:pokitdokcsharp.OauthApplicationClient.UserAgent:member">
+          <p class="Summary">
+            Gets or sets the user agent.
+            </p>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>UserAgent</b>  { get; set; }</div>
+          <h4 class="Subsection">Value</h4>
+          <blockquote class="SubsectionBox" id="P:pokitdokcsharp.OauthApplicationClient.UserAgent:Value">The user agent.</blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.UserAgent:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="P:pokitdokcsharp.OauthApplicationClient.UserAgent:Version Information">
+            <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.1.5265.15254, 0.1.5265.15688, 0.1.5265.15767</div>
+          <hr size="1" />
+        </blockquote>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

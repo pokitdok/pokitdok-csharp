@@ -1,4 +1,13 @@
-﻿using System;
+﻿// Copyright (C) 2014, All Rights Reserved, PokitDok, Inc.
+// http://www.pokitdok.com
+//
+// Please see the LICENSE.txt file for more information.
+// All other rights reserved.
+//
+//	Oauth 2.0 Client implementing Client Credentials Grant Authorization
+//		http://tools.ietf.org/html/rfc6749#section-4.4
+
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
@@ -13,26 +22,59 @@ using Newtonsoft.Json;
 
 namespace pokitdokcsharp
 {
+	/// <summary>
+	/// PokitDok exception.
+	/// </summary>
 	public class PokitDokException : Exception 
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="pokitdokcsharp.PokitDokException"/> class.
+		/// </summary>
+		/// <param name="message">Message.</param>
+		/// <param name="innerException">Inner exception.</param>
 		public PokitDokException(string message, Exception innerException) : 
 			base(message, innerException) {
 		}
+		/// <summary>
+		/// Initializes a new instance of the <see cref="pokitdokcsharp.PokitDokException"/> class.
+		/// </summary>
+		/// <param name="message">Message.</param>
 		public PokitDokException(string message) : base(message) {
 		}
 	}
 
+	/// <summary>
+	/// Store http response headers, body and status code
+	/// </summary>
 	public class ResponseData
 	{
+		/// <summary>
+		/// Gets or sets the header values as a Dictionary.
+		/// </summary>
+		/// <value>The header.</value>
 		public Dictionary<string, string> header { get; set; }
+		/// <summary>
+		/// Gets or sets the body.
+		/// </summary>
+		/// <value>The body.</value>
 		public string body { get; set; }
+		/// <summary>
+		/// Gets or sets the HTTP status.
+		/// </summary>
+		/// <value>The status.</value>
 		public int status { get; set; }
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="pokitdokcsharp.ResponseData"/> class.
+		/// </summary>
 		public ResponseData()
 		{
 			init();
 		}
 
+		/// <summary>
+		/// Init this instance.
+		/// </summary>
 		public void init()
 		{
 			header = new Dictionary<string, string>();
@@ -41,25 +83,55 @@ namespace pokitdokcsharp
 		}
 	}
 
+	/// <summary>
+	/// Oauth access token
+	///		http://tools.ietf.org/html/rfc6749#section-4.4.3
+	/// </summary>
 	[System.Runtime.Serialization.DataContract]
 	public class OauthAccessToken
 	{
+		/// <summary>
+		/// Gets or sets the access_token.
+		/// </summary>
+		/// <value>The access_token.</value>
 		[System.Runtime.Serialization.DataMember]
 		public string access_token { get; set; }
+		/// <summary>
+		/// Gets or sets the token_type.
+		/// </summary>
+		/// <value>The token_type.</value>
 		[System.Runtime.Serialization.DataMember]
 		public string token_type { get; set; }
+		/// <summary>
+		/// Gets or sets the expires.
+		/// </summary>
+		/// <value>The expires.</value>
 		[System.Runtime.Serialization.DataMember]
 		public string expires { get; set; }
+		/// <summary>
+		/// Gets or sets the expires_in.
+		/// </summary>
+		/// <value>The expires_in.</value>
 		[System.Runtime.Serialization.DataMember]
 		public string expires_in { get; set; }
+		/// <summary>
+		/// Gets or sets the error.
+		/// </summary>
+		/// <value>The error.</value>
 		[System.Runtime.Serialization.DataMember]
 		public string error { get; set; }
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="pokitdokcsharp.OauthAccessToken"/> class.
+		/// </summary>
 		public OauthAccessToken()
 		{
 			init ();
 		}
 
+		/// <summary>
+		/// Init this instance.
+		/// </summary>
 		public void init()
 		{
 			access_token = "RftNvQ4DmMewkbvSiq2niZxiobEtPgEKXfzqWCLF";
@@ -70,9 +142,19 @@ namespace pokitdokcsharp
 		}
 	}
 
+	/// <summary>
+	/// Oauth 2.0 Client implementing Client Credentials Grant Authorization
+	///		http://tools.ietf.org/html/rfc6749#section-4.4
+	/// </summary>
 	public class OauthApplicationClient
 	{
+		/// <summary>
+		/// The default http request timeout.
+		/// </summary>
 		public const int DEFAULT_TIMEOUT = 90000; // milliseconds
+		/// <summary>
+		/// The Oauth refresh token interval.
+		/// </summary>
 		public const int REFRESH_TOKEN_DURATION = 55; // minutes
 
 		private string _apiBaseUrl;
@@ -89,6 +171,13 @@ namespace pokitdokcsharp
 
 		private ResponseData _responseData = new ResponseData();
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="pokitdokcsharp.OauthApplicationClient"/> class.
+		/// </summary>
+		/// <param name="clientId">Client identifier.</param>
+		/// <param name="clientSecret">Client secret.</param>
+		/// <param name="requestTimeout">Request timeout.</param>
+		/// <param name="accessToken">Access token.</param>
 		public OauthApplicationClient(
 			string clientId, 
 			string clientSecret, 
@@ -104,6 +193,11 @@ namespace pokitdokcsharp
 			}
 		}
 
+		/// <summary>
+		/// Get an access token and setup a timer to refresh the token
+		/// </summary>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when authentication fails or 
+		/// when some unknown system error occurs.</exception>
 		public OauthAccessToken Authenticate()
 		{
 			try {
@@ -125,7 +219,7 @@ namespace pokitdokcsharp
 				using (HttpWebResponse webResponse = webRequest.GetResponse() as HttpWebResponse)
 				{
 					if (webResponse.StatusCode != HttpStatusCode.OK) {
-						throw new Exception(
+						throw new PokitDokException(
 							string.Format("HTTP {0}: {1}", webResponse.StatusCode, webResponse.StatusDescription)
 						);
 					}
@@ -147,6 +241,11 @@ namespace pokitdokcsharp
 			return this.AccessToken;
 		}
 
+		/// <summary>
+		/// Raises the token expired callback event.
+		/// </summary>
+		/// <param name="stateInfo">State info.</param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs</exception>
 		private void OnTokenExpiredCallback(object stateInfo)
 		{
 			try
@@ -178,6 +277,10 @@ namespace pokitdokcsharp
 			}
 		}
 
+		/// <summary>
+		/// Check if the access token is expired
+		/// </summary>
+		/// <returns><c>true</c>, if access token expired was ised, <c>false</c> otherwise.</returns>
 		private bool isAccessTokenExpired()
 		{
 			if (!(this.AccessToken is OauthAccessToken)) {
@@ -190,6 +293,10 @@ namespace pokitdokcsharp
 			);
 		}
 
+		/// <summary>
+		/// Gets or sets the access token.
+		/// </summary>
+		/// <value>The access token.</value>
 		public OauthAccessToken AccessToken {
 			get {
 				return this._accessToken;
@@ -201,6 +308,13 @@ namespace pokitdokcsharp
 			}
 		}
 
+		/// <summary>
+		/// Perform a GET request given the http request path and a dictionary of query parameters.
+		/// </summary>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.</returns>
+		/// <param name="requestPath">Request path.</param>
+		/// <param name="parameters">Dictionary of query parameters.</param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
 		public ResponseData GetRequest(string requestPath, Dictionary<string,string> parameters = null)
 		{
 			if (isAccessTokenExpired()) {
@@ -227,7 +341,6 @@ namespace pokitdokcsharp
 				webRequest.Timeout = _requestTimeout;
 				webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
 				webRequest.Method = "GET";
-				//webRequest.ContentType = "application/json";
 				webRequest.UserAgent = this._userAgent;
 
 				using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse) {
@@ -245,6 +358,13 @@ namespace pokitdokcsharp
 			return _responseData;
 		}
 
+		/// <summary>
+		/// Perform a POST request given the http request path and a dictionary representing the JSON post body.
+		/// </summary>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.</returns>
+		/// <param name="requestPath">Request path.</param>
+		/// <param name="postData">Post data: dictionary representing JSON data</param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
 		public ResponseData PostRequest(string requestPath, Dictionary<string, object> postData)
 		{
 			if (isAccessTokenExpired()) {
@@ -285,6 +405,16 @@ namespace pokitdokcsharp
 			return _responseData;
 		}
 
+		/// <summary>
+		/// Perform a POST request given the http request path and a file to post with optional form field parameters.
+		/// </summary>
+		/// <returns>The request.</returns>
+		/// <param name="requestPath">Request path.</param>
+		/// <param name="postFilePath">File system path of file data to be posted.</param>
+		/// <param name="postFileContentDispositionName">Post file content disposition name.</param>
+		/// <param name="postFileContentType">Post file content type.</param>
+		/// <param name="parameters">Dictionary of form data parameters.</param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
 		public ResponseData PostRequest(
 			string requestPath, 
 			string postFilePath,
@@ -350,6 +480,15 @@ namespace pokitdokcsharp
 			return _responseData;
 		}
 
+		/// <summary>
+		/// Builds a Stream of multipart form data from file and form fields.
+		/// </summary>
+		/// <returns>The post stream.</returns>
+		/// <param name="filePath">File path.</param>
+		/// <param name="fileContentType">File content type.</param>
+		/// <param name="fileContentDispositionName">File content disposition name.</param>
+		/// <param name="formData">Form data.</param>
+		/// <param name="boundary">Boundary.</param>
 		private static Stream GetPostStream(
 			string filePath, 
 			string fileContentType, 
@@ -401,6 +540,11 @@ namespace pokitdokcsharp
 			return postDataStream;
 		}
 
+		/// <summary>
+		/// Processes the http response into a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// </summary>
+		/// <returns>The response as a <see cref="pokitdokcsharp.ResponseData"/> object.</returns>
+		/// <param name="response">Response.</param>
 		private ResponseData ProcessResponse(HttpWebResponse response)
 		{
 			if (!(_responseData is ResponseData)) {
@@ -420,6 +564,10 @@ namespace pokitdokcsharp
 			return _responseData;
 		}
 
+		/// <summary>
+		/// Gets or sets the client identifier.
+		/// </summary>
+		/// <value>The client identifier.</value>
 		public string ClientId {
 			get {
 				return this._clientId;
@@ -429,6 +577,10 @@ namespace pokitdokcsharp
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the client secret.
+		/// </summary>
+		/// <value>The client secret.</value>
 		public string ClientSecret {
 			get {
 				return this._clientSecret;
@@ -438,6 +590,10 @@ namespace pokitdokcsharp
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the request timeout.
+		/// </summary>
+		/// <value>The request timeout.</value>
 		public int RequestTimeout {
 			get {
 				return this._requestTimeout;
@@ -447,6 +603,10 @@ namespace pokitdokcsharp
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the API token URL.
+		/// </summary>
+		/// <value>The API token URL.</value>
 		public string ApiTokenUrl {
 			get {
 				return this._apiTokenUrl;
@@ -456,6 +616,10 @@ namespace pokitdokcsharp
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the API base URL.
+		/// </summary>
+		/// <value>The API base URL.</value>
 		public string ApiBaseUrl {
 			get {
 				return this._apiBaseUrl;
@@ -465,6 +629,10 @@ namespace pokitdokcsharp
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the user agent.
+		/// </summary>
+		/// <value>The user agent.</value>
 		public string UserAgent {
 			get {
 				return this._userAgent;
