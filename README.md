@@ -6,7 +6,9 @@ PokitDok [Platform API][apidocs] Client for C#
 ## Installation
 
 Install via [NuGet][nuget]:
+```
 	PM> Install-Package PokitDokPlatformClient
+```
 
 Build source with [Xamarin][xamarin] Studio 5.0.
 See dependencies section below.
