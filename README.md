@@ -33,24 +33,32 @@ nunit-console.exe bin/Debug/pokitdok-csharp.dll
 ## Usage Example
 
 ```c#
+	using System;
+	using System.Collections.Generic;
+	using System.IO;
 	using pokitdokcsharp;
 
-	// ...
+	class MainClass
+	{
+		public static void Main (string[] args)
+		{
+			PlatformClient client = new PlatformClient("your api client id", "your api client secret");
 
-	PlatformClient client = new PlatformClient("your client id", "your client secret");
-	ResponseData resp = client.eligibility (
-		new Dictionary<string, object> {
-			{ "payer_id", "MOCKPAYER" },
-			{ "member_id", "W34237875729" },
-			{ "provider_id", "1467560003" },
-			{ "provider_name", "AYA-AY" },
-			{ "provider_first_name", "JEROME" },
-			{ "member_name", "JOHN DOE" },
-			{ "provider_type", "Person" },
-			{ "member_birth_date", "05/21/1975" },
-			{ "service_types", new string[] { "Health Benefit Plan Coverage" } }
-	});
-	Console.WriteLine(resp.body);
+			ResponseData resp = client.eligibility (
+				new Dictionary<string, object> {
+					{ "payer_id", "MOCKPAYER" },
+					{ "member_id", "W34237875729" },
+					{ "provider_id", "1467560003" },
+					{ "provider_name", "AYA-AY" },
+					{ "provider_first_name", "JEROME" },
+					{ "member_name", "JOHN DOE" },
+					{ "provider_type", "Person" },
+					{ "member_birth_date", "05/21/1975" },
+					{ "service_types", new string[] { "Health Benefit Plan Coverage" } }
+			});
+			Console.WriteLine(resp.body);
+		}
+	}
 ```
 
 ## Tested .Net Versions
