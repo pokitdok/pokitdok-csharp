@@ -17,7 +17,9 @@ See dependencies section below.
 [xamarin]: http://xamarin.com/
 
 ## Tests
-nunit-console.exe bin/Debug/pokitdok-csharp.exe
+```
+nunit-console.exe bin/Debug/pokitdok-csharp.dll
+```
 
 ## Resources
 * [Read the PokitDok API docs][apidocs]
@@ -25,12 +27,15 @@ nunit-console.exe bin/Debug/pokitdok-csharp.exe
 * [Report Issues on GitHub][issues]
 
 [apidocs]: https://platform.pokitdok.com/dashboard#/documentation
-[code]: https://github.com/PokitDokInc/pokitdok-csharp
-[issues]: https://github.com/PokitDokInc/pokitdok-csharp/issues
+[code]: https://github.com/pokitdok/pokitdok-csharp
+[issues]: https://github.com/pokitdok/pokitdok-csharp/issues
 
 ## Usage Example
 
+```c#
 	using pokitdokcsharp;
+
+	// ...
 
 	PlatformClient client = new PlatformClient("your client id", "your client secret");
 	ResponseData resp = client.eligibility (
@@ -46,9 +51,9 @@ nunit-console.exe bin/Debug/pokitdok-csharp.exe
 			{ "service_types", new string[] { "Health Benefit Plan Coverage" } }
 	});
 	Console.WriteLine(resp.body);
+```
 
-
-## Supported .Net Versions
+## Tested .Net Versions
 This library aims to support and is tested against these .Net (ECMA-335 CLI) framework versions:
 
 * Microsoft.Net 4.0
