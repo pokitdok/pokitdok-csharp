@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>PokitDokPlatformClient</id>
+    <version>0.1.3</version>
+    <authors>PokitDokDev</authors>
+    <owners>PokitDokDev</owners>
+    <licenseUrl>https://github.com/pokitdok/pokitdok-csharp/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/pokitdok/pokitdok-csharp</projectUrl>
+    <iconUrl>https://avatars0.githubusercontent.com/u/1810655?s=32</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>PokitDok Platform API Client for C#</description>
+    <releaseNotes>Initial release for use with PokitDok Platform API v4.</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>health x12 eligibility claims enrollment insurance marketplace price provider</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="6.0.3" />
+      <dependency id="NUnit" version="2.6.3" />
+    </dependencies>
+  </metadata>
+</package>
