@@ -399,7 +399,7 @@ namespace pokitdokcsharp
 			}
 			catch (Exception ex)
 			{
-				throw new PokitDokException(string.Format("PostRequest({0}) Error: {1}", request_uri, ex.Message));
+				throw new PokitDokException(string.Format("PostRequest({0}) Error: {1}", request_uri, ex.Message), ex);
 			}
 
 			return _responseData;
@@ -474,7 +474,7 @@ namespace pokitdokcsharp
 				ProcessResponse((HttpWebResponse)wex.Response);
 			}
 			catch (Exception ex) {
-				throw new PokitDokException(string.Format("PostRequest({0}) Error: {1}", request_uri, ex.Message));
+				throw new PokitDokException(string.Format("PostRequest({0}) Error: {1}", request_uri, ex.Message), ex);
 			}
 
 			return _responseData;

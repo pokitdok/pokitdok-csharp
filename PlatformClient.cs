@@ -30,7 +30,7 @@ namespace pokitdokcsharp
 		/// <summary>
 		/// The default current PokitDok API version path.
 		/// </summary>
-		public const string POKITDOK_PLATFORM_API_VERSION_PATH = "/api/v3";
+		public const string POKITDOK_PLATFORM_API_VERSION_PATH = "/api/v4";
 		/// <summary>
 		/// The Oauth token path.
 		/// </summary>
@@ -103,12 +103,26 @@ namespace pokitdokcsharp
 		}
 
 		/// <summary>
+		/// Retrieve details for supported Payers.
+		/// </summary>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+		public ResponseData payers()
+		{
+			init();
+
+			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PAYERS));
+		}
+
+		/// <summary>
 		/// Call the activities endpoint to get a listing of current activities,
 		/// a query string parameter ‘parent_id’ may also be used with this API to get information about 
 		/// sub-activities that were initiated from a batch file upload.
 		/// </summary>
 		/// <param name="parameters">
-		/// Query paramters:
+		/// Query parameters:
 		/// _id, {string} ID of this Activity
 		/// name, {string} Activity name
 		/// callback_url, {string} URL that will be invoked to notify the client application that this Activity has completed.  
@@ -145,7 +159,7 @@ namespace pokitdokcsharp
 		/// (Not yet implemented)
 		/// </summary>
 		/// <param name="parameters">
-		/// Query params:
+		/// Query parameters:
 		/// 	cpt_code, {string} The CPT code of the procedure in question.
 		///		zipcode, {string} Postal code in which to search for procedures
 		/// </param>
@@ -166,7 +180,7 @@ namespace pokitdokcsharp
 		/// </summary>
 		/// <returns>The insurance.</returns>
 		/// <param name="parameters">
-		/// Query params:
+		/// Query parameters:
 		/// 	cpt_code, {string} The CPT code of the procedure in question.
 		///		zipcode, {string} Postal code in which to search for procedures
 		/// </param>
@@ -272,7 +286,7 @@ namespace pokitdokcsharp
 		/// Get a list of providers meeting certain search criteria.
 		/// </summary>
 		/// <param name="parameters">
-		/// Query Parameters:
+		/// Query parameters:
 		/// 	name, Provider full name, any or all parts
 		///		first_name, Provider first name
 		///		middle_name, Provider middle name

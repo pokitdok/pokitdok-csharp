@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{BE56DFAC-58A2-4B62-AF3D-8CDDA98E6941}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>pokitdokcsharp</RootNamespace>
     <AssemblyName>pokitdok-csharp</AssemblyName>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="monodocer -pretty -importslashdoc:bin/Debug/pokitdok-csharp.xml -assembly:bin/Debug/pokitdok-csharp.exe -path:docs/en" workingdir="${ProjectDir}" />
+        <Command type="AfterBuild" command="monodocer -pretty -importslashdoc:bin/Debug/pokitdok-csharp.xml -assembly:bin/Debug/pokitdok-csharp.dll -path:docs/en" workingdir="${ProjectDir}" />
         <Command type="AfterBuild" command="mdoc export-html -o htmldocs/ docs/en/" workingdir="${ProjectDir}" />
       </CustomCommands>
     </CustomCommands>

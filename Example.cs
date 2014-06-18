@@ -19,7 +19,7 @@ class MainClass
 	{
 		try {
 
-			PlatformClient client = new PlatformClient("LNrngr9X4zkwAPdwI8uf", "htr5ckvvhc9g83qqlapGt5APJE95a3yEsBZhUezV");
+			PlatformClient client = new PlatformClient("JcR2P8SmoIaon4vpN9Q9", "JqPijdEL2NYFTJLEKquUzMgAks6JmWyszrbRPk4X");
 			client.ApiSite = "http://me.pokitdok.com:5002";
 			client.Authenticate();
 
