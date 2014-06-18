@@ -27,16 +27,19 @@ class MainClass
 			Console.WriteLine(
 				client.eligibility(
 					new Dictionary<string, object> {
-						{  "payer_id", "MOCKPAYER" },
-						{  "member_id", "W34237875729" },
-						{  "provider_id", "1467560003" },
-						{  "provider_name", "AYA-AY" },
-						{  "provider_first_name", "JEROME" },
-						{  "member_name", "JOHN DOE" },
-						{  "provider_type", "Person" },
-						{  "member_birth_date", "05/21/1975" },
-						{  "service_types", new string[] { "Health Benefit Plan Coverage" } }
-				}).body
+						{"member", new Dictionary<string, object> { 
+								{"id", "W000000000"}, 
+								{"birth_date", "1970-01-01"}, 
+								{"last_name", "Doe"}
+							}},
+						{"provider", new Dictionary<string, object> { 
+								{"npi", "1467560003"}, 
+								{"last_name", "AYA-AY"}, 
+								{"first_name", "JEROME"}
+							}},
+						{"service_types", new string[] { "health_benefit_plan_coverage" }},
+						{"trading_partner_id", "MOCKPAYER"}
+					}).body
 			);
 			Console.WriteLine("==End eligibility=======");
 

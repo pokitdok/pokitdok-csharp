@@ -125,7 +125,7 @@ class PlatformClientTest
 	[Test]
 	public void Activities()
 	{
-		ResponseData resp = client.activities("");
+		ResponseData resp = client.activities();
 
 		StringAssert.Contains("\"units_of_work\"", resp.body);
 		Assert.AreEqual(200, resp.status);

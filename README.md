@@ -30,9 +30,11 @@ nunit-console.exe bin/Debug/pokitdok-csharp.dll
 [code]: https://github.com/pokitdok/pokitdok-csharp
 [issues]: https://github.com/pokitdok/pokitdok-csharp/issues
 
-## Usage Example
+## Quick Start
 
 ```c#
+
+# initialize the client
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
@@ -43,22 +45,119 @@ nunit-console.exe bin/Debug/pokitdok-csharp.dll
 		public static void Main (string[] args)
 		{
 			PlatformClient client = new PlatformClient("your api client id", "your api client secret");
-
-			ResponseData resp = client.eligibility (
-				new Dictionary<string, object> {
-					{ "payer_id", "MOCKPAYER" },
-					{ "member_id", "W34237875729" },
-					{ "provider_id", "1467560003" },
-					{ "provider_name", "AYA-AY" },
-					{ "provider_first_name", "JEROME" },
-					{ "member_name", "JOHN DOE" },
-					{ "provider_type", "Person" },
-					{ "member_birth_date", "05/21/1975" },
-					{ "service_types", new string[] { "Health Benefit Plan Coverage" } }
-			});
-			Console.WriteLine(resp.body);
+			// ... client code
 		}
 	}
+
+#retrieve provider information by NPI
+client.providers("1467560003");
+
+#search providers by name (individuals)
+client.providers(
+	new Dictionary<string, string> {
+		{"first_name", "Jerome"},
+		{"last_name", "Aya-Ay"}
+});
+
+#search providers by name (organizations)
+client.providers(
+        new Dictionary<string, string> {
+                {"organization_name", "Qliance"}
+});
+
+#search providers by location and/or specialty
+client.providers(
+	new Dictionary<string, string> {
+                {"zip_code", "29464"},
+                {"radius", "15mi"}
+});
+client.providers(
+        new Dictionary<string, string> {
+                {"zip_code", "29464"},
+                {"radius", "15mi"},
+		{"specialty", "RHEUMATOLOGY"}
+});
+
+#submit a v4 eligibility request
+client.eligibility (
+	new Dictionary<string, object> {
+		{"member", new Dictionary<string, object> { 
+			{"id", "W000000000"}, 
+			{"birth_date", "1970-01-01"}, 
+			{"last_name", "Doe"}
+		}},
+		{"provider", new Dictionary<string, object> { 
+			{"npi", "1467560003"}, 
+			{"last_name", "AYA-AY"}, 
+			{"first_name", "JEROME"}
+		}},
+		{"service_types", new string[] { "health_benefit_plan_coverage" }},
+		{"trading_partner_id", "MOCKPAYER"}
+});
+
+#submit a v4 claims request
+client.claims (
+	new Dictionary<string, object> {
+		{"transaction_code", "chargeable"},
+		{"trading_partner_id", "MOCKPAYER"},
+		{"billing_provider", new Dictionary<string, object> {
+			{"taxonomy_code", "207Q00000X"},
+			{"first_name", "Jerome"},
+			{"last_name", "Aya-Ay"},
+			{"npi", "1467560003"},
+			{"address", new Dictionary<string, object> {
+				{"address_lines", new string[] { "8311 WARREN H ABERNATHY HWY" }},
+				{"city", "SPARTANBURG"},
+				{"state", "SC"},
+				{"zipcode", "29301"}
+			}},
+			{"tax_id", "123456789"}
+		}},
+		{"subscriber", new Dictionary<string, object> {
+			{"first_name", "Jane"},
+			{"last_name", "Doe"},
+			{"member_id", "W000000000"},
+			{"address", new Dictionary<string, object> {
+				{"address_lines", new string[] { "123 N MAIN ST" }},
+				{"city", "SPARTANBURG"},
+				{"state", "SC"},
+				{"zipcode", "29301"}
+			}},
+			{"birth_date", "1970-01-01"},
+			{"gender", "female"}
+		}},
+		{"claim", new Dictionary<string, object> {
+		{"total_charge_amount", 60.0},
+		{"service_lines", new object[] {
+			new Dictionary<string, object> {
+				{"procedure_code", "99213"},
+				{"charge_amount", 60.0},
+				{"unit_count", 1.0},
+				{"diagnosis_codes", new string[] { "487.1" }},
+				{"service_date", "2014-06-01"}
+			}}}}},
+		{"payer", 
+			new Dictionary<string, object> {
+				{"organization_name", "Acme Ins Co"},
+				{"plan_id", "1234567890"}
+			}}
+});
+
+#Submit X12 files directly for processing on the platform
+client.files("MOCKPAYER", "../../tests/files/general-physician-office-visit.270");
+#Check on pending platform activities
+
+
+#check on a specific activity
+client.activities("5362b5a064da150ef6f2526c");
+
+#check on a batch of activities
+client.activities(new Dictionary<string, object> {
+	{"parent_id", "537cd4b240b35755f5128d5c"}
+});
+
+#retrieve an index of activities
+client.activities();
 ```
 
 ## Tested .Net Versions

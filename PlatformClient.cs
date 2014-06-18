@@ -359,7 +359,18 @@ namespace pokitdokcsharp
 		public dynamic usage()
 		{
 			if (_usage == null) {
-				eligibility (new Dictionary<string, object> { });
+				eligibility(new Dictionary<string, object> {
+					{"member", new Dictionary<string, object> { 
+							{"id", "W000000000"}, 
+							{"birth_date", "1970-01-01"}, 
+							{"last_name", "Doe"}
+						}},
+					{"provider", new Dictionary<string, object> { 
+							{"npi", "1467560003"}, 
+							{"last_name", "AYA-AY"}, 
+							{"first_name", "JEROME"}
+						}}
+				});
 			}
 
 			return _usage;
