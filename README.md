@@ -68,13 +68,13 @@ client.providers(
 // Search providers by location and/or specialty
 client.providers(
 	new Dictionary<string, string> {
-                {"zip_code", "29464"},
-                {"radius", "15mi"}
+		{"zip_code", "29464"},
+		{"radius", "15mi"}
 });
 client.providers(
-        new Dictionary<string, string> {
-                {"zip_code", "29464"},
-                {"radius", "15mi"},
+	new Dictionary<string, string> {
+		{"zip_code", "29464"},
+		{"radius", "15mi"},
 		{"specialty", "RHEUMATOLOGY"}
 });
 
@@ -127,14 +127,14 @@ client.claims (
 			{"gender", "female"}
 		}},
 		{"claim", new Dictionary<string, object> {
-		{"total_charge_amount", 60.0},
-		{"service_lines", new object[] {
-			new Dictionary<string, object> {
-				{"procedure_code", "99213"},
-				{"charge_amount", 60.0},
-				{"unit_count", 1.0},
-				{"diagnosis_codes", new string[] { "487.1" }},
-				{"service_date", "2014-06-01"}
+			{"total_charge_amount", 60.0},
+			{"service_lines", new object[] {
+				new Dictionary<string, object> {
+					{"procedure_code", "99213"},
+					{"charge_amount", 60.0},
+					{"unit_count", 1.0},
+					{"diagnosis_codes", new string[] { "487.1" }},
+					{"service_date", "2014-06-01"}
 			}}}}},
 		{"payer", 
 			new Dictionary<string, object> {
