@@ -363,14 +363,15 @@ namespace pokitdokcsharp
 					{"member", new Dictionary<string, object> { 
 							{"id", "W000000000"}, 
 							{"birth_date", "1970-01-01"}, 
-							{"first_name", "Jane"},
 							{"last_name", "Doe"}
 						}},
 					{"provider", new Dictionary<string, object> { 
 							{"npi", "1467560003"}, 
 							{"last_name", "AYA-AY"}, 
 							{"first_name", "JEROME"}
-						}}
+						}},
+					{"service_types", new string[] { "health_benefit_plan_coverage" }},
+					{"trading_partner_id", "MOCKPAYER"}
 				});
 			}
 
