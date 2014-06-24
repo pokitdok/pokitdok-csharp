@@ -18,7 +18,7 @@ class PlatformClientTest
 	[SetUp]
 	public void Init()
 	{
-		client = new PlatformClient ("JcR2P8SmoIaon4vpN9Q9", "JqPijdEL2NYFTJLEKquUzMgAks6JmWyszrbRPk4X");
+		client = new PlatformClient ("b8arGsXQhr1JzdeML26W", "VJekSnerJrMKa5VGBns1OQp1n0dV8vxbHvWEnMlN");
 		client.ApiSite = "http://me.pokitdok.com:5002";
 		client.Authenticate();
 	}
@@ -34,6 +34,7 @@ class PlatformClientTest
 			 	{"member", new Dictionary<string, object> { 
 					{"id", "W000000000"}, 
 					{"birth_date", "1970-01-01"}, 
+					{"first_name", "Jane"},
 					{"last_name", "Doe"}
 					}},
 				{"provider", new Dictionary<string, object> { 
