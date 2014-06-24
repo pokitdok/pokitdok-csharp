@@ -68,12 +68,12 @@ client.providers(
 // Search providers by location and/or specialty
 client.providers(
 	new Dictionary<string, string> {
-		{"zip_code", "29464"},
+		{"zipcode", "29464"},
 		{"radius", "15mi"}
 });
 client.providers(
 	new Dictionary<string, string> {
-		{"zip_code", "29464"},
+		{"zipcode", "29464"},
 		{"radius", "15mi"},
 		{"specialty", "RHEUMATOLOGY"}
 });
@@ -84,6 +84,7 @@ client.eligibility (
 		{"member", new Dictionary<string, object> { 
 			{"id", "W000000000"}, 
 			{"birth_date", "1970-01-01"}, 
+			{"first_name", "Jane"},
 			{"last_name", "Doe"}
 		}},
 		{"provider", new Dictionary<string, object> { 

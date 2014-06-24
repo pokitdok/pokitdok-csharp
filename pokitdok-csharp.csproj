@@ -54,7 +54,6 @@
     <Compile Include="PlatformClient.cs" />
     <Compile Include="OauthApplicationClient.cs" />
     <Compile Include="tests\PlatformClientTest.cs" />
-    <Compile Include="Example.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
