@@ -1,7 +1,7 @@
 pokitdok-csharp
 ===============
 
-PokitDok [Platform API][apidocs] Client for C#
+PokitDok [Platform API][apisite] Client for C#
 
 ## Installation
 
@@ -26,7 +26,8 @@ nunit-console.exe bin/Debug/pokitdok-csharp.dll
 * [View Source on GitHub][code]
 * [Report Issues on GitHub][issues]
 
-[apidocs]: https://platform.pokitdok.com/documentation
+[apisite]: https://platform.pokitdok.com/documentation
+[apidocs]: https://platform.pokitdok.com/
 [code]: https://github.com/pokitdok/pokitdok-csharp
 [issues]: https://github.com/pokitdok/pokitdok-csharp/issues
 
