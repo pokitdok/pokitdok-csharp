@@ -26,7 +26,7 @@ nunit-console.exe bin/Debug/pokitdok-csharp.dll
 * [View Source on GitHub][code]
 * [Report Issues on GitHub][issues]
 
-[apidocs]: https://platform.pokitdok.com/
+[apidocs]: https://platform.pokitdok.com/documentation
 [code]: https://github.com/pokitdok/pokitdok-csharp
 [issues]: https://github.com/pokitdok/pokitdok-csharp/issues
 
