@@ -26,7 +26,7 @@ nunit-console.exe bin/Debug/pokitdok-csharp.dll
 * [View Source on GitHub][code]
 * [Report Issues on GitHub][issues]
 
-[apidocs]: https://platform.pokitdok.com/dashboard#/documentation
+[apidocs]: https://platform.pokitdok.com/
 [code]: https://github.com/pokitdok/pokitdok-csharp
 [issues]: https://github.com/pokitdok/pokitdok-csharp/issues
 
@@ -35,19 +35,19 @@ nunit-console.exe bin/Debug/pokitdok-csharp.dll
 ```c#
 
 // Initialize the client
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using pokitdokcsharp;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using pokitdokcsharp;
 
-	class MainClass
+class MainClass
+{
+	public static void Main (string[] args)
 	{
-		public static void Main (string[] args)
-		{
-			PlatformClient client = new PlatformClient("your api client id", "your api client secret");
-			// ... client code
-		}
+		PlatformClient client = new PlatformClient("your api client id", "your api client secret");
+		// ... client code
 	}
+}
 
 // Retrieve provider information by NPI
 client.providers("1467560003");
