@@ -43,8 +43,8 @@ namespace pokitdokcsharp
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT = "/enrollment/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_DEDUCTIBLE = "/deductible/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_PAYERS = "/payers/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_INSURANCE = "/price/insurance/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_CASH = "/price/cash/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_INSURANCE = "/prices/insurance";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_CASH = "/prices/cash";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES = "/activities/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_FILES = "/files/";
 
@@ -156,7 +156,6 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// Return a list of cash prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
-		/// (Not yet implemented)
 		/// </summary>
 		/// <param name="parameters">
 		/// Query parameters:
@@ -167,7 +166,7 @@ namespace pokitdokcsharp
 		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
 		/// 	The body is JSON formatted data.
 		/// </returns>
-		public ResponseData priceCash(Dictionary<string, string> parameters = null)
+		public ResponseData pricesCash(Dictionary<string, string> parameters = null)
 		{
 			init();
 
@@ -176,7 +175,6 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// Return a list of insurance prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
-		/// (Not yet implemented)
 		/// </summary>
 		/// <returns>The insurance.</returns>
 		/// <param name="parameters">
@@ -188,7 +186,7 @@ namespace pokitdokcsharp
 		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
 		/// 	The body is JSON formatted data.
 		/// </returns>
-		public ResponseData priceInsurance(Dictionary<string, string> parameters = null)
+		public ResponseData pricesInsurance(Dictionary<string, string> parameters = null)
 		{
 			init();
 

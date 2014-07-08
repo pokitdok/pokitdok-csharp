@@ -7,7 +7,7 @@ PokitDok [Platform API][apisite] Client for C#
 
 Install via [NuGet][nuget]:
 ```
-	PM> Install-Package PokitDokPlatformClient
+PM> Install-Package PokitDokPlatformClient
 ```
 
 Build source with [Xamarin][xamarin] Studio 5.0.
@@ -50,6 +50,20 @@ class MainClass
 	}
 }
 
+// Retrieve cash price information by zip and CPT code
+client.pricesCash(
+	new Dictionary<string, string> {
+		{ "zip_code", "32218" },
+		{ "cpt_code", "87799" }
+});
+
+// Retrieve insurance price information by zip and CPT code
+client.pricesInsurance(
+	new Dictionary<string, string> {
+		{ "zip_code", "32218" },
+		{ "cpt_code", "87799" }
+});
+
 // Retrieve provider information by NPI
 client.providers("1467560003");
 
@@ -69,12 +83,12 @@ client.providers(
 // Search providers by location and/or specialty
 client.providers(
 	new Dictionary<string, string> {
-		{"zipcode", "29464"},
+		{"zipcode", "29307"},
 		{"radius", "15mi"}
 });
 client.providers(
 	new Dictionary<string, string> {
-		{"zipcode", "29464"},
+		{"zipcode", "29307"},
 		{"radius", "15mi"},
 		{"specialty", "RHEUMATOLOGY"}
 });

@@ -18,8 +18,9 @@ class PlatformClientTest
 	[SetUp]
 	public void Init()
 	{
-		client = new PlatformClient ("b8arGsXQhr1JzdeML26W", "VJekSnerJrMKa5VGBns1OQp1n0dV8vxbHvWEnMlN");
-		client.ApiSite = "http://me.pokitdok.com:5002";
+		//client = new PlatformClient("b8arGsXQhr1JzdeML26W", "VJekSnerJrMKa5VGBns1OQp1n0dV8vxbHvWEnMlN");
+		//client.ApiSite = "http://me.pokitdok.com:5002";
+		client = new PlatformClient("p4Oeesn1380cjGDVgbtH", "ZCJ4Htf5TxirQVRCMb1kvRhU92m5HbiRnERvOCkI");
 		client.Authenticate();
 	}
 
@@ -140,7 +141,7 @@ class PlatformClientTest
 	{
 		ResponseData resp = client.providers(
 			new Dictionary<string, string> {
-				{ "zipcode", "29464" },
+				{ "zipcode", "29307" },
 				{ "radius", "15mi" }
 		});
 
@@ -156,7 +157,39 @@ class PlatformClientTest
 	{
 		ResponseData resp = client.providers("1467560003");
 
-		StringAssert.Contains("\"first_name\": \"JEROME\", \"last_name\": \"AYA-AY\", \"npi\": \"1467560003\"", resp.body);
+		StringAssert.Contains("\"first_name\": \"JEROME\", \"last_name\": \"AYA-AY\", "+
+			"\"middle_name\": \"BENITEZ\", \"uuid\": \"fc44d0e0-ea7f-492e-90f0-0f9148453019\"", resp.body);
+		Assert.AreEqual(200, resp.status);
+	}
+
+	/// <summary>
+	/// Cash Prices test.
+	/// </summary>
+	[Test]
+	public void PricesCash()
+	{
+		ResponseData resp = client.pricesCash(
+			new Dictionary<string, string> {
+				{ "zip_code", "32218" },
+				{ "cpt_code", "87799" }
+			});
+
+		StringAssert.Contains("high_price", resp.body);
+		Assert.AreEqual(200, resp.status);
+	}
+
+	/// <summary>
+	/// Insurance Prices test.
+	/// </summary>
+	[Test]
+	public void PricesInsurance()
+	{
+		ResponseData resp = client.pricesInsurance(
+			new Dictionary<string, string> {
+				{ "zip_code", "32218" },
+				{ "cpt_code", "87799" }
+			});
+		StringAssert.Contains("amounts", resp.body);
 		Assert.AreEqual(200, resp.status);
 	}
 
@@ -170,7 +203,6 @@ class PlatformClientTest
 
 		Assert.IsInstanceOf<Newtonsoft.Json.Linq.JValue>(usage.rate_limit_amount);
 		Assert.IsInstanceOf<Newtonsoft.Json.Linq.JValue>(usage.rate_limit_reset);
-		Assert.IsInstanceOf<Newtonsoft.Json.Linq.JValue>(usage.test_mode);
 		Assert.IsInstanceOf<Newtonsoft.Json.Linq.JValue>(usage.rate_limit_cap);
 		Assert.IsInstanceOf<Newtonsoft.Json.Linq.JValue>(usage.credits_remaining);
 		Assert.IsInstanceOf<Newtonsoft.Json.Linq.JValue>(usage.credits_billed);
