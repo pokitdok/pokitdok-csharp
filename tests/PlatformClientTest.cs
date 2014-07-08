@@ -18,9 +18,8 @@ class PlatformClientTest
 	[SetUp]
 	public void Init()
 	{
-		//client = new PlatformClient("b8arGsXQhr1JzdeML26W", "VJekSnerJrMKa5VGBns1OQp1n0dV8vxbHvWEnMlN");
+		client = new PlatformClient("p4Oeesn1380123DVgbtH", "ZCJ4Htf7TxirQVRCMb1kvRhU23m5HbiRnERvOCkI");
 		//client.ApiSite = "http://me.pokitdok.com:5002";
-		client = new PlatformClient("p4Oeesn1380cjGDVgbtH", "ZCJ4Htf5TxirQVRCMb1kvRhU92m5HbiRnERvOCkI");
 		client.Authenticate();
 	}
 
