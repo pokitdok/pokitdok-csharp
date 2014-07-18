@@ -18,7 +18,7 @@ class PlatformClientTest
 	[SetUp]
 	public void Init()
 	{
-		client = new PlatformClient("p4Oeesn1380123DVgbtH", "ZCJ4Htf7TxirQVRCMb1kvRhU23m5HbiRnERvOCkI");
+		client = new PlatformClient("s6g5HVrcHfUDc4GDRTMQ", "L121rl427P1USFi5s1u65wZ3wF39dltWEg8UGduw");
 		//client.ApiSite = "http://me.pokitdok.com:5002";
 		client.Authenticate();
 	}
@@ -117,6 +117,29 @@ class PlatformClientTest
 			});
 
 		StringAssert.Contains("\"units_of_work\": 1, \"name\": \"claims\"", resp.body);
+		Assert.AreEqual(200, resp.status);
+	}
+
+	[Test]
+	public void ClaimsStatus()
+	{
+		ResponseData resp = client.claimsStatus(
+			new Dictionary<string, object> {
+				{"patient", new Dictionary<string, object> { 
+						{"id", "W000000000"}, 
+						{"birth_date", "1970-01-01"}, 
+						{"first_name", "Jane"},
+						{"last_name", "Doe"}
+					}},
+				{"provider", new Dictionary<string, object> { 
+						{"npi", "1467560003"}, 
+						{"last_name", "AYA-AY"}, 
+						{"first_name", "JEROME"}
+					}},
+				{"service_date", "2014-01-01"},
+				{"trading_partner_id", "MOCKPAYER"}
+			});
+
 		Assert.AreEqual(200, resp.status);
 	}
 

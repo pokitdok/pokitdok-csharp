@@ -94,7 +94,7 @@ client.providers(
 });
 
 // Submit a v4 eligibility request
-client.eligibility (
+client.eligibility(
 	new Dictionary<string, object> {
 		{"member", new Dictionary<string, object> { 
 			{"id", "W000000000"}, 
@@ -112,7 +112,7 @@ client.eligibility (
 });
 
 // Submit a v4 claims request
-client.claims (
+client.claims(
 	new Dictionary<string, object> {
 		{"transaction_code", "chargeable"},
 		{"trading_partner_id", "MOCKPAYER"},
@@ -157,6 +157,24 @@ client.claims (
 				{"organization_name", "Acme Ins Co"},
 				{"plan_id", "1234567890"}
 			}}
+});
+
+// Check the status of a claim
+client.claimsStatus(
+	new Dictionary<string, object> {
+		{"patient", new Dictionary<string, object> { 
+			{"id", "W000000000"}, 
+			{"birth_date", "1970-01-01"}, 
+			{"first_name", "Jane"},
+			{"last_name", "Doe"}
+		}},
+		{"provider", new Dictionary<string, object> { 
+			{"npi", "1467560003"}, 
+			{"last_name", "AYA-AY"}, 
+			{"first_name", "JEROME"}
+		}},
+		{"service_date", "2014-01-01"},
+		{"trading_partner_id", "MOCKPAYER"}
 });
 
 // Submit X12 files directly for processing on the platform

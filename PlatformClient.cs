@@ -39,7 +39,7 @@ namespace pokitdokcsharp
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_ELIGIBILITY = "/eligibility/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_PROVIDERS = "/providers/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS = "/claims/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_STATUS = "/claims/status/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_STATUS = "/claims/status";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT = "/enrollment/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_DEDUCTIBLE = "/deductible/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_PAYERS = "/payers/";
