@@ -47,6 +47,7 @@ namespace pokitdokcsharp
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_CASH = "/prices/cash";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES = "/activities/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_FILES = "/files/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_TRADING_PARTNERS = "/tradingpartners/";
 
 		private string _apiSite = POKITDOK_PLATFORM_API_SITE;
 		private string _versionPath = POKITDOK_PLATFORM_API_VERSION_PATH;
@@ -307,6 +308,21 @@ namespace pokitdokcsharp
 			init();
 
 			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PROVIDERS, parameters));
+		}
+
+		/// <summary>
+		/// Retrieve the data for a specified trading partner or provide an empty string to get a list of trading partners.
+		/// </summary>
+		/// <param name="npi">Trading Partner Identifier.</param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+		public ResponseData tradingPartners(string npi)
+		{
+			init();
+
+			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_TRADING_PARTNERS + npi));
 		}
 
 		/// <summary>

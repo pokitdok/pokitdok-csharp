@@ -59,7 +59,7 @@ class PlatformClientTest
 	{
 		ResponseData resp = client.payers();
 
-		StringAssert.Contains("{\"supported_transactions\": [\"834\", \"835\", \"837\", \"270\", \"271\", \"276\", \"277\", \"278\"], \"payer_name\": \"Mock Payer for Testing\", \"payer_key\": \"MOCKPAYER\", \"production_status\": false, \"trading_partner_id\": \"MOCKPAYER\"}", resp.body);
+		StringAssert.Contains("\"payer_name\": \"Mock Payer for Testing\", \"payer_key\": \"MOCKPAYER\", \"production_status\": false, \"trading_partner_id\": \"MOCKPAYER\"", resp.body);
 		Assert.AreEqual(200, resp.status);
 	}
 
@@ -184,6 +184,32 @@ class PlatformClientTest
 		Assert.AreEqual(200, resp.status);
 	}
 
+	///<summary>
+	/// Trading Partners list test.
+	/// </summary>
+	[Test]
+	public void TradingPartnersList()
+	{
+		ResponseData resp = client.tradingPartners("");
+
+		Assert.AreEqual(200, resp.status);
+		StringAssert.Contains ("MOCKPAYER", resp.body);
+		StringAssert.Contains ("MOCKPAYER_ACK", resp.body);
+		StringAssert.Contains ("MOCKPAYER_REJECTION", resp.body);
+	}
+
+	///<summary>
+	/// Trading Partners specific id test.
+	/// </summary>
+	[Test]
+	public void TradingPartnersGet()
+	{
+		ResponseData resp = client.tradingPartners("MOCKPAYER");
+
+		Assert.AreEqual(200, resp.status);
+		StringAssert.Contains("\"id\": \"MOCKPAYER\", \"name\": \"Mock Payer for Testing\"", resp.body);
+	}
+
 	/// <summary>
 	/// Cash Prices test.
 	/// </summary>
@@ -192,11 +218,11 @@ class PlatformClientTest
 	{
 		ResponseData resp = client.pricesCash(
 			new Dictionary<string, string> {
-				{ "zip_code", "32218" },
-				{ "cpt_code", "87799" }
+				{ "zip_code", "30012" },
+				{ "cpt_code", "88142" }
 			});
 
-		StringAssert.Contains("high_price", resp.body);
+		StringAssert.Contains("high", resp.body);
 		Assert.AreEqual(200, resp.status);
 	}
 
