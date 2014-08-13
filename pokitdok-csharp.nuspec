@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PokitDokPlatformClient</id>
-    <version>0.1.8</version>
+    <version>0.1.9</version>
     <authors>PokitDokDev</authors>
     <owners>PokitDokDev</owners>
     <licenseUrl>https://github.com/pokitdok/pokitdok-csharp/blob/master/LICENSE.txt</licenseUrl>
