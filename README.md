@@ -33,8 +33,8 @@ nunit-console.exe bin/Debug/pokitdok-csharp.dll
 
 ## Quick Start
 
+###Example Client
 ```c#
-
 // Initialize the client
 using System;
 using System.Collections.Generic;
@@ -49,7 +49,10 @@ class MainClass
 		// ... client code
 	}
 }
+```
 
+###Example Method Calls
+```c#
 // Retrieve cash price information by zip and CPT code
 client.pricesCash(
 	new Dictionary<string, string> {
@@ -192,6 +195,58 @@ client.activities(new Dictionary<string, object> {
 
 // retrieve an index of activities
 client.activities();
+```
+
+###Example Usage Pattern
+```c#
+try 
+{
+	PlatformClient client = new PlatformClient("client id", "client secret");
+
+	// execute the /providers/{id} endpoint, capture the response and access results
+	// https://platform.pokitdok.com/documentation/v4#providers
+	ResponseData resp = client.providers("1467560003");
+	if (resp.status == 200) // this is the HTTP status code
+	{
+		// response HTTP headers are in a Dictionary in the returned ResponseData.header property
+		foreach (KeyValuePair<string, string> entry in resp.header)
+		{
+			Console.WriteLine("response header <"+ entry.Key +"> = "+ entry.Value);
+		}
+
+		// raw response body is in the returned ResponseData.body property
+		Console.WriteLine("response body= "+ resp.body);
+
+		// the "data" element of the response body is deserialized and stored in the client.Data property as a dynamic value
+		Console.WriteLine("provider= "+ client.Data["provider"]["first_name"]);
+	}
+	else
+	{
+		Console.WriteLine("error= "+ client.Errors["message"]);
+	}
+
+	// execute the /providers/ endpoint, capture the response and access results
+	// https://platform.pokitdok.com/documentation/v4#providers
+	resp = client.providers(new Dictionary<string, string> {
+		{"first_name", "Jerome"},
+		{"last_name", "Aya-Ay"}
+	});
+	if (resp.status == 200) // this is the HTTP status code
+	{
+		// the "data" element of the response body is deserialized and stored in the client.Data property as a dynamic value
+		foreach (dynamic data in client.Data)
+		{
+			Console.WriteLine("provider="+ data["provider"]["first_name"]);
+		}
+	}    
+	else
+	{
+		Console.WriteLine("error= "+ client.Errors["message"]);
+	}
+
+} catch (Exception ex) {
+	Console.WriteLine("Error: " + ex.Message);
+}
 ```
 
 ## Tested .Net Versions
