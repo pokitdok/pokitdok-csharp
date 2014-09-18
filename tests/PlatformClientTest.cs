@@ -180,7 +180,7 @@ class PlatformClientTest
 		ResponseData resp = client.providers("1467560003");
 
 		StringAssert.Contains("\"first_name\": \"JEROME\", \"last_name\": \"AYA-AY\", "+
-			"\"middle_name\": \"BENITEZ\", \"uuid\": \"fc44d0e0-ea7f-492e-90f0-0f9148453019\"", resp.body);
+			"\"middle_name\": \"BENITEZ\"", resp.body);
 		Assert.AreEqual(200, resp.status);
 	}
 
