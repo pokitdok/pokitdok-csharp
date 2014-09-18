@@ -48,6 +48,7 @@ namespace pokitdokcsharp
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES = "/activities/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_FILES = "/files/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_TRADING_PARTNERS = "/tradingpartners/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_PLANS = "/plans/";
 
 		private string _apiSite = POKITDOK_PLATFORM_API_SITE;
 		private string _versionPath = POKITDOK_PLATFORM_API_VERSION_PATH;
@@ -308,6 +309,30 @@ namespace pokitdokcsharp
 			init();
 
 			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PROVIDERS, parameters));
+		}
+
+		/// <summary>
+		/// Retrieve data on plans based on the parameters given.
+		/// </summary>
+		/// <param name="parameters">
+		/// Query parameters:
+		/// 	trading_partner_id, The trading partner id of the payer offering the plan
+		///		county, The county in which the plan is available.
+		///		state, The state in which the plan is available.
+		///		plan_id, The identifier for the plan.
+		///		plan_type, The type of the plan (e.g. EPO, PPO, HMO, POS).
+		///		plan_name, The name of the plan.
+		///		metallic_level, The metal level of the plan.
+		/// </param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+		public ResponseData plans(Dictionary<string, string> parameters = null)
+		{
+			init();
+
+			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PLANS, parameters));
 		}
 
 		/// <summary>

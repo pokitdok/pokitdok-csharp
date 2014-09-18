@@ -19,7 +19,7 @@ class PlatformClientTest
 	public void Init()
 	{
 		client = new PlatformClient("s6g5HVrcHfUDc4GDRTMQ", "L121rl427P1USFi5s1u65wZ3wF39dltWEg8UGduw");
-		//client.ApiSite = "http://me.pokitdok.com:5002";
+//		client.ApiSite = "http://me.pokitdok.com:5002";
 		client.Authenticate();
 	}
 
@@ -180,7 +180,7 @@ class PlatformClientTest
 		ResponseData resp = client.providers("1467560003");
 
 		StringAssert.Contains("\"first_name\": \"JEROME\", \"last_name\": \"AYA-AY\", "+
-			"\"middle_name\": \"BENITEZ\", \"uuid\": \"fc44d0e0-ea7f-492e-90f0-0f9148453019\"", resp.body);
+			"\"middle_name\": \"BENITEZ\"", resp.body);
 		Assert.AreEqual(200, resp.status);
 	}
 
@@ -208,6 +208,33 @@ class PlatformClientTest
 
 		Assert.AreEqual(200, resp.status);
 		StringAssert.Contains("\"id\": \"MOCKPAYER\", \"name\": \"Mock Payer for Testing\"", resp.body);
+	}
+
+	///<summary>
+	/// Plans no argument test.
+	/// </summary>
+	[Test]
+	public void PlansNoArgs()
+	{
+		ResponseData resp = client.plans();
+
+		Assert.AreEqual(200, resp.status);
+	}
+
+	///<summary>
+	/// Plans test.
+	/// </summary>
+	[Test]
+	public void Plans()
+	{
+		ResponseData resp = client.plans(
+			new Dictionary<string, string> {
+				{ "state", "TX" },
+				{ "plan_type", "PPO" }
+			}
+		);
+
+		Assert.AreEqual(200, resp.status);
 	}
 
 	/// <summary>
