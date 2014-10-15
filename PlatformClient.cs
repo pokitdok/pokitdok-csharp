@@ -6,7 +6,7 @@
 //
 //	PokitDok Platform Client for C#
 //		Consume the REST based PokitDok platform API
-//		https://platform.pokitdok.com/login#/documentation
+//		https://platform.pokitdok.com/documentation/v4#/#overview
 
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace pokitdokcsharp
 	/// <summary>
 	///	PokitDok Platform Client for C#
 	///		Consumes the REST based PokitDok platform API
-	///		https://platform.pokitdok.com/login#/documentation
+	///		https://platform.pokitdok.com/documentation/v4#/#overview
 	/// </summary>
 	public class PlatformClient: OauthApplicationClient
 	{
@@ -49,6 +49,8 @@ namespace pokitdokcsharp
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_FILES = "/files/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_TRADING_PARTNERS = "/tradingpartners/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_PLANS = "/plans/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_REFERRALS = "/referrals/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_AUTHORIZATIONS = "/authorizations/";
 
 		private string _apiSite = POKITDOK_PLATFORM_API_SITE;
 		private string _versionPath = POKITDOK_PLATFORM_API_VERSION_PATH;
@@ -91,6 +93,7 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// Call the activities endpoint for a specific activityId.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#activities
 		/// </summary>
 		/// <param name="activityId">Activity identifier.</param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
@@ -105,23 +108,10 @@ namespace pokitdokcsharp
 		}
 
 		/// <summary>
-		/// Retrieve details for supported Payers.
-		/// </summary>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData payers()
-		{
-			init();
-
-			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PAYERS));
-		}
-
-		/// <summary>
 		/// Call the activities endpoint to get a listing of current activities,
 		/// a query string parameter ‘parent_id’ may also be used with this API to get information about 
 		/// sub-activities that were initiated from a batch file upload.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#activities
 		/// </summary>
 		/// <param name="parameters">
 		/// Query parameters:
@@ -158,11 +148,12 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// Return a list of cash prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#cashprices
 		/// </summary>
 		/// <param name="parameters">
 		/// Query parameters:
 		/// 	cpt_code, {string} The CPT code of the procedure in question.
-		///		zipcode, {string} Postal code in which to search for procedures
+		///		zip_code, {string} Postal code in which to search for procedures
 		/// </param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
 		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
@@ -177,12 +168,13 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// Return a list of insurance prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#insuranceprices
 		/// </summary>
 		/// <returns>The insurance.</returns>
 		/// <param name="parameters">
 		/// Query parameters:
 		/// 	cpt_code, {string} The CPT code of the procedure in question.
-		///		zipcode, {string} Postal code in which to search for procedures
+		///		zip_code, {string} Postal code in which to search for procedures
 		/// </param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
 		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
@@ -197,7 +189,7 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// Create a new claim, via the filing of an EDI 837 Professional Claims, to the designated Payer.
-		/// (Not yet implemented)
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#claims
 		/// </summary>
 		/// <param name="postData">Dictionary representing JSON post data.</param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
@@ -213,7 +205,7 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// Ascertain the status of the specified claim, via the filing of an EDI 276 Claims Status.
-		/// (Not yet implemented)
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#claimstatus
 		/// </summary>
 		/// <returns>The status.</returns>
 		/// <param name="postData">Dictionary representing JSON post data.</param>
@@ -230,15 +222,9 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// Determine eligibility via an EDI 270 Request For Eligibility.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#eligibility
 		/// </summary>
-		/// <param name="postData">
-		/// Dictionary Post data form fields:
-		/// 	trading_partner_id, Unique id for the intended trading partner, as specified by the Payers resource.
-		/// 	provider_id, Unique identifier for the provider , such as NPI, a PokitDok provider id, etc.
-		/// 	member_id, The named insured’s member identifier
-		/// 	member_name, The named insured’s name as specified on their policy
-		/// 	member_birth_date, The named insured’s birth date as specified on their policy
-		/// 	service_types, The line of coverage in the insurance policy this eligibility request is being made against
+		/// <param name="postData">Dictionary representing an EDI 270 Request For Eligibility.
 		/// </param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
 		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
@@ -253,7 +239,7 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// File an EDI 834 benefit enrollment.
-		/// (Not yet implemented)
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#enrollment
 		/// </summary>
 		/// <param name="postData">Post data.</param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
@@ -269,6 +255,7 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// Retrieve the data for a specified provider.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#providers
 		/// </summary>
 		/// <param name="npi">Provider NPI identifier.</param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
@@ -283,13 +270,13 @@ namespace pokitdokcsharp
 		}
 
 		/// <summary>
-		/// Get a list of providers meeting certain search criteria.
+		/// Retrieve providers data matching specified query parameters
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#providers
 		/// </summary>
 		/// <param name="parameters">
 		/// Query parameters:
-		/// 	name, Provider full name, any or all parts
+		/// 	organization_name, The business practice name
 		///		first_name, Provider first name
-		///		middle_name, Provider middle name
 		///		last_name, Provider first name
 		///		specialty, Provider specialty name from NUCC/NPI taxonomy
 		///		city, Provider city
@@ -297,8 +284,6 @@ namespace pokitdokcsharp
 		///		zipcode, Provider 5-digit zip code
 		///		radius, Search distance from geographic centerpoint, with unit (e.g. “1mi” or “50mi”)
 		///			(Only used when city, state, or zipcode is passed)
-		///		gender, Provider gender
-		///		npi_id, Provider NPI identifier
 		/// </param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
 		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
@@ -313,6 +298,7 @@ namespace pokitdokcsharp
 
 		/// <summary>
 		/// Retrieve data on plans based on the parameters given.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#plans
 		/// </summary>
 		/// <param name="parameters">
 		/// Query parameters:
@@ -336,7 +322,25 @@ namespace pokitdokcsharp
 		}
 
 		/// <summary>
-		/// Retrieve the data for a specified trading partner or provide an empty string to get a list of trading partners.
+		/// Use the /payers/ API to determine available payer_id values for use with other endpoints
+		/// The Payers endpoint will be deprecated in v5. Use Trading Partners instead.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#payers
+		/// </summary>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+		public ResponseData payers()
+		{
+			init();
+
+			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PAYERS));
+		}
+
+		/// <summary>
+		/// Retrieve a list of trading partners or submit an id to get info for a
+		/// specific trading partner.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#tradingpartners
 		/// </summary>
 		/// <param name="npi">Trading Partner Identifier.</param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
@@ -381,7 +385,40 @@ namespace pokitdokcsharp
 		}
 
 		/// <summary>
-		/// Usage statistics for most recent request.
+		/// Request approval for a referral to another health care provider.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#referrals
+		/// </summary>
+		/// <param name="postData">Dictionary representing JSON post data.</param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+		public ResponseData referrals(Dictionary<string, object> postData)
+		{
+			init();
+
+			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_REFERRALS, postData));
+		}
+
+		/// <summary>
+		/// Submit an authorization request.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#authorizations
+		/// </summary>
+		/// <param name="postData">Dictionary representing JSON post data.</param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+		public ResponseData authorizations(Dictionary<string, object> postData)
+		{
+			init();
+
+			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_AUTHORIZATIONS, postData));
+		}
+
+		/// <summary>
+		/// Usage statistics for most recent request
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#overview
 		/// </summary>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
 		/// <returns>

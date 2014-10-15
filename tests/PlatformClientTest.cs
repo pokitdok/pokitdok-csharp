@@ -19,7 +19,7 @@ class PlatformClientTest
 	public void Init()
 	{
 		client = new PlatformClient("s6g5HVrcHfUDc4GDRTMQ", "L121rl427P1USFi5s1u65wZ3wF39dltWEg8UGduw");
-//		client.ApiSite = "http://me.pokitdok.com:5002";
+		client.ApiSite = "http://me.pokitdok.com:5002";
 		client.Authenticate();
 	}
 
@@ -46,9 +46,9 @@ class PlatformClientTest
 				{"trading_partner_id", "MOCKPAYER"}
 		});
 
-		StringAssert.Contains("\"payer\": {\"id\": \"MOCKPAYER\", \"name\": \"MOCK PAYER INC\"}", resp.body);
-		StringAssert.Contains("\"service_types\": [\"professional_physician_visit_office\"]", resp.body);
 		Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("MOCKPAYER", (String) client.Data["payer"]["id"]);
+		Assert.AreEqual("MOCK PAYER INC", (String) client.Data["payer"]["name"]);
 	}
 
 	/// <summary>
@@ -59,8 +59,9 @@ class PlatformClientTest
 	{
 		ResponseData resp = client.payers();
 
-		StringAssert.Contains("\"payer_name\": \"Mock Payer for Testing\", \"payer_key\": \"MOCKPAYER\", \"production_status\": false, \"trading_partner_id\": \"MOCKPAYER\"", resp.body);
 		Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("Regence BlueShield of Washington", (String) client.Data[0]["payer_name"]);
+		Assert.AreEqual("regence_blue_shield_wa", (String) client.Data[0]["trading_partner_id"]);
 	}
 
 	/// <summary>
@@ -116,8 +117,9 @@ class PlatformClientTest
 					}}
 			});
 
-		StringAssert.Contains("\"units_of_work\": 1, \"name\": \"claims\"", resp.body);
 		Assert.AreEqual(200, resp.status);
+		Assert.AreEqual(1, (int) client.Data["units_of_work"]);
+		Assert.AreEqual("claims", (String) client.Data["name"]);
 	}
 
 	[Test]
@@ -141,6 +143,7 @@ class PlatformClientTest
 			});
 
 		Assert.AreEqual(200, resp.status);
+		Assert.AreEqual(false, (Boolean) client.Data["patient"]["claims"][0]["applied_to_deductible"]);
 	}
 
 	/// <summary>
@@ -151,8 +154,8 @@ class PlatformClientTest
 	{
 		ResponseData resp = client.activities();
 
-		StringAssert.Contains("\"units_of_work\"", resp.body);
 		Assert.AreEqual(200, resp.status);
+		Assert.AreEqual(1, (int) client.Data[0]["units_of_work"]);
 	}
 
 	/// <summary>
@@ -167,8 +170,9 @@ class PlatformClientTest
 				{ "radius", "15mi" }
 		});
 
-		StringAssert.Contains("\"provider\"", resp.body);
 		Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("JENTA", (String) client.Data[0]["provider"]["first_name"]);
+		Assert.AreEqual("SHEN", (String) client.Data[0]["provider"]["last_name"]);
 	}
 
 	/// <summary>
@@ -179,9 +183,9 @@ class PlatformClientTest
 	{
 		ResponseData resp = client.providers("1467560003");
 
-		StringAssert.Contains("\"first_name\": \"JEROME\", \"last_name\": \"AYA-AY\", "+
-			"\"middle_name\": \"BENITEZ\", \"uuid\": \"fc44d0e0-ea7f-492e-90f0-0f9148453019\"", resp.body);
 		Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("JENTA", (String) client.Data["provider"]["first_name"]);
+		Assert.AreEqual("SHEN", (String) client.Data["provider"]["last_name"]);
 	}
 
 	///<summary>
@@ -207,7 +211,8 @@ class PlatformClientTest
 		ResponseData resp = client.tradingPartners("MOCKPAYER");
 
 		Assert.AreEqual(200, resp.status);
-		StringAssert.Contains("\"id\": \"MOCKPAYER\", \"name\": \"Mock Payer for Testing\"", resp.body);
+		Assert.AreEqual("MOCKPAYER", (String) client.Data["id"]);
+		Assert.AreEqual("Mock Payer for Testing", (String) client.Data["name"]);
 	}
 
 	///<summary>
@@ -219,6 +224,7 @@ class PlatformClientTest
 		ResponseData resp = client.plans();
 
 		Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("PPO", (String) client.Data[0]["plan_type"]);
 	}
 
 	///<summary>
