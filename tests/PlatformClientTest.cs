@@ -18,7 +18,8 @@ class PlatformClientTest
 	[SetUp]
 	public void Init()
 	{
-		client = new PlatformClient("s6g5HVrcHfUDc4GDRTMQ", "L121rl427P1USFi5s1u65wZ3wF39dltWEg8UGduw");
+//		client = new PlatformClient("s6g5HVrcHfUDc4GDRTMQ", "L121rl427P1USFi5s1u65wZ3wF39dltWEg8UGduw");
+		client = new PlatformClient("FfkQRvq2d9XW0NZJfl2G", "eaanaSujk9ozLOmITilvmkupBLjGJuu324Ve7Nsv");
 		client.ApiSite = "http://me.pokitdok.com:5002";
 		client.Authenticate();
 	}
@@ -303,4 +304,107 @@ class PlatformClientTest
 		StringAssert.Contains("\"units_of_work\": 1, \"name\": \"batch file\"", resp.body);
 		Assert.AreEqual(200, resp.status);
 	}
+
+
+	/// <summary>
+	/// Referrals this instance.
+	/// </summary>
+	[Test]
+	public void Referrals()
+	{
+		ResponseData resp = client.referrals(
+			new Dictionary<string, object> {
+				{"event", new Dictionary<string, object> {
+						{"category", "specialty_care_review"},
+						{"certification_type", "initial"},
+						{"delivery", new Dictionary<string, object> {
+							{"quantity", 1},
+							{"quantity_qualifier", "visits"}
+							}},
+						{"diagnoses", new Dictionary<string, string>[] {
+							new Dictionary<string, string> {
+								{"code", "384.20"},
+								{"date", "2014-09-30"}
+							}}},
+						{"place_of_service", "office"},
+						{"provider", new Dictionary<string, string> {
+							{"first_name", "JOHN"},
+							{"npi", "1154387751"},
+							{"last_name", "FOSTER"},
+							{"phone", "8645822900"}
+							}},
+						{"type", "consultation"},
+					}},
+				{"patient", new Dictionary<string, string> {
+						{"birth_date", "1970-01-01"},
+						{"first_name", "JANE"},
+						{"last_name", "DOE"},
+						{"id", "1234567890"}
+					}},
+				{"provider", new Dictionary<string, string> {
+						{"first_name", "CHRISTINA"},
+						{"last_name", "BERTOLAMI"},
+						{"npi", "1619131232"}
+					}},
+				{"trading_partner_id", "MOCKPAYER"}
+			});
+
+		Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("AUTH0001", (String) client.Data["event"]["review"]["certification_number"]);
+		Assert.AreEqual("certified_in_total", (String) client.Data["event"]["review"]["certification_action"]);
+	}
+
+	/// <summary>
+	/// Authorizations this instance.
+	/// </summary>
+	[Test]
+	public void Authorizations()
+	{
+		ResponseData resp = client.authorizations(
+			new Dictionary<string, object> {
+				{"event", new Dictionary<string, object> {
+					{"category", "health_services_review"},
+					{"certification_type", "initial"},
+					{"delivery", new Dictionary<string, object> {
+						{"quantity", 1},
+						{"quantity_qualifier", "visits"}
+							}},
+						{"diagnoses", new Dictionary<string, object>[] {
+							new Dictionary<string, object> {
+								{"code", "789.00"},
+								{"date", "2014-10-01"}
+							}}},
+					{"place_of_service", "office"},
+					{"provider", new Dictionary<string, object> {
+							{"organization_name", "KELLY ULTRASOUND CENTER, LLC"},
+							{"npi", "1760779011"},
+							{"phone", "8642341234"}
+						}},
+					{"services", new Dictionary<string, object>[] {
+						new Dictionary<string, object> {
+							{"cpt_code", "76700"},
+							{"measurement", "unit"},
+							{"quantity", 1}
+						}}},
+					{"type", "diagnostic_imaging"}
+					}},
+				{"patient", new Dictionary<string, object> {
+						{"birth_date", "1970-01-01"},
+						{"first_name", "JANE"},
+						{"last_name", "DOE"},
+						{"id", "1234567890"}
+					}},
+				{"provider", new Dictionary<string, object> {
+						{"first_name", "JEROME"},
+						{"npi", "1467560003"},
+						{"last_name", "AYA-AY"}
+				}},
+				{"trading_partner_id", "MOCKPAYER"}
+			});
+
+		Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("AUTH0001", (String) client.Data["event"]["review"]["certification_number"]);
+		Assert.AreEqual("certified_in_total", (String) client.Data["event"]["review"]["certification_action"]);
+	}
+
 }
