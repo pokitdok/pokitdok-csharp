@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>pokitdok-csharp</title>
+    <title>pokitdokcsharp.TokenRefreshCallback</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
       a { text-decoration: none }
@@ -187,102 +187,57 @@
   </head>
   <body>
     <div class="CollectionTitle">
+      <a href="../index.html">pokitdok-csharp</a> : <a href="index.html">pokitdokcsharp Namespace</a></div>
+    <div class="SideBar">
+      <p>
+        <a href="#T:pokitdokcsharp.TokenRefreshCallback">Overview</a>
+      </p>
+      <p>
+        <a href="#T:pokitdokcsharp.TokenRefreshCallback:Signature">Signature</a>
+      </p>
+      <p>
+        <a href="#T:pokitdokcsharp.TokenRefreshCallback:Docs">Remarks</a>
+      </p>
+      <p>
+        <a href="#Members">Members</a>
+      </p>
+      <p>
+        <a href="#T:pokitdokcsharp.TokenRefreshCallback:Members">Member Details</a>
+      </p>
     </div>
-    <h1 class="PageTitle">pokitdok-csharp</h1>
-    <p class="Summary">
-      <div class="AssemblyRemarks" style="margin-top: 1em; margin-bottom: 1em">
+    <h1 class="PageTitle" id="T:pokitdokcsharp.TokenRefreshCallback">TokenRefreshCallback  Delegate</h1>
+    <p class="Summary" id="T:pokitdokcsharp.TokenRefreshCallback:Summary">
+            Token refresh callback, invoked when the AccessToken is set. Use the callback to save the access token details,
+            	save refresh token for re-use.
+            </p>
+    <div>
+      <h2>Syntax</h2>
+      <div class="Signature" id="T:pokitdokcsharp.TokenRefreshCallback:Signature">public delegate <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TokenRefreshCallback</b> (<a href="../pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a> accessToken)</div>
+    </div>
+    <div class="Remarks" id="T:pokitdokcsharp.TokenRefreshCallback:Docs">
+      <h4 class="Subsection">Parameters</h4>
+      <blockquote class="SubsectionBox" id="T:pokitdokcsharp.TokenRefreshCallback:Docs:Parameters">
+        <dl>
+          <dt>
+            <i>accessToken</i>
+          </dt>
+          <dd>
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </dd>
+        </dl>
+      </blockquote>
+      <h2 class="Section">Remarks</h2>
+      <div class="SectionBox" id="T:pokitdokcsharp.TokenRefreshCallback:Docs:Remarks">
         <span class="NotEntered">Documentation for this section has not yet been entered.</span>
       </div>
-    </p>
-    <div>
+      <h2 class="Section">Requirements</h2>
+      <div class="SectionBox" id="T:pokitdokcsharp.TokenRefreshCallback:Docs:Version Information">
+        <b>Namespace: </b>pokitdokcsharp<br /><b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>0.4.5518.17008, 0.4.5518.17040, 0.4.5518.17639, 0.4.5518.17747, 0.4.5518.21428, 0.4.5518.23745, 0.4.5518.23899, 0.4.5518.24044, 0.4.5518.24665, 0.4.5518.24794, 0.4.5518.24832, 0.4.5518.24891, 0.4.5518.24915, 0.4.5518.25402, 0.4.5518.25500, 0.4.5518.25587, 0.4.5518.25710, 0.4.5518.25998, 0.4.5518.28509, 0.4.5518.29413, 0.4.5520.27574, 0.4.5521.13817</div>
     </div>
-    <div class="Remarks">
-      <h2 class="Section">
-        <a href="pokitdokcsharp/index.html">pokitdokcsharp Namespace</a>
-      </h2>
-      <p>
-        <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-      </p>
-      <table class="TypesListing" style="margin-top: 1em">
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-        <tr valign="top">
-          <td>
-            <a href="pokitdokcsharp/OauthAccessToken.html">OauthAccessToken</a>
-          </td>
-          <td>
-            Oauth access token
-            		http://tools.ietf.org/html/rfc6749#section-4.4.3
-            </td>
-        </tr>
-        <tr valign="top">
-          <td>
-            <a href="pokitdokcsharp/OauthApplicationClient.html">OauthApplicationClient</a>
-          </td>
-          <td>
-            Oauth 2.0 Client implementing Client Credentials Grant Authorization
-            		http://tools.ietf.org/html/rfc6749#section-4.4
-            </td>
-        </tr>
-        <tr valign="top">
-          <td>
-            <a href="pokitdokcsharp/OauthApplicationClient+TokenRefreshCallback.html">OauthApplicationClient.TokenRefreshCallback</a>
-          </td>
-          <td>
-            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
-          </td>
-        </tr>
-        <tr valign="top">
-          <td>
-            <a href="pokitdokcsharp/PlatformClient.html">PlatformClient</a>
-          </td>
-          <td>
-            	PokitDok Platform Client for C#
-            		Consumes the REST based PokitDok platform API
-            		https://platform.pokitdok.com/documentation/v4#/#overview
-            </td>
-        </tr>
-        <tr valign="top">
-          <td>
-            <a href="pokitdokcsharp/PokitDokException.html">PokitDokException</a>
-          </td>
-          <td>
-            PokitDok exception.
-            </td>
-        </tr>
-        <tr valign="top">
-          <td>
-            <a href="pokitdokcsharp/ResponseData.html">ResponseData</a>
-          </td>
-          <td>
-            Store http response headers, body and status code
-            </td>
-        </tr>
-        <tr valign="top">
-          <td>
-            <a href="pokitdokcsharp/TokenRefreshCallback.html">TokenRefreshCallback</a>
-          </td>
-          <td>
-            Token refresh callback, invoked when the AccessToken is set. Use the callback to save the access token details,
-            	save refresh token for re-use.
-            </td>
-        </tr>
-        <tr valign="top">
-          <td>
-            <a href="pokitdokcsharp/TokenRefreshDelegate.html">TokenRefreshDelegate</a>
-          </td>
-          <td>
-            Token refresh callback, invoked when the AccessToken is set. Use the callback to save the access token details,
-            	save refresh token for re-use.
-            </td>
-        </tr>
-      </table>
-    </div>
-    <div class="Members">
+    <div class="Members" id="T:pokitdokcsharp.TokenRefreshCallback:Members">
     </div>
     <hr size="1" />
-    <div class="Copyright">To be added.</div>
+    <div class="Copyright">
+    </div>
   </body>
 </html>

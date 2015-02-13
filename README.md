@@ -10,11 +10,12 @@ Install via [NuGet][nuget]:
 PM> Install-Package PokitDokPlatformClient
 ```
 
-Build source with [Xamarin][xamarin] Studio 5.0.
+Build source with [Xamarin][xamarin] Studio 5.7.1 or [Microsoft Visual Studio 2013][msvs].
 See dependencies section below.
 
 [nuget]: https://www.nuget.org/packages/PokitDokPlatformClient
 [xamarin]: http://xamarin.com/
+[msvs]: http://www.visualstudio.com/
 
 ## Tests
 ```
@@ -250,24 +251,26 @@ try
 ```
 
 ## Tested .Net Versions
-This library aims to support and is tested against these .Net (ECMA-335 CLI) framework versions:
+This library aims to support and is tested against these Microsoft.Net (ECMA-335 CLI) framework versions:
 
-* Microsoft.Net 4.0
-* Mono 3.4.0
+* [Microsoft.Net 4.0][msnet]
+* [Mono 3.5.0][mono]
 
-You may have luck with other CLI frameworks - let us know how it goes.
+[msnet][http://www.microsoft.com/net]
+[mono][http://www.mono-project.com/]
+
+You may have luck with other CLI framework versions - let us know how it goes.
 
 ## Dependencies
-The PokitDok Platform API C# Client requires [Json.Net][jnk], a popular high-performance JSON framework for .NET.
-* [Json.Net 6.0.3][json.net].
+The PokitDok Platform API C# Client requires Json.Net, a popular high-performance JSON framework for .NET.
+* [Json.Net 6.0.8][json.net].
 
-Tests written using [NUnit][nunit].
-* [NUnit 2.6.3][nunit263]
+Tests written using NUnit].
+* [NUnit 2.6.4][nunit]
 
 [jnk]: http://james.newtonking.com/json
-[json.net]: https://github.com/JamesNK/Newtonsoft.Json/tree/6.0.3
-[nunit]: http://www.nunit.org/index.php?p=home
-[nunit263]: http://launchpad.net/nunitv2/trunk/2.6.3/+download/NUnit-2.6.3.zip
+[json.net]: http://www.newtonsoft.com/json
+[nunit]: https://www.nuget.org/packages/NUnit/
 
 ## License
 Copyright (c) 2014 PokitDok Inc. See [LICENSE][license] for details.

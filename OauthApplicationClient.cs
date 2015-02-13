@@ -23,6 +23,12 @@ using Newtonsoft.Json;
 namespace pokitdokcsharp
 {
 	/// <summary>
+	/// Token refresh callback, invoked when the AccessToken is set. Use the callback to save the access token details, 
+	/// 	save refresh token for re-use.
+	/// </summary>
+	public delegate void TokenRefreshDelegate(OauthAccessToken accessToken);
+
+	/// <summary>
 	/// PokitDok exception.
 	/// </summary>
 	public class PokitDokException : Exception 
@@ -96,7 +102,13 @@ namespace pokitdokcsharp
 		/// <value>The access_token.</value>
 		[System.Runtime.Serialization.DataMember]
 		public string access_token { get; set; }
-		/// <summary>
+        /// <summary>
+        /// Gets or sets the refresh_token.
+        /// </summary>
+        /// <value>The refresh_token.</value>
+        [System.Runtime.Serialization.DataMember]
+        public string refresh_token { get; set; }
+        /// <summary>
 		/// Gets or sets the token_type.
 		/// </summary>
 		/// <value>The token_type.</value>
@@ -107,19 +119,20 @@ namespace pokitdokcsharp
 		/// </summary>
 		/// <value>The expires.</value>
 		[System.Runtime.Serialization.DataMember]
-		public string expires { get; set; }
+		public Int32 expires { get; set; }
 		/// <summary>
 		/// Gets or sets the expires_in.
 		/// </summary>
 		/// <value>The expires_in.</value>
 		[System.Runtime.Serialization.DataMember]
-		public string expires_in { get; set; }
+        public Int32 expires_in { get; set; }
 		/// <summary>
 		/// Gets or sets the error.
 		/// </summary>
 		/// <value>The error.</value>
 		[System.Runtime.Serialization.DataMember]
 		public string error { get; set; }
+
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="pokitdokcsharp.OauthAccessToken"/> class.
@@ -134,10 +147,11 @@ namespace pokitdokcsharp
 		/// </summary>
 		public void init()
 		{
-			access_token = "RftNvQ4DmMewkbvSiq2niZxiobEtPgEKXfzqWCLF";
-			token_type = "bearer";
-			expires = "1400763854";
-			expires_in = "3600";
+			access_token = "";
+            refresh_token = "";
+			token_type = "Bearer";
+			expires = 0;
+			expires_in = 3600;
 			error = null;
 		}
 	}
@@ -168,6 +182,11 @@ namespace pokitdokcsharp
 
 		private string _clientId;
 		private string _clientSecret;
+        private string _authCode;
+
+        private string[] _scope;
+        private Uri _redirectUrl;
+		TokenRefreshDelegate _tokenRefresh = null;
 
 		private ResponseData _responseData = new ResponseData();
 
@@ -178,11 +197,19 @@ namespace pokitdokcsharp
 		/// <param name="clientSecret">Client secret.</param>
 		/// <param name="requestTimeout">Request timeout.</param>
 		/// <param name="accessToken">Access token.</param>
+        /// <param name="redirectUrl">The Platform App redirect url.</param>
+        /// <param name="tokenRefresh">Invoked when access token is refreshed.</param>
+        /// <param name="scope">The requested scopes</param>
+        /// <param name="authCode">The authorization code recieved by the scope grant of the Platform App</param>
 		public OauthApplicationClient(
 			string clientId, 
 			string clientSecret, 
-			int requestTimeout = DEFAULT_TIMEOUT, 
-			OauthAccessToken accessToken = null)
+			int requestTimeout = DEFAULT_TIMEOUT,
+            OauthAccessToken accessToken = null,
+            Uri redirectUrl = null,
+			TokenRefreshDelegate tokenRefresh = null,
+            string[] scope = null,
+            string authCode = null)
 		{
 			this._clientId = clientId;
 			this._clientSecret = clientSecret;
@@ -191,6 +218,11 @@ namespace pokitdokcsharp
 			if (accessToken != null) {
 				this.AccessToken = accessToken;
 			}
+
+            this._redirectUrl = redirectUrl;
+			this._tokenRefresh = tokenRefresh;
+            this._scope = scope;
+            this._authCode = authCode;
 		}
 
 		/// <summary>
@@ -200,18 +232,24 @@ namespace pokitdokcsharp
 		/// when some unknown system error occurs.</exception>
 		public OauthAccessToken Authenticate()
 		{
-			try {
+            if (_accessToken.refresh_token.Length > 0)
+            {
+                return AuthenticateRefreshToken();
+            } 
+            else if (_authCode == null) 
+            {
+                return AuthenticateClientCredentials();
+            }
+            else
+            {
+                return AuthenticateAuthorizationCode();
+            }
+		}
 
-				HttpWebRequest webRequest = WebRequest.Create(this.ApiTokenUrl) as HttpWebRequest;
-				webRequest.Timeout = _requestTimeout;
-				webRequest.Headers["Authorization"] = 
-					"Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(_clientId + ":" + _clientSecret));
-				webRequest.Method = "POST";
-				webRequest.ContentType = "application/x-www-form-urlencoded";
-				webRequest.UserAgent = this._userAgent;
-				byte[] request_bytes = Encoding.UTF8.GetBytes("grant_type=client_credentials");
-				webRequest.ContentLength = request_bytes.Length;
-
+        private OauthAccessToken AuthenticateRequest(WebRequest webRequest, byte[] request_bytes)
+        {
+            try
+            {
 				using (Stream postStream = webRequest.GetRequestStream()) {
 					postStream.Write(request_bytes, 0, request_bytes.Length);
 					postStream.Close();
@@ -225,8 +263,17 @@ namespace pokitdokcsharp
 					}
 					DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(OauthAccessToken));
 					this.AccessToken = (OauthAccessToken) serializer.ReadObject(webResponse.GetResponseStream());
+                    if (this.AccessToken.expires == 0)
+                    {
+						this.AccessToken.expires = (Int32) DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds + 
+							this.AccessToken.expires_in;
+                    }
+
+					if (this._tokenRefresh != null) {
+						_tokenRefresh(this.AccessToken);
+					}
 				}
-				
+
 				_accessTokenRenewer = new Timer(
 					new TimerCallback(OnTokenExpiredCallback), 
 					this, 
@@ -239,7 +286,83 @@ namespace pokitdokcsharp
 			}
 
 			return this.AccessToken;
-		}
+        }
+
+        private OauthAccessToken AuthenticateClientCredentials()
+        {
+			try {
+
+				HttpWebRequest webRequest = WebRequest.Create(this.ApiTokenUrl) as HttpWebRequest;
+				webRequest.Timeout = _requestTimeout;
+				webRequest.Headers["Authorization"] = 
+					"Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(_clientId + ":" + _clientSecret));
+				webRequest.Method = "POST";
+				webRequest.ContentType = "application/x-www-form-urlencoded";
+				webRequest.UserAgent = this._userAgent;
+				byte[] request_bytes = Encoding.UTF8.GetBytes("grant_type=client_credentials" +
+                    "&client_id=" + _clientId + "&client_secret=" + _clientSecret);
+				webRequest.ContentLength = request_bytes.Length;
+
+                AuthenticateRequest(webRequest, request_bytes);
+
+			} catch (Exception ex) {
+				throw new PokitDokException("Authentication Error: " + ex.Message, ex);
+			}
+
+			return this.AccessToken;
+        }
+
+        private OauthAccessToken AuthenticateAuthorizationCode()
+        {
+            try
+            {
+                HttpWebRequest webRequest = WebRequest.Create(this.ApiTokenUrl) as HttpWebRequest;
+                webRequest.Timeout = _requestTimeout;
+                webRequest.Headers["Authorization"] =
+                    "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(_clientId + ":" + _clientSecret));
+                webRequest.Method = "POST";
+                webRequest.ContentType = "application/x-www-form-urlencoded";
+                webRequest.UserAgent = this._userAgent;
+                byte[] request_bytes = Encoding.UTF8.GetBytes("grant_type=authorization_code" +
+                    "&client_id=" + _clientId + "&client_secret=" + _clientSecret + "&redirect_uri=" + _redirectUrl + 
+                    "&code=" + _authCode + "&scope=" + string.Join(" ", _scope));
+                webRequest.ContentLength = request_bytes.Length;
+
+                AuthenticateRequest(webRequest, request_bytes);
+            }
+            catch (Exception ex)
+            {
+                throw new PokitDokException("Authentication Error: " + ex.Message, ex);
+            }
+
+            return this.AccessToken;
+        }
+
+        private OauthAccessToken AuthenticateRefreshToken()
+        {
+            try
+            {
+                HttpWebRequest webRequest = WebRequest.Create(this.ApiTokenUrl) as HttpWebRequest;
+                webRequest.Timeout = _requestTimeout;
+                webRequest.Headers["Authorization"] =
+                    "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(_clientId + ":" + _clientSecret));
+                webRequest.Method = "POST";
+                webRequest.ContentType = "application/x-www-form-urlencoded";
+                webRequest.UserAgent = this._userAgent;
+                byte[] request_bytes = Encoding.UTF8.GetBytes("grant_type=refresh_token" +
+                    "&client_id=" + _clientId + "&client_secret=" + _clientSecret + "&refresh_token=" + 
+                    _accessToken.refresh_token + "&scope=" + string.Join(" ", _scope));
+                webRequest.ContentLength = request_bytes.Length;
+
+                AuthenticateRequest(webRequest, request_bytes);
+            }
+            catch (Exception ex)
+            {
+                throw new PokitDokException("Authentication Error: " + ex.Message, ex);
+            }
+
+            return this.AccessToken;
+        }
 
 		/// <summary>
 		/// Raises the token expired callback event.
@@ -287,10 +410,7 @@ namespace pokitdokcsharp
 				return true;
 			}
 
-			return (
-				((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds) > 
-				(Convert.ToInt32(this.AccessToken.expires) - (_requestTimeout/1000))
-			);
+			return (Int32) DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds > this.AccessToken.expires - _requestTimeout / 1000;
 		}
 
 		/// <summary>
@@ -540,7 +660,96 @@ namespace pokitdokcsharp
 			return postDataStream;
 		}
 
-		/// <summary>
+        /// <summary>
+        /// Perform a PUT request given the uri and put data form fields
+        /// </summary>
+        /// <param name="requestPath">Request path.</param>
+        /// <param name="putData">Put data: dictionary representing JSON data.</param>
+        /// <returns></returns>
+        public ResponseData PutRequest(string requestPath, Dictionary<string, object> putData)
+        {
+            if (isAccessTokenExpired())
+            {
+                Authenticate();
+            }
+
+            string request_uri = _apiBaseUrl + requestPath;
+
+            try
+            {
+                string request_json_data = JsonConvert.SerializeObject(putData);
+
+                HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
+                webRequest.Timeout = _requestTimeout;
+                webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
+                webRequest.Method = "PUT";
+                webRequest.ContentType = "application/json";
+                webRequest.UserAgent = this._userAgent;
+                byte[] request_bytes = Encoding.UTF8.GetBytes(request_json_data);
+                webRequest.ContentLength = request_bytes.Length;
+
+                using (Stream postStream = webRequest.GetRequestStream())
+                {
+                    postStream.Write(request_bytes, 0, request_bytes.Length);
+                    postStream.Close();
+                }
+                using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse)
+                {
+                    ProcessResponse(response);
+                }
+            }
+            catch (WebException wex)
+            {
+                ProcessResponse((HttpWebResponse)wex.Response);
+            }
+            catch (Exception ex)
+            {
+                throw new PokitDokException(string.Format("PutRequest({0}) Error: {1}", request_uri, ex.Message), ex);
+            }
+
+            return _responseData;
+        }
+
+        /// <summary>
+        /// Perform a DELETE request for the given resource
+        /// </summary>
+        /// <param name="requestPath">Request path/resource</param>
+        /// <returns></returns>
+        public ResponseData DeleteRequest(string requestPath)
+        {
+            if (isAccessTokenExpired())
+            {
+                Authenticate();
+            }
+
+            string request_uri = _apiBaseUrl + requestPath;
+
+            try
+            {
+                HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
+                webRequest.Timeout = _requestTimeout;
+                webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
+                webRequest.Method = "DELETE";
+                webRequest.UserAgent = this._userAgent;
+
+                using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse)
+                {
+                    ProcessResponse(response);
+                }
+            }
+            catch (WebException wex)
+            {
+                ProcessResponse((HttpWebResponse)wex.Response);
+            }
+            catch (Exception ex)
+            {
+                throw new PokitDokException(string.Format("DeleteRequest({0}) Error: {1}", request_uri, ex.Message), ex);
+            }
+
+            return _responseData;
+        }
+
+        /// <summary>
 		/// Processes the http response into a <see cref="pokitdokcsharp.ResponseData"/> object.
 		/// </summary>
 		/// <returns>The response as a <see cref="pokitdokcsharp.ResponseData"/> object.</returns>
