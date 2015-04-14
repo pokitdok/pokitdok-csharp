@@ -51,6 +51,10 @@ namespace pokitdokcsharp
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_PLANS = "/plans/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_REFERRALS = "/referrals/";
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_AUTHORIZATIONS = "/authorizations/";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_SCHEDULERS = "/schedule/schedulers/";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENT_TYPES = "/schedule/appointmenttypes/";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_SLOTS = "/schedule/slots/";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENTS = "/schedule/appointments/";
 
 		private string _apiSite = POKITDOK_PLATFORM_API_SITE;
 		private string _versionPath = POKITDOK_PLATFORM_API_VERSION_PATH;
@@ -67,11 +71,20 @@ namespace pokitdokcsharp
 		/// <param name="clientSecret">Client secret.</param>
 		/// <param name="requestTimeout">Request timeout.</param>
 		/// <param name="accessToken">Access token.</param>
+		/// <param name="redirectUrl">The application OAuth2 redirect url.</param>
+		/// <param name="tokenRefresh">Method to invoke when access token refresh save occurs.</param>
+		/// <param name="scope">Array of OAuth2 scopes requested</param>
+		/// <param name="authCode">The code received from an authorization code grant flow.</param> 
 		public PlatformClient(
-			string clientId, 
-			string clientSecret, 
-			int requestTimeout = DEFAULT_TIMEOUT, 
-			OauthAccessToken accessToken = null) : base(clientId, clientSecret, requestTimeout, accessToken)
+				string clientId, 
+				string clientSecret, 
+				int requestTimeout = DEFAULT_TIMEOUT, 
+				OauthAccessToken accessToken = null,
+				Uri redirectUrl = null,
+				TokenRefreshDelegate tokenRefresh = null,
+				string[] scope = null,
+				string authCode = null
+			) : base(clientId, clientSecret, requestTimeout, accessToken, redirectUrl, tokenRefresh, scope, authCode)
 		{
 			init();
 
@@ -347,7 +360,7 @@ namespace pokitdokcsharp
 		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
 		/// 	The body is JSON formatted data.
 		/// </returns>
-		public ResponseData tradingPartners(string npi)
+		public ResponseData tradingPartners(string npi = "")
 		{
 			init();
 
@@ -416,7 +429,136 @@ namespace pokitdokcsharp
 			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_AUTHORIZATIONS, postData));
 		}
 
-		/// <summary>
+        /// <summary>
+        /// Get a list of supported scheduling systems and their UUIDs and descriptions.
+        /// </summary>
+        /// <param name="scheduler_uuid">Optional, Retrieve the data for a specified scheduling system.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData schedulers(string scheduler_uuid = "")
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_SCHEDULERS + scheduler_uuid));
+        }
+
+        /// <summary>
+        /// Get a list of appointment types, their UUIDs, and descriptions.
+        /// </summary>
+        /// <param name="appointment_type_uuid">Optional, Retrieve the data for a specified appointment type.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData appointmentTypes(string appointment_type_uuid = "")
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENT_TYPES + appointment_type_uuid));
+        }
+
+        /// <summary>
+        /// Create an available appointment slot in the PokitDok scheduler system
+        /// </summary>
+        /// <param name="postData">Available appointment slot details.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData createSlot(Dictionary<string, object> postData)
+        {
+            init();
+
+            return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_SLOTS, postData));
+        }
+
+        /// <summary>
+        /// Query for an open appointment slot or a booked appointment given a specific {pd_appointment_uuid}, 
+        /// the (PokitDok unique appointment identifier).
+        /// See https://platform.pokitdok.com/documentation
+        /// </summary>
+        /// <param name="appointment_uuid">The (PokitDok unique appointment identifier).</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData appointments(string appointment_uuid = "")
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENTS + appointment_uuid));
+        }
+
+        /// <summary>
+        /// Query for open appointment slots (using pd_provider_uuid and location) or booked appointments 
+        /// (using patient_uuid) given query parameters. See https://platform.pokitdok.com/documentation
+        /// See https://platform.pokitdok.com/documentation
+        /// </summary>
+        /// <param name="parameters">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData appointments(Dictionary<string, string> parameters)
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENTS, parameters));
+        }
+
+        /// <summary>
+        /// Book appointment for an open slot. Post data contains patient attributes and description.
+        /// See https://platform.pokitdok.com/documentation
+        /// </summary>
+        /// <param name="appointment_uuid">The (PokitDok unique appointment identifier).</param>
+        /// <param name="putData">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData bookAppointment(string appointment_uuid, Dictionary<string, object> putData)
+        {
+            init();
+
+            return applyResponse(PutRequest(POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENTS + appointment_uuid, putData));
+        }
+
+        /// <summary>
+        /// Update appointment description.
+        /// See https://platform.pokitdok.com/documentation 
+        /// </summary>
+        /// <param name="appointment_uuid">The (PokitDok unique appointment identifier).</param>
+        /// <param name="putData">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData updateAppointment(string appointment_uuid, Dictionary<string, object> putData)
+        {
+            init();
+
+            return applyResponse(PutRequest(POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENTS + appointment_uuid, putData));
+        }
+
+        /// <summary>
+        /// Cancel appointment given its {pd_appointment_uuid}.
+        /// See https://platform.pokitdok.com/documentation 
+        /// </summary>
+        /// <param name="appointment_uuid">The (PokitDok unique appointment identifier).</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData cancelAppointment(string appointment_uuid)
+        {
+            init();
+
+            return applyResponse(DeleteRequest(POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENTS + appointment_uuid));
+        }
+
+        /// <summary>
 		/// Usage statistics for most recent request
 		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#overview
 		/// </summary>
@@ -463,13 +605,18 @@ namespace pokitdokcsharp
 		private ResponseData applyResponse(ResponseData response)
 		{
 			dynamic responseObject = JsonConvert.DeserializeObject(response.body);
-			_usage = responseObject["meta"];
-			_data = responseObject["data"];
-
-			if (_data is Newtonsoft.Json.Linq.JObject) {
-				_errors = _data["errors"];
-			} else {
+			if (responseObject == null) {
+				_usage = null;
+				_data = null;
 				_errors = null;
+			} else {
+				_usage = responseObject ["meta"];
+				_data = responseObject ["data"];
+				if (_data is Newtonsoft.Json.Linq.JObject) {
+					_errors = _data ["errors"];
+				} else {
+					_errors = null;
+				}
 			}
 
 			return response;

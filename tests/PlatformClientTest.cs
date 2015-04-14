@@ -18,8 +18,10 @@ class PlatformClientTest
 	[SetUp]
 	public void Init()
 	{
-//		client = new PlatformClient("s6g5HVrcHfUDc4GDRTMQ", "L121rl427P1USFi5s1u65wZ3wF39dltWEg8UGduw");
-		client = new PlatformClient("FfkQRvq2d9XW0NZJfl2G", "eaanaSujk9ozLOmITilvmkupBLjGJuu324Ve7Nsv");
+		client = new PlatformClient(
+			"atOuPv6ovVIkcti0CdEb", 
+			"tjcffBKw5nh8hg1K1g95UihsOEuV2r0y4iXxZ9Ll"
+		);
 		client.ApiSite = "http://me.pokitdok.com:5002";
 		client.Authenticate();
 	}
@@ -50,19 +52,6 @@ class PlatformClientTest
 		Assert.AreEqual(200, resp.status);
 		Assert.AreEqual("MOCKPAYER", (String) client.Data["payer"]["id"]);
 		Assert.AreEqual("MOCK PAYER INC", (String) client.Data["payer"]["name"]);
-	}
-
-	/// <summary>
-	/// Payers this instance.
-	/// </summary>
-	[Test]
-	public void Payers()
-	{
-		ResponseData resp = client.payers();
-
-		Assert.AreEqual(200, resp.status);
-		Assert.AreEqual("Regence BlueShield of Washington", (String) client.Data[0]["payer_name"]);
-		Assert.AreEqual("regence_blue_shield_wa", (String) client.Data[0]["trading_partner_id"]);
 	}
 
 	/// <summary>
@@ -195,12 +184,8 @@ class PlatformClientTest
 	[Test]
 	public void TradingPartnersList()
 	{
-		ResponseData resp = client.tradingPartners("");
-
+		ResponseData resp = client.tradingPartners();
 		Assert.AreEqual(200, resp.status);
-		StringAssert.Contains ("MOCKPAYER", resp.body);
-		StringAssert.Contains ("MOCKPAYER_ACK", resp.body);
-		StringAssert.Contains ("MOCKPAYER_REJECTION", resp.body);
 	}
 
 	///<summary>
@@ -210,10 +195,7 @@ class PlatformClientTest
 	public void TradingPartnersGet()
 	{
 		ResponseData resp = client.tradingPartners("MOCKPAYER");
-
 		Assert.AreEqual(200, resp.status);
-		Assert.AreEqual("MOCKPAYER", (String) client.Data["id"]);
-		Assert.AreEqual("Mock Payer for Testing", (String) client.Data["name"]);
 	}
 
 	///<summary>
@@ -301,7 +283,7 @@ class PlatformClientTest
 			"../../tests/files/general-physician-office-visit.270"
 		);
 
-		StringAssert.Contains("\"units_of_work\": 1, \"name\": \"batch file\"", resp.body);
+		StringAssert.Contains("\"units_of_work\": 1, \"_type\": \"PlatformActivityModel\", \"name\": \"batch file\"", resp.body);
 		Assert.AreEqual(200, resp.status);
 	}
 
@@ -407,4 +389,110 @@ class PlatformClientTest
 		Assert.AreEqual("certified_in_total", (String) client.Data["event"]["review"]["certification_action"]);
 	}
 
+    /// <summary>
+    /// Test retrieving Schedulers list and by uuid
+    /// </summary>
+    [Test]
+    public void Schedulers()
+    {
+        ResponseData resp = client.schedulers();
+        Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("Greenway", client.Data[0]["name"].ToString());
+		Assert.AreEqual("Athena", client.Data[1]["name"].ToString());
+
+        resp = client.schedulers("d8f38f08-8530-11e4-9a71-0800272e8da1");
+        Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("d8f38f08-8530-11e4-9a71-0800272e8da1", client.Data[0]["scheduler_uuid"].ToString());
+    }
+
+    /// <summary>
+    /// Test retrieving AppointmentTypes list and by uuid
+    /// </summary>
+    [Test]
+    public void AppointmentTypes()
+    {
+        ResponseData resp = client.appointmentTypes();
+        Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("ef987691-0a19-447f-814d-f8f3abbf4860", (String) client.Data[0]["appointment_type_uuid"]);
+		Assert.AreEqual("ef987692-0a19-447f-814d-f8f3abbf4860", (String) client.Data[1]["appointment_type_uuid"]);
+
+        resp = client.appointmentTypes("ef987692-0a19-447f-814d-f8f3abbf4860");
+        Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("ef987692-0a19-447f-814d-f8f3abbf4860", (String) client.Data[0]["appointment_type_uuid"]);
+    }
+
+    /// <summary>
+    /// Test querying for Appointments and getting by a uuid
+    /// </summary>
+    [Test]
+    public void Appointments()
+    {
+        ResponseData resp = client.appointments(
+            new Dictionary<string, string> {
+                {"appointment_type", "SS1"},
+                {"start_date", "2015-01-14T08:00:00"},
+                {"end_date", "2015-01-16T17:00:00"},
+                {"patient_uuid", "8ae236ff-9ccc-44b0-8717-42653cd719d0"}
+            });
+        Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("SS1", (String) client.Data[0]["appointment_type"]);
+		Assert.AreEqual("01/14/2015 08:00:00", (String) client.Data[0]["start_date"]);
+
+        resp = client.appointments("ef987691-0a19-447f-814d-f8f3abbf4859");
+        Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("ef987691-0a19-447f-814d-f8f3abbf4859", (String) client.Data[0]["pd_appointment_uuid"]);
+		Assert.AreEqual("OV1", (String) client.Data[0]["appointment_type"]);
+		Assert.AreEqual("john@johndoe.com", (String) client.Data[0]["patient"]["email"]);
+    }
+
+    /// <summary>
+    /// Test booking an appointment
+    /// </summary>
+    [Test]
+    public void BookAppointment()
+    {
+        ResponseData resp = client.bookAppointment(
+            "ef987691-0a19-447f-814d-f8f3abbf4859", 
+            new Dictionary<string, object> {
+                {"patient", new Dictionary<string, object> {
+                    {"_uuid", "500ef469-2767-4901-b705-425e9b6f7f83"},
+                    {"email", "john@johndoe.com"},
+                    {"phone", "800-555-1212"},
+                    {"birth_date", "1970-01-01"},
+                    {"first_name", "John"},
+                    {"last_name", "Doe"},
+                    {"member_id", "M000001"}}}
+            });
+        Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("OV1", (String) client.Data["appointment_type"]);
+		Assert.AreEqual("john@johndoe.com", (String) client.Data["patient"]["email"]);
+		Assert.AreEqual(true, (bool) client.Data["booked"]);
+    }
+
+    /// <summary>
+    /// Test updating an appointment description
+    /// </summary>
+    [Test]
+    public void UpdateAppointment()
+    {
+        ResponseData resp = client.updateAppointment(
+            "ef987691-0a19-447f-814d-f8f3abbf4859",
+            new Dictionary<string, object> { 
+                {"description", "Welcome to M0d3rN Healthcare"}
+            });
+        Assert.AreEqual(200, resp.status);
+		Assert.AreEqual("OV1", (String) client.Data["appointment_type"]);
+		Assert.AreEqual(false, (bool) client.Data["booked"]);
+		Assert.AreEqual("Welcome to M0d3rN Healthcare", (String) client.Data["description"]);
+    }
+
+    /// <summary>
+    /// Test canceliing an appointment
+    /// </summary>
+    [Test]
+    public void CancelAppointment()
+    {
+        ResponseData resp = client.cancelAppointment("ef987691-0a19-447f-814d-f8f3abbf4859");
+        Assert.AreEqual(204, resp.status);       
+    }
 }
