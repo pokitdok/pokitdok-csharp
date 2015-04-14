@@ -55,6 +55,7 @@ namespace pokitdokcsharp
         private const string POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENT_TYPES = "/schedule/appointmenttypes/";
         private const string POKITDOK_PLATFORM_API_ENDPOINT_SLOTS = "/schedule/slots/";
         private const string POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENTS = "/schedule/appointments/";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_MPC = "/mpc/";
 
 		private string _apiSite = POKITDOK_PLATFORM_API_SITE;
 		private string _versionPath = POKITDOK_PLATFORM_API_VERSION_PATH;
@@ -387,14 +388,13 @@ namespace pokitdokcsharp
 				postData.Add ("callback_url", callbackUrl);
 			}
 
-			return applyResponse(
-				PostRequest(
-					POKITDOK_PLATFORM_API_ENDPOINT_FILES, 
-					filepath, 
-					"file",
-					"application/EDI-X12",
-					postData
-			));
+            return applyResponse(PostRequest(
+                POKITDOK_PLATFORM_API_ENDPOINT_FILES,
+                filepath,
+                "file",
+                "application/EDI-X12",
+                postData
+            ));
 		}
 
 		/// <summary>
@@ -559,6 +559,42 @@ namespace pokitdokcsharp
         }
 
         /// <summary>
+        /// The Medical Procedure Code resource provides access to clinical and consumer friendly information related 
+        /// to medical procedures.
+        /// </summary>
+        /// <param name="medical_procedure_code">Retrieve the data for a specific procedure code.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData medicalProcedureCode(string medical_procedure_code)
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_MPC + medical_procedure_code));            
+        }
+
+        /// <summary>
+        /// The Medical Procedure Code resource provides access to clinical and consumer friendly information related 
+        /// to medical procedures.
+        /// </summary>
+        /// <param name="parameters">
+        /// Query parameters:
+        ///     name, Search medical procedure information by consumer friendly name 
+        ///     description, A partial or full description to be used to locate medical procedure information 
+        /// </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData medicalProcedureCode(Dictionary<string, string> parameters)
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_MPC, parameters));
+        }
+
+        /// <summary>
 		/// Usage statistics for most recent request
 		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#overview
 		/// </summary>
@@ -604,8 +640,22 @@ namespace pokitdokcsharp
 		/// <param name="response">The a <see cref="pokitdokcsharp.ResponseData"/> object returned from raw API calls.</param>
 		private ResponseData applyResponse(ResponseData response)
 		{
-			dynamic responseObject = JsonConvert.DeserializeObject(response.body);
-			if (responseObject == null) {
+            dynamic responseObject = null;
+
+            try
+            {
+			    responseObject = JsonConvert.DeserializeObject(response.body);
+            }
+            catch (Exception)
+            {
+                _usage = null;
+                _data = null;
+                _errors = "Error deserializing response body.";
+                return response;
+            }
+
+            if (responseObject == null)
+            {
 				_usage = null;
 				_data = null;
 				_errors = null;
