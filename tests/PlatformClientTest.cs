@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using pokitdokcsharp;
@@ -19,10 +19,10 @@ class PlatformClientTest
 	public void Init()
 	{
 		client = new PlatformClient(
-			"atOuPv6ovVIkcti0CdEb", 
-			"tjcffBKw5nh8hg1K1g95UihsOEuV2r0y4iXxZ9Ll"
+            "dB6bOvgCNOAhKt5lWir1",
+            "aLSjaEkr9H2f74Zk2lTB6yPlaL5j1sH53wv0gzp0"
 		);
-		client.ApiSite = "http://me.pokitdok.com:5002";
+		client.ApiSite = "http://platform.pokitdok.com";
 		client.Authenticate();
 	}
 
@@ -283,8 +283,8 @@ class PlatformClientTest
 			"../../tests/files/general-physician-office-visit.270"
 		);
 
-		StringAssert.Contains("\"units_of_work\": 1, \"_type\": \"PlatformActivityModel\", \"name\": \"batch file\"", resp.body);
-		Assert.AreEqual(200, resp.status);
+        Assert.AreEqual(200, resp.status);
+        StringAssert.Contains("\"units_of_work\": 1, \"_type\": \"PlatformActivityModel\", \"name\": \"batch file\"", resp.body);
 	}
 
 
@@ -494,5 +494,13 @@ class PlatformClientTest
     {
         ResponseData resp = client.cancelAppointment("ef987691-0a19-447f-814d-f8f3abbf4859");
         Assert.AreEqual(204, resp.status);       
+    }
+
+    [Test]
+    public void MedicalProcedureCode()
+    {
+        ResponseData resp = client.medicalProcedureCode("99211");
+        Assert.AreEqual(200, resp.status);
+        Assert.AreEqual("Established patient office or other outpatient visit, typically 15 minutes", (String) client.Data["name"]);
     }
 }
