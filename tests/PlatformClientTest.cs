@@ -22,7 +22,7 @@ class PlatformClientTest
             "dB6bOvgCNOAhKt5lWir1",
             "aLSjaEkr9H2f74Zk2lTB6yPlaL5j1sH53wv0gzp0"
 		);
-		client.ApiSite = "http://platform.pokitdok.com";
+		client.ApiSite = "https://platform.pokitdok.com";
 		client.Authenticate();
 	}
 
