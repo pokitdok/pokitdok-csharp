@@ -428,114 +428,137 @@ namespace pokitdokcsharp
 			}
 		}
 
-		/// <summary>
-		/// Perform a GET request given the http request path and a dictionary of query parameters.
-		/// </summary>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.</returns>
-		/// <param name="requestPath">Request path.</param>
-		/// <param name="parameters">Dictionary of query parameters.</param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		public ResponseData GetRequest(string requestPath, Dictionary<string,string> parameters = null)
-		{
-			if (isAccessTokenExpired()) {
-				Authenticate();
-			}
+        /// <summary>
+        /// Perform a GET request given the http request path and a dictionary of query parameters.
+        /// </summary>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.</returns>
+        /// <param name="requestPath">Request path.</param>
+        /// <param name="parameters">Dictionary of query parameters.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        public ResponseData GetRequest(string requestPath, Dictionary<string, string> parameters = null)
+        {
+            if (isAccessTokenExpired())
+            {
+                Authenticate();
+            }
 
-			string request_uri = _apiBaseUrl + requestPath;
+            string request_uri = _apiBaseUrl + requestPath;
 
-			try {
+            try
+            {
 
-				if (parameters != null) {
-					request_uri += "?";
-					bool first = true;
-					foreach (KeyValuePair<string, string> query_param in parameters) {
-						if (!first) {
-							request_uri += "&";
-						}
-						first = false;
-						request_uri += query_param.Key + "=" + HttpUtility.UrlEncode(query_param.Value);
-					}
-				}
+                if (parameters != null)
+                {
+                    request_uri += "?";
+                    bool first = true;
+                    foreach (KeyValuePair<string, string> query_param in parameters)
+                    {
+                        if (!first)
+                        {
+                            request_uri += "&";
+                        }
+                        first = false;
+                        request_uri += query_param.Key + "=" + HttpUtility.UrlEncode(query_param.Value);
+                    }
+                }
 
-				HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
-				webRequest.Timeout = _requestTimeout;
-				webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
-				webRequest.Method = "GET";
-				webRequest.UserAgent = this._userAgent;
+                HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
+                webRequest.Timeout = _requestTimeout;
+                webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
+                webRequest.Method = "GET";
+                webRequest.UserAgent = this._userAgent;
 
-				using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse) {
-					ProcessResponse(response);
-				}
-			}
-			catch (WebException wex) {
-				ProcessResponse((HttpWebResponse)wex.Response);
-			}
-			catch (Exception ex) 
-			{
-				throw new PokitDokException(string.Format("GetRequest({0}) Error: {1}", request_uri, ex.Message), ex);
-			}
+                using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse)
+                {
+                    ProcessResponse(response);
+                }
+            }
+            catch (WebException wex)
+            {
+                ProcessResponse((HttpWebResponse)wex.Response);
+            }
+            catch (Exception ex)
+            {
+                throw new PokitDokException(string.Format("GetRequest({0}) Error: {1}", request_uri, ex.Message), ex);
+            }
 
-			return _responseData;
-		}
+            return _responseData;
+        }
 
-		/// <summary>
-		/// Perform a POST request given the http request path and a dictionary representing the JSON post body.
-		/// </summary>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.</returns>
-		/// <param name="requestPath">Request path.</param>
-		/// <param name="postData">Post data: dictionary representing JSON data</param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		public ResponseData PostRequest(string requestPath, Dictionary<string, object> postData)
-		{
-			if (isAccessTokenExpired()) {
-				Authenticate();
-			}
+        /// <summary>
+        /// Perform a POST request given the http request path and a dictionary representing the JSON post body.
+        /// </summary>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.</returns>
+        /// <param name="requestPath">Request path.</param>
+        /// <param name="postData">Post data: dictionary representing JSON data</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        public ResponseData PostRequest(string requestPath, Dictionary<string, object> postData)
+        {
+            return PostRequest(requestPath, JsonConvert.SerializeObject(postData));
+        }
 
-			string request_uri = _apiBaseUrl + requestPath;
+        /// <summary>
+        /// Perform a POST request given the http request path and the JSON post body.
+        /// </summary>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.</returns>
+        /// <param name="requestPath">Request path.</param>
+        /// <param name="json">JSON data</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        public ResponseData PostRequest(string requestPath, string json)
+        {
+            if (isAccessTokenExpired())
+            {
+                Authenticate();
+            }
 
-			try {
+            string request_uri = _apiBaseUrl + requestPath;
 
-				string request_json_data = JsonConvert.SerializeObject(postData);
+            try
+            {
+                string request_json_data = json;
 
-				HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
-				webRequest.Timeout = _requestTimeout;
-				webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
-				webRequest.Method = "POST";
-				webRequest.ContentType = "application/json";
-				webRequest.UserAgent = this._userAgent;
-				byte[] request_bytes = Encoding.UTF8.GetBytes(request_json_data);
-				webRequest.ContentLength = request_bytes.Length;
+                HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
+                webRequest.Timeout = _requestTimeout;
+                webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
+                webRequest.Method = "POST";
+                webRequest.ContentType = "application/json";
+                webRequest.UserAgent = this._userAgent;
+                byte[] request_bytes = Encoding.UTF8.GetBytes(request_json_data);
+                webRequest.ContentLength = request_bytes.Length;
 
-				using (Stream postStream = webRequest.GetRequestStream()) {
-					postStream.Write(request_bytes, 0, request_bytes.Length);
-					postStream.Close();
-				}
-				using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse) {
-					ProcessResponse(response);
-				}
-			}
-			catch (WebException wex) {
-				ProcessResponse((HttpWebResponse)wex.Response);
-			}
-			catch (Exception ex)
-			{
-				throw new PokitDokException(string.Format("PostRequest({0}) Error: {1}", request_uri, ex.Message), ex);
-			}
+                using (Stream postStream = webRequest.GetRequestStream())
+                {
+                    postStream.Write(request_bytes, 0, request_bytes.Length);
+                    postStream.Close();
+                }
+                using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse)
+                {
+                    ProcessResponse(response);
+                }
+            }
+            catch (WebException wex)
+            {
+                ProcessResponse((HttpWebResponse)wex.Response);
+            }
+            catch (Exception ex)
+            {
+                throw new PokitDokException(string.Format("PostRequest({0}) Error: {1}", request_uri, ex.Message), ex);
+            }
 
-			return _responseData;
-		}
+            return _responseData;
+        }
 
-		/// <summary>
-		/// Perform a POST request given the http request path and a file to post with optional form field parameters.
-		/// </summary>
-		/// <returns>The request.</returns>
-		/// <param name="requestPath">Request path.</param>
-		/// <param name="postFilePath">File system path of file data to be posted.</param>
-		/// <param name="postFileContentDispositionName">Post file content disposition name.</param>
-		/// <param name="postFileContentType">Post file content type.</param>
-		/// <param name="parameters">Dictionary of form data parameters.</param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		public ResponseData PostRequest(
+        /// <summary>
+        /// Perform a POST request given the http request path and a file to post with optional form field parameters.
+        /// </summary>
+        /// <returns>The request.</returns>
+        /// <param name="requestPath">Request path.</param>
+        /// <param name="postFilePath">File system path of file data to be posted.</param>
+        /// <param name="postFileContentDispositionName">Post file content disposition name.</param>
+        /// <param name="postFileContentType">Post file content type.</param>
+        /// <param name="parameters">Dictionary of form data parameters.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        public ResponseData PostRequest(
 			string requestPath, 
 			string postFilePath,
 			string postFileContentDispositionName,

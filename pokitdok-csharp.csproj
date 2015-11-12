@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -7,6 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>pokitdokcsharp</RootNamespace>
     <AssemblyName>pokitdok-csharp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,6 +28,7 @@
     </CustomCommands>
     <DocumentationFile>bin\Debug\pokitdok-csharp.xml</DocumentationFile>
     <Commandlineparameters>mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe bin/Debug/pokitdok-csharp.dll</Commandlineparameters>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>full</DebugType>
@@ -35,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -47,6 +51,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -56,6 +61,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
@@ -72,6 +78,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JSONFormatters\UnderscoreCaseEnumConverter.cs" />
+    <Compile Include="JSONFormatters\UnderscoreCaseFormatter.cs" />
+    <Compile Include="JSONFormatters\UnderscoreCaseResolver.cs" />
+    <Compile Include="JSONFormatters\YyyyMmDdTimeConverter.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\ApplicationData.cs" />
+    <Compile Include="Models\AttendingProvider.cs" />
+    <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\BaseProvider.cs" />
+    <Compile Include="Models\BillingProvider.cs" />
+    <Compile Include="Models\Claim.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\OccurenceInformation.cs" />
+    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\Provider.cs" />
+    <Compile Include="Models\ServiceLine.cs" />
+    <Compile Include="Models\Subscriber.cs" />
+    <Compile Include="Models\Transactions\BaseTransaction.cs" />
+    <Compile Include="Models\Transactions\ClaimStatusTransaction.cs" />
+    <Compile Include="Models\Transactions\ClaimsTransaction.cs" />
+    <Compile Include="Models\Transactions\EligibilityTransaction.cs" />
+    <Compile Include="Models\ValueInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlatformClient.cs" />
     <Compile Include="OauthApplicationClient.cs" />

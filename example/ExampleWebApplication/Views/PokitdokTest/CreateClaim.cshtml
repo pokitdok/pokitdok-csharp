@@ -1,0 +1,509 @@
+﻿@using pokitdokcsharp.Models
+@model ExampleWebApp.Models.ClaimViewModel
+@{
+    ViewBag.Title = "Claim form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("CreateClaim", "PokitdokTest", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+{
+    @Html.ValidationSummary("", new {@class = "text-danger"})
+    <h4>Claims Transaction Form</h4>
+    <hr/>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BaseTransaction.TransactionCode, htmlAttributes: new {@class = "control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.BaseTransaction.TransactionCode, EnumHelper.GetSelectList(typeof (TransactionCode)), new {@class = "form-control"})
+        </div>
+    </div>
+
+    <fieldset>
+        <legend>Billing Provider</legend>
+        <h5>Only use First/Last name OR Organization Name</h5>
+        <div class="form-group">
+            <label class="col-md-2 control-label">First Name</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.BillingProvider.FirstName, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Last Name</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.BillingProvider.LastName, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Organization Name</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.BillingProvider.OrganizationName, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">NPI</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.BillingProvider.NPI, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Tax Id</label>
+            <div class="col-md-10">
+                @Html.EditorFor(c => c.BaseTransaction.BillingProvider.TaxId, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">City</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.BillingProvider.Address.City, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">State</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.BillingProvider.Address.State, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Zip code</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.BillingProvider.Address.Zipcode, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Address line 2</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.BillingProvider.Address.AddressLines[1], new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Address line 1</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.BillingProvider.Address.AddressLines[0], new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Address line 3</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.BillingProvider.Address.AddressLines[2], new {@class = "form-control"})
+            </div>
+        </div>
+
+    </fieldset>
+    <fieldset>
+        <legend>
+            Patient
+        </legend>
+        <div class="form-group">
+            <label class="col-md-2 control-label">First Name</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Patient.FirstName, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Last Name</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Patient.LastName, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Birth Date</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Patient.BirthDate, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">City</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Patient.Address.City, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">State</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Patient.Address.State, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Zip code</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Patient.Address.Zipcode, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Address line 2</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Patient.Address.AddressLines[1], new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Address line 1</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Patient.Address.AddressLines[0], new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Address line 3</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Patient.Address.AddressLines[2], new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Gender</label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.BaseTransaction.Patient.Gender, EnumHelper.GetSelectList(typeof (Gender)), new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Member Id</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Patient.MemberId, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Middle Name</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Patient.MiddleName, new {@class = "form-control"})
+            </div>
+            @Html.LabelFor(c => c.BaseTransaction.Patient.Pregnant, "Pregnant", new {@class = "col-md-2 control-label"})
+            <div class="col-md-4">
+                @Html.CheckBoxFor(c => c.BaseTransaction.Patient.Pregnant, new {@class = "col-md-2 control-label"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Relationship</label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.BaseTransaction.Patient.Relationship, EnumHelper.GetSelectList(typeof (Relationship)), new {@class = "form-control"})
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>
+            Subscriber
+        </legend>
+        <div class="form-group">
+            <label class="col-md-2 control-label">First Name</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.FirstName, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Last Name</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.LastName, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Birth Date</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.BirthDate, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">City</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.Address.City, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">State</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.Address.State, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Zip code</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.Address.Zipcode, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Address line 1</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.Address.AddressLines[0], new {@class = "form-control"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Claim Filing Code</label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.BaseTransaction.Subscriber.ClaimFilingCode, EnumHelper.GetSelectList(typeof (ClaimFilingCode)), new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Gender</label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.BaseTransaction.Subscriber.Gender, EnumHelper.GetSelectList(typeof (Gender)), new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Group Number</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Subscriber.GroupNumber, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Group Name</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Subscriber.GroupName, new {@class = "form-control"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Member Id</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Subscriber.MemberId, new {@class = "form-control"})
+            </div>
+        </div>
+
+    </fieldset>
+    <fieldset>
+        <legend>Claim</legend>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Admission Date</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(c => c.BaseTransaction.Claim.AdmissionDate, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Admission Source</label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.BaseTransaction.Claim.AdmissionSource, EnumHelper.GetSelectList(typeof (AdmissionSource)), new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Admission Type</label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.BaseTransaction.Claim.AdmissionType, EnumHelper.GetSelectList(typeof (AdmissionType)), new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Facility Type</label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.BaseTransaction.Claim.FacilityType, EnumHelper.GetSelectList(typeof (FacilityType)), new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Onset Date</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.OnsetDate, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Place Of Service</label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.BaseTransaction.Claim.PlaceOfService, EnumHelper.GetSelectList(typeof (PlaceOfService)), new {@class = "form-control"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Patient Paid Amount</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.PatientPaidAmount, new {@class = "form-control"})
+            </div>
+
+            @Html.LabelFor(c => c.BaseTransaction.Claim.PatientSignatureOnFile, "Patient Signature On File", new {@class = "col-md-2 control-label"})
+            <div class="col-md-4">
+                @Html.CheckBoxFor(m => m.BaseTransaction.Claim.PatientSignatureOnFile, new {@class = "form-control"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Patient Status</label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.BaseTransaction.Claim.PatientStatus, EnumHelper.GetSelectList(typeof (PatientStatus)), new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Statement Date</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.StatementDate, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Statement End Date</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.StatementEndDate, new {@class = "form-control"})
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>
+            Claim service line 1
+        </legend>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Charge Amount</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].ChargeAmount, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Procedure Code </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].ProcedureCode, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Diagnosis Codes </label>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].DiagnosisCodes[0], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].DiagnosisCodes[1], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].DiagnosisCodes[2], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                &nbsp;
+            </div>
+            <label class="col-md-2 control-label">Procedure Modifier Codes </label>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].ProcedureModifierCodes[0], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].ProcedureModifierCodes[1], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].ProcedureModifierCodes[2], new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Provider Control Number </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].ProviderControlNumber, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Procedure Modifier Codes </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].RevenueCode, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Service Date </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].ServiceDate, new {@class = "form-control toBeDate"})
+            </div>
+            <label class="col-md-2 control-label">Unit Count </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].UnitCount, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Unit type </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[0].UnitType, new {@class = "form-control"})
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>
+            Claim service line 2
+        </legend>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Charge Amount</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].ChargeAmount, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Procedure Code </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].ProcedureCode, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Diagnosis Codes </label>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].DiagnosisCodes[0], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].DiagnosisCodes[1], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].DiagnosisCodes[2], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                &nbsp;
+            </div>
+            <label class="col-md-2 control-label">Procedure Modifier Codes </label>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].ProcedureModifierCodes[0], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].ProcedureModifierCodes[1], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].ProcedureModifierCodes[2], new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Provider Control Number </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].ProviderControlNumber, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Procedure Modifier Codes </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].RevenueCode, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Service Date </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].ServiceDate, new {@class = "form-control toBeDate"})
+            </div>
+            <label class="col-md-2 control-label">Unit Count </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].UnitCount, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Unit type </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[1].UnitType, new {@class = "form-control"})
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>
+            Claim service line 3
+        </legend>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Charge Amount</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].ChargeAmount, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Procedure Code </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].ProcedureCode, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Diagnosis Codes </label>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].DiagnosisCodes[0], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].DiagnosisCodes[1], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].DiagnosisCodes[2], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                &nbsp;
+            </div>
+            <label class="col-md-2 control-label">Procedure Modifier Codes </label>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].ProcedureModifierCodes[0], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].ProcedureModifierCodes[1], new {@class = "form-control"})
+            </div>
+            <div class="col-md-1">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].ProcedureModifierCodes[2], new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Provider Control Number </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].ProviderControlNumber, new {@class = "form-control"})
+            </div>
+            <label class="col-md-2 control-label">Procedure Modifier Codes </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].RevenueCode, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Service Date </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].ServiceDate, new {@class = "form-control toBeDate"})
+            </div>
+            <label class="col-md-2 control-label">Unit Count </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].UnitCount, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Unit type </label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.BaseTransaction.Claim.ServiceLines[2].UnitType, new {@class = "form-control"})
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default"/>
+        </div>
+    </div>
+}
+
+<div>
+    <h4>ResponseData</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Response.body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Response.body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Response.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Response.status)
+        </dd>
+
+    </dl>
+</div>

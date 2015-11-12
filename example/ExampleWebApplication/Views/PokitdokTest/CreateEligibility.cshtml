@@ -1,0 +1,127 @@
+﻿@model ExampleWebApp.Models.EligibilityViewModel
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Create Eligibility</h2>
+
+
+@using (Html.BeginForm("CreateEligibility", "PokitdokTest"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>EligibilityTransaction</h4>
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseTransaction.TradingPartnerId, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseTransaction.TradingPartnerId, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.BaseTransaction.TradingPartnerId, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseTransaction.CptCode, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseTransaction.CptCode, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.BaseTransaction.CptCode, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <h4>Member</h4>
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseTransaction.Member.Id, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseTransaction.Member.Id, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.BaseTransaction.Member.Id, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseTransaction.Member.FirstName, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseTransaction.Member.FirstName, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.BaseTransaction.Member.FirstName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseTransaction.Member.LastName, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseTransaction.Member.LastName, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.BaseTransaction.Member.LastName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseTransaction.Member.BirthDate, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseTransaction.Member.BirthDate, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.BaseTransaction.Member.BirthDate, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <h4>Provider</h4>
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseTransaction.Provider.NPI, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseTransaction.Provider.NPI, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.BaseTransaction.Provider.NPI, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseTransaction.Provider.FirstName, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseTransaction.Provider.FirstName, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.BaseTransaction.Provider.FirstName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseTransaction.Provider.LastName, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseTransaction.Provider.LastName, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.BaseTransaction.Provider.LastName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default"/>
+            </div>
+        </div>
+
+        <div>
+            <h4>ResponseData</h4>
+            <hr/>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Response.body)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Response.body)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Response.status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Response.status)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

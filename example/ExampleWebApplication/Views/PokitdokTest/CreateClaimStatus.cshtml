@@ -1,0 +1,152 @@
+﻿@model ExampleWebApp.Models.ClaimStatusViewModel
+
+@{
+    ViewBag.Title = "CreateClaimStatus";
+}
+
+<h2>CreateClaimStatus</h2>
+
+
+@using (Html.BeginForm("CreateClaimStatus", "PokitdokTest", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ClaimStatusViewModel</h4>
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <fieldset>
+            <legend>Claim Status Transaction</legend>
+            <div class="form-group">
+                @Html.LabelFor(model => model.BaseTransaction.TradingPartnerId, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BaseTransaction.TradingPartnerId, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.BaseTransaction.TradingPartnerId, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BaseTransaction.ServiceDate, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BaseTransaction.ServiceDate, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.BaseTransaction.ServiceDate, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BaseTransaction.ServiceEndDate, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BaseTransaction.ServiceEndDate, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.BaseTransaction.ServiceEndDate, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BaseTransaction.TrackingId, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BaseTransaction.TrackingId, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.BaseTransaction.TrackingId, "", new {@class = "text-danger"})
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Provider</legend>
+            <h5>Only use First/Last name OR Organization Name</h5>
+            <div class="form-group">
+                <label class="col-md-2 control-label">First Name</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Provider.FirstName, new {@class = "form-control"})
+                </div>
+                <label class="col-md-2 control-label">Last Name</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Provider.LastName, new {@class = "form-control"})
+                </div>
+                <label class="col-md-2 control-label">Organization Name</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Provider.OrganizationName, new {@class = "form-control"})
+                </div>
+                <label class="col-md-2 control-label">NPI</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Provider.NPI, new {@class = "form-control"})
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>
+                Patient
+            </legend>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Id</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Patient.Id, new {@class = "form-control"})
+                </div>
+                <label class="col-md-2 control-label">First Name</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Patient.FirstName, new {@class = "form-control"})
+                </div>
+                <label class="col-md-2 control-label">Last Name</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Patient.LastName, new {@class = "form-control"})
+                </div>
+                <label class="col-md-2 control-label">Birth Date</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Patient.BirthDate, new {@class = "form-control"})
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>
+                Subscriber
+            </legend>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Id</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.Id, new {@class = "form-control"})
+                </div>
+                <label class="col-md-2 control-label">First Name</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.FirstName, new {@class = "form-control"})
+                </div>
+                <label class="col-md-2 control-label">Last Name</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.LastName, new {@class = "form-control"})
+                </div>
+                <label class="col-md-2 control-label">Birth Date</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(c => c.BaseTransaction.Subscriber.BirthDate, new {@class = "form-control"})
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default"/>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <h4>ResponseData</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Response.body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Response.body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Response.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Response.status)
+        </dd>
+
+    </dl>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
