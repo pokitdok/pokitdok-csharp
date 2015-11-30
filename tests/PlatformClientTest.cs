@@ -99,12 +99,7 @@ class PlatformClientTest
 									{"unit_count", 1.0},
 									{"diagnosis_codes", new string[] { "487.1" }},
 									{"service_date", "2014-06-01"}
-					}}}}},
-				{"payer", 
-					new Dictionary<string, object> {
-						{"organization_name", "Acme Ins Co"},
-						{"plan_id", "1234567890"}
-					}}
+					}}}}}
 			});
 
 		Assert.AreEqual(200, resp.status);
@@ -397,12 +392,12 @@ class PlatformClientTest
     {
         ResponseData resp = client.schedulers();
         Assert.AreEqual(200, resp.status);
-		Assert.AreEqual("Greenway", client.Data[0]["name"].ToString());
-		Assert.AreEqual("Athena", client.Data[1]["name"].ToString());
+		Assert.AreEqual("PokitDok", client.Data[0]["name"].ToString());
+		Assert.AreEqual("Greenway", client.Data[1]["name"].ToString());
 
-        resp = client.schedulers("d8f38f08-8530-11e4-9a71-0800272e8da1");
+		resp = client.schedulers("967d207f-b024-41cc-8cac-89575a1f6fef");
         Assert.AreEqual(200, resp.status);
-		Assert.AreEqual("d8f38f08-8530-11e4-9a71-0800272e8da1", client.Data[0]["scheduler_uuid"].ToString());
+		Assert.AreEqual("967d207f-b024-41cc-8cac-89575a1f6fef", client.Data[0]["scheduler_uuid"].ToString());
     }
 
     /// <summary>
@@ -413,12 +408,11 @@ class PlatformClientTest
     {
         ResponseData resp = client.appointmentTypes();
         Assert.AreEqual(200, resp.status);
-		Assert.AreEqual("ef987691-0a19-447f-814d-f8f3abbf4860", (String) client.Data[0]["appointment_type_uuid"]);
-		Assert.AreEqual("ef987692-0a19-447f-814d-f8f3abbf4860", (String) client.Data[1]["appointment_type_uuid"]);
+		Assert.AreEqual("a3a45130-4adb-4d2c-9411-85a9d9ac4aa2", (String) client.Data[0]["appointment_type_uuid"]);
 
-        resp = client.appointmentTypes("ef987692-0a19-447f-814d-f8f3abbf4860");
+		resp = client.appointmentTypes("a3a45130-4adb-4d2c-9411-85a9d9ac4aa2");
         Assert.AreEqual(200, resp.status);
-		Assert.AreEqual("ef987692-0a19-447f-814d-f8f3abbf4860", (String) client.Data[0]["appointment_type_uuid"]);
+		Assert.AreEqual("a3a45130-4adb-4d2c-9411-85a9d9ac4aa2", (String) client.Data[0]["appointment_type_uuid"]);
     }
 
     /// <summary>
@@ -438,11 +432,11 @@ class PlatformClientTest
 		Assert.AreEqual("SS1", (String) client.Data[0]["appointment_type"]);
 		Assert.AreEqual("01/14/2015 08:00:00", (String) client.Data[0]["start_date"]);
 
-        resp = client.appointments("ef987691-0a19-447f-814d-f8f3abbf4859");
+		resp = client.appointments("bf8440b1-fd20-4994-bb28-e3981833e796");
         Assert.AreEqual(200, resp.status);
-		Assert.AreEqual("ef987691-0a19-447f-814d-f8f3abbf4859", (String) client.Data[0]["pd_appointment_uuid"]);
+		Assert.AreEqual("bf8440b1-fd20-4994-bb28-e3981833e796", (String) client.Data[0]["pd_appointment_uuid"]);
 		Assert.AreEqual("OV1", (String) client.Data[0]["appointment_type"]);
-		Assert.AreEqual("john@johndoe.com", (String) client.Data[0]["patient"]["email"]);
+		Assert.AreEqual("peg@emailprovider.com", (String) client.Data[0]["patient"]["email"]);
     }
 
     /// <summary>
@@ -455,7 +449,7 @@ class PlatformClientTest
             "ef987691-0a19-447f-814d-f8f3abbf4859", 
             new Dictionary<string, object> {
                 {"patient", new Dictionary<string, object> {
-                    {"_uuid", "500ef469-2767-4901-b705-425e9b6f7f83"},
+                    {"uuid", "500ef469-2767-4901-b705-425e9b6f7f83"},
                     {"email", "john@johndoe.com"},
                     {"phone", "800-555-1212"},
                     {"birth_date", "1970-01-01"},
@@ -502,5 +496,10 @@ class PlatformClientTest
         ResponseData resp = client.medicalProcedureCode("99211");
         Assert.AreEqual(200, resp.status);
         Assert.AreEqual("Established patient office or other outpatient visit, typically 15 minutes", (String) client.Data["name"]);
+        resp = client.medicalProcedureCode(
+            new Dictionary<string, string> { 
+                {"name", "Established patient office or other outpatient visit, typically 15 minutes"}
+            });
+        Assert.AreEqual("99211", (String) client.Data[0]["code"]);
     }
 }
