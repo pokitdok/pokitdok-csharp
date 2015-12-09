@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Web;
 using Newtonsoft.Json;
+using pokitdokcsharp.JSONFormatters;
+using pokitdokcsharp.Models.Transactions;
 
 
 namespace pokitdokcsharp
@@ -217,50 +219,115 @@ namespace pokitdokcsharp
 			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS, postData));
 		}
 
-		/// <summary>
-		/// Ascertain the status of the specified claim, via the filing of an EDI 276 Claims Status.
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#claimstatus
-		/// </summary>
-		/// <returns>The status.</returns>
-		/// <param name="postData">Dictionary representing JSON post data.</param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData claimsStatus(Dictionary<string, object> postData)
+        /// <summary>
+        /// Create a new claim, via the filing of an EDI 837 Professional Claims, to the designated Payer.
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#claims
+        /// </summary>        
+        /// <param name="transaction">transaction representing claim transaction</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData claims(ClaimsTransaction transaction)
+        {
+            init();
+
+            return
+                applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS,
+                    SerializeTransaction(transaction)));
+        }
+
+        /// <summary>
+        /// Ascertain the status of the specified claim, via the filing of an EDI 276 Claims Status.
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#claimstatus
+        /// </summary>
+        /// <returns>The status.</returns>
+        /// <param name="postData">Dictionary representing JSON post data.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData claimsStatus(Dictionary<string, object> postData)
 		{
 			init();
 
 			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_STATUS, postData));
 		}
 
-		/// <summary>
-		/// Determine eligibility via an EDI 270 Request For Eligibility.
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#eligibility
-		/// </summary>
-		/// <param name="postData">Dictionary representing an EDI 270 Request For Eligibility.
-		/// </param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData eligibility(Dictionary<string, object> postData)
+        /// <summary>
+        /// Ascertain the status of the specified claim, via the filing of an EDI 276 Claims Status.
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#claimstatus
+        /// </summary>
+        /// <returns>The status.</returns>
+        /// <param name="transaction">Claim status transaction</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData claimsStatus(ClaimStatusTransaction transaction)
+        {
+            init();
+
+            return
+                applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_STATUS,
+                    SerializeTransaction(transaction)));
+        }
+
+        /// <summary>
+        /// Determine eligibility via an EDI 270 Request For Eligibility.
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#eligibility
+        /// </summary>
+        /// <param name="postData">Dictionary representing an EDI 270 Request For Eligibility.
+        /// </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData eligibility(Dictionary<string, object> postData)
 		{
 			init();
 
 			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_ELIGIBILITY, postData));
 		}
 
-		/// <summary>
-		/// File an EDI 834 benefit enrollment.
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#enrollment
-		/// </summary>
-		/// <param name="postData">Post data.</param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData enrollment(Dictionary<string, object> postData)
+        /// <summary>
+        /// Determine eligibility via an EDI 270 Request For Eligibility.
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#eligibility
+        /// </summary>
+        /// <param name="transaction">transaction class representing an EDI 270 Request For Eligibility.
+        /// </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData eligibility(EligibilityTransaction transaction)
+        {
+            init();
+
+            return
+                applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_ELIGIBILITY,
+                    SerializeTransaction(transaction)));
+        }
+
+        private string SerializeTransaction(BaseTransaction baseTransaction)
+        {
+            var settings = new JsonSerializerSettings();
+            settings.ContractResolver = new UnderscoreCaseResolver();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            var serializeTransaction = JsonConvert.SerializeObject(baseTransaction, settings);
+            return serializeTransaction;
+        }
+
+        /// <summary>
+        /// File an EDI 834 benefit enrollment.
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#enrollment
+        /// </summary>
+        /// <param name="postData">Post data.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData enrollment(Dictionary<string, object> postData)
 		{
 			init();
 
