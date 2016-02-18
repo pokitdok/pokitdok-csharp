@@ -495,13 +495,6 @@ namespace pokitdokcsharp
 				}
 
                 HttpWebRequest webRequest = CreateRequest(null, request_uri, "GET", null); 
-                /*
-				HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
-				webRequest.Timeout = _requestTimeout;
-				webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
-				webRequest.Method = "GET";
-				webRequest.UserAgent = this._userAgent;
-                */
 
 				using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse) {
 					ProcessResponse(response);
@@ -539,15 +532,6 @@ namespace pokitdokcsharp
 
 
                 HttpWebRequest webRequest = CreateRequest(postData, request_uri, "POST"); 
-                /*
-				HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
-				webRequest.Timeout = _requestTimeout;
-				webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
-				webRequest.Method = "POST";
-				webRequest.ContentType = "application/json";
-				webRequest.UserAgent = this._userAgent;
-				webRequest.ContentLength = request_bytes.Length;
-                */
 
 				byte[] request_bytes = Encoding.UTF8.GetBytes(request_json_data);
 
@@ -594,14 +578,6 @@ namespace pokitdokcsharp
 
                 string boundary = "----------------------------" + DateTime.Now.Ticks.ToString("x");
                 HttpWebRequest webRequest = CreateRequest(null, request_uri, "POST", "multipart/form-data; boundary=" + boundary);
-                //				HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
-                /*
-				webRequest.Timeout = _requestTimeout;
-				webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
-				webRequest.Method = "POST";
-				webRequest.ContentType = "multipart/form-data; boundary=" + boundary;
-				webRequest.UserAgent = this._userAgent;
-                */
 
 				NameValueCollection formData = new NameValueCollection();
 				if (parameters != null) {
@@ -723,15 +699,7 @@ namespace pokitdokcsharp
             {
                 string request_json_data = JsonConvert.SerializeObject(putData);
                 HttpWebRequest webRequest = CreateRequest(putData, request_uri, "PUT"); 
-/*
-                HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
-                webRequest.Timeout = _requestTimeout;
-                webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
-                webRequest.Method = "PUT";
-                webRequest.ContentType = "application/json";
-                webRequest.UserAgent = this._userAgent;
-                webRequest.ContentLength = request_bytes.Length;
-*/
+
                 byte[] request_bytes = Encoding.UTF8.GetBytes(request_json_data);
                 using (Stream postStream = webRequest.GetRequestStream())
                 {
@@ -772,13 +740,6 @@ namespace pokitdokcsharp
             try
             {
                 HttpWebRequest webRequest = CreateRequest(null, request_uri, "DELETE", null); 
-                /*
-                HttpWebRequest webRequest = WebRequest.Create(request_uri) as HttpWebRequest;
-                webRequest.Timeout = _requestTimeout;
-                webRequest.Headers["Authorization"] = "Bearer " + this.AccessToken.access_token;
-                webRequest.Method = "DELETE";
-                webRequest.UserAgent = this._userAgent;
-                */
 
                 using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse)
                 {
