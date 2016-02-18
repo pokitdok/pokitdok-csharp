@@ -8,54 +8,64 @@
 //		Consume the REST based PokitDok platform API
 //		https://platform.pokitdok.com/documentation/v4#/#overview
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Web;
-using Newtonsoft.Json;
 
 
 namespace pokitdokcsharp
 {
-	/// <summary>
-	///	PokitDok Platform Client for C#
-	///		Consumes the REST based PokitDok platform API
-	///		https://platform.pokitdok.com/documentation/v4#/#overview
-	/// </summary>
-	public class PlatformClient: OauthApplicationClient
+    /// <summary>
+    ///	PokitDok Platform Client for C#
+    ///		Consumes the REST based PokitDok platform API
+    ///		https://platform.pokitdok.com/documentation/v4#/#overview
+    /// </summary>
+    public class PlatformClient: OauthApplicationClient
 	{
 		/// <summary>
 		/// The default PokitDok API site url.
 		/// </summary>
 		public const string POKITDOK_PLATFORM_API_SITE = "https://platform.pokitdok.com";
-		/// <summary>
-		/// The default current PokitDok API version path.
-		/// </summary>
-		public const string POKITDOK_PLATFORM_API_VERSION_PATH = "/api/v4";
+
+        /// <summary>
+        /// The default current PokitDok API version path.
+        /// </summary>
+        public const string POKITDOK_PLATFORM_API_VERSION_PATH = "/api/v4";
 		/// <summary>
 		/// The Oauth token path.
 		/// </summary>
 		public const string POKITDOK_PLATFORM_API_TOKEN_PATH = "/oauth2/token";
 
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_ELIGIBILITY = "/eligibility/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_PROVIDERS = "/providers/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS = "/claims/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_STATUS = "/claims/status";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT = "/enrollment/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_DEDUCTIBLE = "/deductible/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_PAYERS = "/payers/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_INSURANCE = "/prices/insurance";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_CASH = "/prices/cash";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES = "/activities/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_FILES = "/files/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_TRADING_PARTNERS = "/tradingpartners/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_PLANS = "/plans/";
-		private const string POKITDOK_PLATFORM_API_ENDPOINT_REFERRALS = "/referrals/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES = "/activities/"; 
 		private const string POKITDOK_PLATFORM_API_ENDPOINT_AUTHORIZATIONS = "/authorizations/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT = "/enrollment/"; 
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_CASH = "/prices/cash";
+
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS = "/claims/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_CONVERT = "/claims/convert/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_STATUS = "/claims/status";
+
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_ELIGIBILITY = "/eligibility/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT_SNAPSHOT  = "/enrollment/snapshot"; 
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_FILES = "/files/";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_ICD_CONVERT = "/icd/convert";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_IDENTITY = "/identity/"; 
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_INSURANCE = "/prices/insurance";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_MPC = "/mpc/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_PAYERS = "/payers/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_PLANS = "/plans/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_PROVIDERS = "/providers/";
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_REFERRALS = "/referrals/";
+
         private const string POKITDOK_PLATFORM_API_ENDPOINT_SCHEDULERS = "/schedule/schedulers/";
         private const string POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENT_TYPES = "/schedule/appointmenttypes/";
-        private const string POKITDOK_PLATFORM_API_ENDPOINT_SLOTS = "/schedule/slots/";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_SCHEDULE_PATIENT = "/schedule/patient/"; 
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_SLOTS = "/schedule/slots";
         private const string POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENTS = "/schedule/appointments/";
-        private const string POKITDOK_PLATFORM_API_ENDPOINT_MPC = "/mpc/";
+
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_TRADING_PARTNERS = "/tradingpartners/";
+        
+		private const string POKITDOK_PLATFORM_API_ENDPOINT_DEDUCTIBLE = "/deductible/";
 
 		private string _apiSite = POKITDOK_PLATFORM_API_SITE;
 		private string _versionPath = POKITDOK_PLATFORM_API_VERSION_PATH;
@@ -103,6 +113,24 @@ namespace pokitdokcsharp
 			_usage = null;
 			_data = null;
 			_errors = null;
+
+		}
+
+
+
+		/// <summary>
+		/// Call the activities endpoint for a list of all current activities
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#activities
+		/// </summary>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+		public ResponseData activities()
+		{
+			init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES)); 
 		}
 
 		/// <summary>
@@ -161,6 +189,38 @@ namespace pokitdokcsharp
 		}
 
 		/// <summary>
+		/// Submit an authorization request.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#authorizations
+		/// </summary>
+		/// <param name="postData">Dictionary representing JSON post data.</param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+		public ResponseData authorizations(Dictionary<string, object> postData)
+		{
+			init();
+
+			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_AUTHORIZATIONS, postData));
+		}
+
+		/// <summary>
+		/// File an EDI 834 benefit enrollment.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#enrollment
+		/// </summary>
+		/// <param name="postData">Post data.</param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+		public ResponseData enrollment(Dictionary<string, object> postData)
+		{
+			init();
+
+			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT, postData));
+		}
+
+		/// <summary>
 		/// Return a list of cash prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
 		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#cashprices
 		/// </summary>
@@ -181,27 +241,6 @@ namespace pokitdokcsharp
 		}
 
 		/// <summary>
-		/// Return a list of insurance prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#insuranceprices
-		/// </summary>
-		/// <returns>The insurance.</returns>
-		/// <param name="parameters">
-		/// Query parameters:
-		/// 	cpt_code, {string} The CPT code of the procedure in question.
-		///		zip_code, {string} Postal code in which to search for procedures
-		/// </param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData pricesInsurance(Dictionary<string, string> parameters = null)
-		{
-			init();
-
-			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PRICE_INSURANCE, parameters));
-		}
-
-		/// <summary>
 		/// Create a new claim, via the filing of an EDI 837 Professional Claims, to the designated Payer.
 		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#claims
 		/// </summary>
@@ -216,6 +255,23 @@ namespace pokitdokcsharp
 
 			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS, postData));
 		}
+
+        /// <summary>
+        /// Convert an X12 837 claims file into a claims request model
+        /// See docs here: https://platform.pokitdok.com/documentation/v4/#claims-convert
+        /// </summary>
+        /// <param name="postData">Dictionary represnting JSON post data</param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+        public ResponseData claimsConvert(Dictionary<string, object> postData)
+        {
+			init();
+
+			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_CONVERT, postData));
+
+        }
 
 		/// <summary>
 		/// Ascertain the status of the specified claim, via the filing of an EDI 276 Claims Status.
@@ -251,32 +307,250 @@ namespace pokitdokcsharp
 			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_ELIGIBILITY, postData));
 		}
 
+        /// <summary>
+        /// Submit a X12 834 file as the current snapshot of a group’s benefits enrollment data
+        /// </summary>
+        /// <param name="tradingPartnerId"></param>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        public ResponseData enrollmentSnapshot(string tradingPartnerId, string filepath)
+        {
+            
+			init();
+
+			Dictionary<string, string> postData = 
+				new Dictionary<string, string> { { "trading_partner_id", tradingPartnerId } };
+
+            return applyResponse(PostRequest(
+                POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT_SNAPSHOT, 
+                filepath,
+                "file",
+                "application/EDI-X12",
+                postData
+            ));
+        }
+
+        /// <summary>
+        /// List enrollment snapshots owned by the current application
+        /// </summary>
+        /// <returns></returns>
+        public ResponseData enrollmentSnapshot()
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT_SNAPSHOT));
+        }
+
+        /// <summary>
+        /// Get information about a specific enrollment snapshot owned by the current application
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ResponseData enrollmentSnapshot(string id)
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT_SNAPSHOT + '/' + id)); 
+        }
+
+        /// <summary>
+        /// List enrollment data associated with a specific enrollment snapshot owned by the current application
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ResponseData enrollmentSnapshotData(string id)
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT_SNAPSHOT + '/' + id + "/data")); 
+        }
+
 		/// <summary>
-		/// File an EDI 834 benefit enrollment.
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#enrollment
+		/// Submit X12 formatted EDI file for batch processing.
 		/// </summary>
-		/// <param name="postData">Post data.</param>
+		/// <param name="tradingPartnerId">Trading_partner_id.</param>
+		/// <param name="filepath">Full filesytem path of file to be submitted.</param>
+		/// <param name="callbackUrl">Optional notification url to be called when the asynchronous processing is complete.</param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
 		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
 		/// 	The body is JSON formatted data.
 		/// </returns>
-		public ResponseData enrollment(Dictionary<string, object> postData)
+		public ResponseData files(string tradingPartnerId, string filepath, string callbackUrl = null)
 		{
 			init();
 
-			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT, postData));
+			Dictionary<string, string> postData = 
+				new Dictionary<string, string> { { "trading_partner_id", tradingPartnerId } };
+			if (callbackUrl != null) {
+				postData.Add ("callback_url", callbackUrl);
+			}
+
+            return applyResponse(PostRequest(
+                POKITDOK_PLATFORM_API_ENDPOINT_FILES,
+                filepath,
+                "file",
+                "application/EDI-X12",
+                postData
+            ));
 		}
 
-		/// <summary>
-		/// Retrieve the data for a specified provider.
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#providers
+        /// <summary>
+        /// retrieve ICD-9 to ICD-10 mapping information
+        /// </summary>
+        /// <param name="icd9_code"></param>
+        /// <returns></returns>
+        public ResponseData icdConvert(string icd9_code)
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_ICD_CONVERT + '/' + icd9_code)); 
+          
+        }
+
+        /// <summary>
+        /// Creates an identity resource. Returns the created resource with a uuid
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public ResponseData createIdentity(Dictionary<string, object> parameters)
+        {
+            init();
+
+            return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_IDENTITY, parameters)); 
+        }
+    
+        /// <summary>
+        /// Updates an identity resource with a given uuid. Returns the updated identity resource.
+        /// </summary>
+        /// <param name="uuid"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public ResponseData updateIdentity(string uuid, Dictionary<string, object> parameters)
+        {
+            init();
+
+            return applyResponse(PutRequest(POKITDOK_PLATFORM_API_ENDPOINT_IDENTITY + uuid, parameters)); 
+        }
+        
+        /// <summary>
+        /// Queries for an identity with a given uuid. 
+        /// </summary>
+        /// <param name="uuid"></param>
+        /// <returns></returns>
+        public ResponseData identity(string uuid)
+        {
+            init();
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_IDENTITY + uuid)); 
+        }
+
+        /// <summary>
+        /// Return a list of insurance prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#insuranceprices
+        /// </summary>
+        /// <returns>The insurance.</returns>
+        /// <param name="parameters">
+        /// Query parameters:
+        /// 	cpt_code, {string} The CPT code of the procedure in question.
+        ///		zip_code, {string} Postal code in which to search for procedures
+        /// </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData pricesInsurance(Dictionary<string, string> parameters = null)
+		{
+			init();
+
+			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PRICE_INSURANCE, parameters));
+		}
+
+        /// <summary>
+        /// The Medical Procedure Code resource provides access to clinical and consumer friendly information related 
+        /// to medical procedures.
+        /// </summary>
+        /// <param name="medical_procedure_code">Retrieve the data for a specific procedure code.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData medicalProcedureCode(string medical_procedure_code)
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_MPC + medical_procedure_code));
+        }
+
+        /// <summary>
+        /// The Medical Procedure Code resource provides access to clinical and consumer friendly information related 
+        /// to medical procedures.
+        /// </summary>
+        /// <param name="parameters">
+        /// Query parameters:
+        ///     name, Search medical procedure information by consumer friendly name 
+        ///     description, A partial or full description to be used to locate medical procedure information 
+        /// </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData medicalProcedureCode(Dictionary<string, string> parameters)
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_MPC, parameters));
+        }
+
+        /// <summary>
+		/// Use the /payers/ API to determine available payer_id values for use with other endpoints
+		/// The Payers endpoint will be deprecated in v5. Use Trading Partners instead.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#payers
 		/// </summary>
-		/// <param name="npi">Provider NPI identifier.</param>
 		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
 		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
 		/// 	The body is JSON formatted data.
 		/// </returns>
-		public ResponseData providers(string npi)
+		public ResponseData payers()
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PAYERS));
+        }
+
+        /// <summary>
+		/// Retrieve data on plans based on the parameters given.
+		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#plans
+		/// </summary>
+		/// <param name="parameters">
+		/// Query parameters:
+		/// 	trading_partner_id, The trading partner id of the payer offering the plan
+		///		county, The county in which the plan is available.
+		///		state, The state in which the plan is available.
+		///		plan_id, The identifier for the plan.
+		///		plan_type, The type of the plan (e.g. EPO, PPO, HMO, POS).
+		///		plan_name, The name of the plan.
+		///		metallic_level, The metal level of the plan.
+		/// </param>
+		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+		/// 	The body is JSON formatted data.
+		/// </returns>
+		public ResponseData plans(Dictionary<string, string> parameters = null)
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PLANS, parameters));
+        }
+
+        /// <summary>
+        /// Retrieve the data for a specified provider.
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#providers
+        /// </summary>
+        /// <param name="npi">Provider NPI identifier.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData providers(string npi)
 		{
 			init();
 
@@ -310,124 +584,21 @@ namespace pokitdokcsharp
 			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PROVIDERS, parameters));
 		}
 
-		/// <summary>
-		/// Retrieve data on plans based on the parameters given.
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#plans
-		/// </summary>
-		/// <param name="parameters">
-		/// Query parameters:
-		/// 	trading_partner_id, The trading partner id of the payer offering the plan
-		///		county, The county in which the plan is available.
-		///		state, The state in which the plan is available.
-		///		plan_id, The identifier for the plan.
-		///		plan_type, The type of the plan (e.g. EPO, PPO, HMO, POS).
-		///		plan_name, The name of the plan.
-		///		metallic_level, The metal level of the plan.
-		/// </param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData plans(Dictionary<string, string> parameters = null)
-		{
-			init();
+        /// <summary>
+        /// Request approval for a referral to another health care provider.
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#referrals
+        /// </summary>
+        /// <param name="postData">Dictionary representing JSON post data.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData referrals(Dictionary<string, object> postData)
+        {
+            init();
 
-			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PLANS, parameters));
-		}
-
-		/// <summary>
-		/// Use the /payers/ API to determine available payer_id values for use with other endpoints
-		/// The Payers endpoint will be deprecated in v5. Use Trading Partners instead.
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#payers
-		/// </summary>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData payers()
-		{
-			init();
-
-			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PAYERS));
-		}
-
-		/// <summary>
-		/// Retrieve a list of trading partners or submit an id to get info for a
-		/// specific trading partner.
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#tradingpartners
-		/// </summary>
-		/// <param name="npi">Trading Partner Identifier.</param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData tradingPartners(string npi = "")
-		{
-			init();
-
-			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_TRADING_PARTNERS + npi));
-		}
-
-		/// <summary>
-		/// Submit X12 formatted EDI file for batch processing.
-		/// </summary>
-		/// <param name="tradingPartnerId">Trading_partner_id.</param>
-		/// <param name="filepath">Full filesytem path of file to be submitted.</param>
-		/// <param name="callbackUrl">Optional notification url to be called when the asynchronous processing is complete.</param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData files(string tradingPartnerId, string filepath, string callbackUrl = null)
-		{
-			init();
-
-			Dictionary<string, string> postData = 
-				new Dictionary<string, string> { { "trading_partner_id", tradingPartnerId } };
-			if (callbackUrl != null) {
-				postData.Add ("callback_url", callbackUrl);
-			}
-
-            return applyResponse(PostRequest(
-                POKITDOK_PLATFORM_API_ENDPOINT_FILES,
-                filepath,
-                "file",
-                "application/EDI-X12",
-                postData
-            ));
-		}
-
-		/// <summary>
-		/// Request approval for a referral to another health care provider.
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#referrals
-		/// </summary>
-		/// <param name="postData">Dictionary representing JSON post data.</param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData referrals(Dictionary<string, object> postData)
-		{
-			init();
-
-			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_REFERRALS, postData));
-		}
-
-		/// <summary>
-		/// Submit an authorization request.
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#authorizations
-		/// </summary>
-		/// <param name="postData">Dictionary representing JSON post data.</param>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-		/// 	The body is JSON formatted data.
-		/// </returns>
-		public ResponseData authorizations(Dictionary<string, object> postData)
-		{
-			init();
-
-			return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_AUTHORIZATIONS, postData));
-		}
+            return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_REFERRALS, postData));
+        }
 
         /// <summary>
         /// Get a list of supported scheduling systems and their UUIDs and descriptions.
@@ -443,6 +614,23 @@ namespace pokitdokcsharp
 
             return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_SCHEDULERS + scheduler_uuid));
         }
+       
+        /// <summary>
+        /// Retrieve a list of trading partners or submit an id to get info for a
+        /// specific trading partner.
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#tradingpartners
+        /// </summary>
+        /// <param name="npi">Trading Partner Identifier.</param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData tradingPartners(string npi = "")
+		{
+			init();
+
+			return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_TRADING_PARTNERS + npi));
+		}
 
         /// <summary>
         /// Get a list of appointment types, their UUIDs, and descriptions.
@@ -559,58 +747,85 @@ namespace pokitdokcsharp
         }
 
         /// <summary>
-        /// The Medical Procedure Code resource provides access to clinical and consumer friendly information related 
-        /// to medical procedures.
+        /// POST a file to a given endpoint. 
         /// </summary>
-        /// <param name="medical_procedure_code">Retrieve the data for a specific procedure code.</param>
-        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-        /// 	The body is JSON formatted data.
-        /// </returns>
-        public ResponseData medicalProcedureCode(string medical_procedure_code)
+        /// <param name="endpoint">e.g. `/activities`, `/eligibility`, etc.</param>
+        /// <param name="postFilePath"></param>
+        /// <param name="postFileContentDispositionName"></param>
+        /// <param name="postFileContentType"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public ResponseData request(
+            string endpoint, 
+            string postFilePath, 
+            string postFileContentDispositionName, 
+            string postFileContentType, 
+            Dictionary<string, string> parameters = null)
         {
-            init();
+            init(); 
 
-            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_MPC + medical_procedure_code));            
+            string url = endpoint;
+            return applyResponse(PostRequest(url, postFilePath, postFileContentDispositionName, postFileContentType, parameters)); 
         }
 
         /// <summary>
-        /// The Medical Procedure Code resource provides access to clinical and consumer friendly information related 
-        /// to medical procedures.
+        /// Submit a request to any endpoint. 
         /// </summary>
-        /// <param name="parameters">
-        /// Query parameters:
-        ///     name, Search medical procedure information by consumer friendly name 
-        ///     description, A partial or full description to be used to locate medical procedure information 
-        /// </param>
-        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-        /// 	The body is JSON formatted data.
-        /// </returns>
-        public ResponseData medicalProcedureCode(Dictionary<string, string> parameters)
+        /// <typeparam name="T"></typeparam>
+        /// <param name="endpoint">e.g. `/activities`, `/eligibility`, etc.</param>
+        /// <param name="method">POST, PUT, GET, DELETE</param>
+        /// <param name="parameters">A dictionary of either (string, object) or (string, string)</param>
+        /// <returns></returns>
+        public ResponseData request(
+                string endpoint, 
+                string method, 
+                object parameters = null)
         {
-            init();
+            init(); 
 
-            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_MPC, parameters));
+            string url = endpoint; 
+
+            if (method == "POST")
+            {
+                return applyResponse(PostRequest(url, (Dictionary<string, object>)parameters));
+            }
+
+            else if (method == "PUT")
+            {
+                return applyResponse(PutRequest(url, (Dictionary<string, object>)parameters));
+            }
+
+            else if (method == "GET")
+            {
+                return applyResponse(GetRequest(url, (Dictionary<string, string>)parameters));
+            }
+
+            else if (method == "DELETE")
+            {
+                return applyResponse(DeleteRequest(url));
+            }
+            else throw new NotSupportedException("Must provide POST, PUT, GET, or DELETE method"); 
+
+            return null; 
         }
 
         /// <summary>
-		/// Usage statistics for most recent request
-		/// See docs here: https://platform.pokitdok.com/documentation/v4#/#overview
-		/// </summary>
-		/// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-		/// <returns>
-		/// dynamic object with members:
-		/// 	rate_limit_cap, {int} The amount of requests available per hour
-		/// 	rate_limit_reset, {int} The time (Unix Timestamp) when the rate limit amount resets
-		///		rate_limit_amount, {int} The amount of requests made during the current rate limit period
-		///		credits_billed, {int} The amount of credits billed for this request
-		///		credits_remaining, {int} The amount of credits remaining on your API account
-		///		processing_time, {int} The time to process the request in milliseconds
-		///		next, {string}, A url pointing to the next page of results
-		///		previous, {string} A url pointing to the previous page of results 
-		/// </returns>
-		public dynamic usage()
+        /// Usage statistics for most recent request
+        /// See docs here: https://platform.pokitdok.com/documentation/v4#/#overview
+        /// </summary>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>
+        /// dynamic object with members:
+        /// 	rate_limit_cap, {int} The amount of requests available per hour
+        /// 	rate_limit_reset, {int} The time (Unix Timestamp) when the rate limit amount resets
+        ///		rate_limit_amount, {int} The amount of requests made during the current rate limit period
+        ///		credits_billed, {int} The amount of credits billed for this request
+        ///		credits_remaining, {int} The amount of credits remaining on your API account
+        ///		processing_time, {int} The time to process the request in milliseconds
+        ///		next, {string}, A url pointing to the next page of results
+        ///		previous, {string} A url pointing to the previous page of results 
+        /// </returns>
+        public dynamic usage()
 		{
 			if (_usage == null) {
 				eligibility(new Dictionary<string, object> {
