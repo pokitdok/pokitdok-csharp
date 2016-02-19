@@ -617,17 +617,5 @@ class PlatformApiTest
         ResponseData resp = client.request("/prices/cash", "GET", payload);
         Assert.AreEqual(200, resp.status); 
     }
-	[Test]
-	public void PricesCash2()
-	{
-		ResponseData resp = client.pricesCash(
-			new Dictionary<string, string> {
-				{ "zip_code", "30012" },
-				{ "cpt_code", "88142" }
-			});
-
-		StringAssert.Contains("high", resp.body);
-		Assert.AreEqual(200, resp.status);
-	}
 }
 
