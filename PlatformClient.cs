@@ -42,7 +42,7 @@ namespace pokitdokcsharp
         private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_CASH = "/prices/cash";
 
         private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS = "/claims/";
-        private const string POKITDOK_PLATFORM_API_TNDPOINT_CLAIMS_CONVERT = "/claims/convert/";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_CONVERT = "/claims/convert";
         private const string POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_STATUS = "/claims/status";
 
         private const string POKITDOK_PLATFORM_API_ENDPOINT_ELIGIBILITY = "/eligibility/";

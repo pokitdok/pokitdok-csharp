@@ -23,9 +23,8 @@ class PlatformApiTest
         // Note that if using a production application, this will use real credits. 
         // It is recommended to insert client credentials for your test application.
         client = new PlatformClient(
-            "GWXUqSQ7C1jMhvKqAG4p",
-            "YXPKhDRFlaWopREHo2mDIbQi3B1h800jBcfoO1pe"
-
+            "0nhssVnngcM109xPyLaj",
+            "d0ckvHX649YKCphrnJjZkIxZvOQRkTrVeJYGKfLI"
         );
         client.ApiSite = "https://platform.pokitdok.com";
         client.Authenticate();
