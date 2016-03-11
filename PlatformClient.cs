@@ -442,6 +442,19 @@ namespace pokitdokcsharp
             init();
             return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_IDENTITY + uuid)); 
         }
+   
+        /// <summary>
+        /// Queries for a historical identity record
+        /// </summary>
+        /// <param name="uuid"></param>
+        /// <returns></returns>
+                 
+        public ResponseData identityHistory(string uuid)
+        {
+            init();
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_IDENTITY + uuid + "/history"));
+        }
+   
 
         /// <summary>
         /// Return a list of insurance prices for a given procedure (by CPT Code) in a given region (by ZIP Code).
