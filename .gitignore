@@ -6,3 +6,5 @@ NUnit-2.6.3/
 pokitdok-csharp.userprefs
 TestResult.xml
 pokitdok-csharp.tar.gz
+packages/
+*.nupkg

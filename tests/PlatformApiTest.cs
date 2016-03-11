@@ -568,6 +568,13 @@ class PlatformApiTest
 
     }
 
+    [Test]
+    public void IdentityHistory()
+    {
+        ResponseData resp = client.identityHistory("2b84fe04-53cf-4146-9747-fd7eee0108ad"); 
+        Assert.AreEqual(200, resp.status);
+
+    }
     // Example of using the generic requst handler for a POST request
     [Test]
     public void EligibilityGenericRequest()
