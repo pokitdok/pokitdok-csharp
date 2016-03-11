@@ -398,7 +398,9 @@ namespace pokitdokcsharp
         /// retrieve ICD-9 to ICD-10 mapping information
         /// </summary>
         /// <param name="icd9_code"></param>
-        /// <returns></returns>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
         public ResponseData icdConvert(string icd9_code)
         {
             init();
@@ -411,7 +413,9 @@ namespace pokitdokcsharp
         /// Creates an identity resource. Returns the created resource with a uuid
         /// </summary>
         /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
         public ResponseData createIdentity(Dictionary<string, object> parameters)
         {
             init();
@@ -424,7 +428,9 @@ namespace pokitdokcsharp
         /// </summary>
         /// <param name="uuid"></param>
         /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
         public ResponseData updateIdentity(string uuid, Dictionary<string, object> parameters)
         {
             init();
@@ -436,7 +442,9 @@ namespace pokitdokcsharp
         /// Queries for an identity with a given uuid. 
         /// </summary>
         /// <param name="uuid"></param>
-        /// <returns></returns>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
         public ResponseData identity(string uuid)
         {
             init();
@@ -447,8 +455,9 @@ namespace pokitdokcsharp
         /// Queries for a historical identity record
         /// </summary>
         /// <param name="uuid"></param>
-        /// <returns></returns>
-                 
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
         public ResponseData identityHistory(string uuid)
         {
             init();
