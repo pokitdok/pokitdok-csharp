@@ -88,6 +88,40 @@ namespace ExampleApplication
             });
             print_response(resp, "appointments");
 
+            // Example pharmacy APIs
+            resp = client.pharmacyPlans(new Dictionary<string, string> {
+                {"trading_partner_id", "medicare_national"},
+                {"plan_number", "S5601034"}
+            });
+            print_response(resp, "plans");
+
+            resp = client.pharmacyFormulary(new Dictionary<string, string> {
+                {"trading_partner_id", "medicare_national"},
+                {"plan_number", "H2256001"},
+                {"drug",  "virazole"}
+            });
+            print_response(resp, "formulary");
+
+            resp = client.pharmacyDrugCost(new Dictionary<string, string> {
+                {"trading_partner_id", "medicare_national"},
+                {"plan_number", "H2256001"},
+                {"drug",  "virazole"}
+            });
+            print_response(resp, "cost");
+
+            resp = client.pharmacyNetwork(new Dictionary<string, string> {
+                {"trading_partner_id", "medicare_national"},
+                {"plan_number", "S5601034"},
+                {"pharmacy_type", "retail"}
+            });
+            print_response(resp, "network");
+
+            resp = client.pharmacyNetwork("1275827032", 
+                new Dictionary<string, string> {
+                {"trading_partner_id", "medicare_national"},
+                {"plan_number", "S5601034"},
+                });
+            print_response(resp, "networkNPI");
 
 
             Console.Read();

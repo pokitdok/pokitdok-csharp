@@ -67,6 +67,11 @@ namespace pokitdokcsharp
         
         private const string POKITDOK_PLATFORM_API_ENDPOINT_DEDUCTIBLE = "/deductible/";
 
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_PLANS = "/pharmacy/plans";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_FORMULARY = "/pharmacy/formulary";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_DRUG_COST = "/pharmacy/drug/cost";
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_NETWORK = "/pharmacy/network";
+
         private string _apiSite = POKITDOK_PLATFORM_API_SITE;
         private string _versionPath = POKITDOK_PLATFORM_API_VERSION_PATH;
         private string _tokenPath = POKITDOK_PLATFORM_API_TOKEN_PATH;
@@ -766,6 +771,87 @@ namespace pokitdokcsharp
             init();
 
             return applyResponse(DeleteRequest(POKITDOK_PLATFORM_API_ENDPOINT_APPOINTMENTS + appointment_uuid));
+        }
+
+
+        /// <summary>
+        /// Pharmacy Plan information
+        /// See https://platform.pokitdok.com/documentation
+        /// </summary>
+        /// <param name="parameters">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        ///          The body is JSON formatted data.
+        /// </returns>
+        public ResponseData pharmacyPlans(Dictionary<string, string> parameters)
+        {
+            init();
+        
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_PLANS, parameters));
+        }
+        
+        /// <summary>
+        /// Pharmacy Formulary information
+        /// See https://platform.pokitdok.com/documentation
+        /// </summary>
+        /// <param name="parameters">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        ///          The body is JSON formatted data.
+        /// </returns>
+        public ResponseData pharmacyFormulary(Dictionary<string, string> parameters)
+        {
+            init();
+        
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_FORMULARY, parameters));
+        }
+        
+        /// <summary>
+        /// Obtain Drust Cost estimations
+        /// See https://platform.pokitdok.com/documentation
+        /// </summary>
+        /// <param name="parameters">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData pharmacyDrugCost(Dictionary<string, string> parameters)
+        {
+            init();
+        
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_DRUG_COST, parameters));
+        }
+        
+        /// <summary>
+        /// Search for in-network pharmacies
+        /// See https://platform.pokitdok.com/documentation
+        /// </summary>
+        /// <param name="parameters">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData pharmacyNetwork(Dictionary<string, string> parameters)
+        {
+            init();
+        
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_NETWORK, parameters));
+        }
+        
+        /// <summary>
+        /// Check if a pharmacy is in-network using an NPI
+        /// See https://platform.pokitdok.com/documentation
+        /// </summary>
+        /// <param name="parameters">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData pharmacyNetwork(string npi, Dictionary<string, string> parameters)
+        {
+            init();
+        
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_NETWORK+"/"+npi, parameters));
         }
 
         /// <summary>
