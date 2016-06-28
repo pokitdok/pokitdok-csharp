@@ -224,7 +224,10 @@ namespace pokitdokcsharp
 			this._tokenRefresh = tokenRefresh;
             this._scope = scope;
             this._authCode = authCode;
-		}
+
+            // Force use of TLS 1.2
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+        }
 
 		/// <summary>
 		/// Get an access token and setup a timer to refresh the token
