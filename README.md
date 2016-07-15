@@ -253,11 +253,9 @@ try
 ## Tested .Net Versions
 This library aims to support and is tested against these Microsoft.Net (ECMA-335 CLI) framework versions:
 
-* [Microsoft.Net 4.0][msnet]
-* [Mono 3.5.0][mono]
+* [Microsoft.Net 4.5][msnet]
 
 [msnet][http://www.microsoft.com/net]
-[mono][http://www.mono-project.com/]
 
 You may have luck with other CLI framework versions - let us know how it goes.
 
