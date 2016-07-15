@@ -255,7 +255,7 @@ This library aims to support and is tested against these Microsoft.Net (ECMA-335
 
 * [Microsoft.Net 4.5][msnet]
 
-[msnet][http://www.microsoft.com/net]
+[msnet]: http://www.microsoft.com/net
 
 You may have luck with other CLI framework versions - let us know how it goes.
 
