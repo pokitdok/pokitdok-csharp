@@ -250,6 +250,11 @@ try
 }
 ```
 
+## Check SSL protocol and cipher
+```c#
+client.request("/ssl/", "GET");
+```
+
 ## Tested .Net Versions
 This library aims to support and is tested against these Microsoft.Net (ECMA-335 CLI) framework versions:
 
