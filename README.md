@@ -181,8 +181,6 @@ client.claimsStatus(
 		{"trading_partner_id", "MOCKPAYER"}
 });
 
-// Submit X12 files directly for processing on the platform
-client.files("MOCKPAYER", "../../tests/files/general-physician-office-visit.270");
 
 // Check on pending platform activities
 
