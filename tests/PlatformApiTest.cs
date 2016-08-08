@@ -273,22 +273,6 @@ class PlatformApiTest
     }
 
     /// <summary>
-    /// Files test.
-    /// </summary>
-    [Test]
-    public void Files()
-    {
-        ResponseData resp = client.files(
-            "MOCKPAYER",
-            "../../tests/files/general-physician-office-visit.270"
-        );
-
-        Assert.AreEqual(200, resp.status);
-        StringAssert.Contains("\"units_of_work\": 1, \"_type\": \"PlatformActivityModel\", \"name\": \"batch file\"", resp.body);
-    }
-
-
-    /// <summary>
     /// Referrals this instance.
     /// </summary>
     [Test]

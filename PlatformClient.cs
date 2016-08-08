@@ -47,7 +47,6 @@ namespace pokitdokcsharp
 
         private const string POKITDOK_PLATFORM_API_ENDPOINT_ELIGIBILITY = "/eligibility/";
         private const string POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT_SNAPSHOT  = "/enrollment/snapshot";
-        private const string POKITDOK_PLATFORM_API_ENDPOINT_FILES = "/files/";
         private const string POKITDOK_PLATFORM_API_ENDPOINT_ICD_CONVERT = "/icd/convert";
         private const string POKITDOK_PLATFORM_API_ENDPOINT_IDENTITY = "/identity/"; 
         private const string POKITDOK_PLATFORM_API_ENDPOINT_PRICE_INSURANCE = "/prices/insurance";
@@ -165,18 +164,13 @@ namespace pokitdokcsharp
         /// name, {string} Activity name
         /// callback_url, {string} URL that will be invoked to notify the client application that this Activity has completed.  
         /// 	We recommend that you always use https for callback URLs used by your application.
-        /// file_url, {string} URL where batch transactions that were uploaded to be processed within this activity are stored.  
-        /// 	X12 files uploaded via the /files endpoint are stored here.
         /// history, {list} Historical status of the progress of this Activity
         /// state, {dict} Current state of this Activity
         /// transition_path, {list} The list of state transitions that will be used for this Activity.
         /// remaining_transitions, {list} The list of remaining state transitions that the activity has yet to go through.
         /// parameters, {dict} The parameters that were originally supplied to the activity
         /// units_of_work, {int} The number of ‘units of work’ that the activity is operating on.  
-        /// 	This will typically be 1 for real-time requests like /eligibility.  
-        /// 	When uploading batch X12 files via the /files endpoint, this will be the number of ‘transactions’ within 
-        /// 	that file.  For example, if a client application POSTs a file of 20 eligibility requests to the /files API, 
-        /// 	the units_of_work value for that activity will be 20 after the X12 file has been analyzed.  If an activity 
+        /// 	This will typically be 1 for real-time requests like /eligibility. If an activity
         /// 	does show a value greater than 1 for units_of_work, the client application can fetch detailed information 
         /// 	about each one of the activities processing those units of work by using the 
         /// 	/activities/?parent_id=&lt;activity_id&gt; API
@@ -367,35 +361,6 @@ namespace pokitdokcsharp
             init();
 
             return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_ENROLLMENT_SNAPSHOT + '/' + id + "/data")); 
-        }
-
-        /// <summary>
-        /// Submit X12 formatted EDI file for batch processing.
-        /// </summary>
-        /// <param name="tradingPartnerId">Trading_partner_id.</param>
-        /// <param name="filepath">Full filesytem path of file to be submitted.</param>
-        /// <param name="callbackUrl">Optional notification url to be called when the asynchronous processing is complete.</param>
-        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
-        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
-        /// 	The body is JSON formatted data.
-        /// </returns>
-        public ResponseData files(string tradingPartnerId, string filepath, string callbackUrl = null)
-        {
-            init();
-
-            Dictionary<string, string> postData = 
-                new Dictionary<string, string> { { "trading_partner_id", tradingPartnerId } };
-            if (callbackUrl != null) {
-                postData.Add ("callback_url", callbackUrl);
-            }
-
-            return applyResponse(PostRequest(
-                POKITDOK_PLATFORM_API_ENDPOINT_FILES,
-                filepath,
-                "file",
-                "application/EDI-X12",
-                postData
-            ));
         }
 
         /// <summary>
