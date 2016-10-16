@@ -1,18 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 
 
 namespace ExampleApplication
 {
-    using Newtonsoft.Json;
     using pokitdokcsharp;
-    using System.Xml;
+
     class Program
     {
         const string TOKEN_FILE = @"token.json";
@@ -34,7 +29,7 @@ namespace ExampleApplication
                 using (System.IO.StreamReader file = new System.IO.StreamReader(TOKEN_FILE))
                 {
                     DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(OauthAccessToken));
-                    token = (OauthAccessToken)serializer.ReadObject(file.BaseStream);
+                    token = (OauthAccessToken) serializer.ReadObject(file.BaseStream);
                 }
             }
             catch (FileNotFoundException)
@@ -64,18 +59,16 @@ namespace ExampleApplication
             OauthAccessToken token = getToken();
 
             PlatformClient client = new PlatformClient(
-                    clientId:  "GWXUqSQ7C1jMhvKqAG4p",
-                    clientSecret: "YXPKhDRFlaWopREHo2mDIbQi3B1h800jBcfoO1pe"
-                );
-
-            client.ApiSite = "https://platform.pokitdok.com/";
+                clientId: "",
+                clientSecret: ""
+            );
 
 
             // Example activities query
             ResponseData activity = client.activities();
             print_response(activity, "all current activities");
 
-            // Example providers query            
+            // Example providers query
             ResponseData resp = client.providers("1467560003");
             print_response(resp, "provider");
 
@@ -109,20 +102,14 @@ namespace ExampleApplication
             });
             print_response(resp, "network");
 
-            resp = client.pharmacyNetwork("1275827032", 
+            resp = client.pharmacyNetwork("1275827032",
                 new Dictionary<string, string> {
                 {"trading_partner_id", "medicare_national"},
                 {"plan_number", "S5601034"},
                 });
             print_response(resp, "networkNPI");
 
-
-            Console.Read();
-
         }
 
     }
-
-
-
 }
