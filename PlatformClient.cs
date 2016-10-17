@@ -111,6 +111,7 @@ namespace pokitdokcsharp
 
             this.ApiBaseUrl = _apiSite + _versionPath;
             this.ApiTokenUrl = _apiSite + _tokenPath;
+            this.ApiLogoutUrl = _apiSite + _logoutPath;
             this.UserAgent = string.Format("csharp-pokitdok/{0}", typeof(PlatformClient).Assembly.GetName().Version);
         }
 
