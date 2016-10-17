@@ -21,7 +21,7 @@ namespace pokitdokcsharp
     ///		Consumes the REST based PokitDok platform API
     ///		https://platform.pokitdok.com/documentation/v4#/#overview
     /// </summary>
-    public class PlatformClient: OauthApplicationClient
+    public class PlatformClient: OauthApplicationClient, IDisposable
     {
         /// <summary>
         /// The default PokitDok API site url.
@@ -40,7 +40,7 @@ namespace pokitdokcsharp
         /// <summary>
         /// URL for invalidating a user's session
         /// </summary>
-        public const string POKITDOK_PLATFORM_API_TOKEN_LOGOUT = "/oauth2/logout";
+        public const string POKITDOK_PLATFORM_API_TOKEN_LOGOUT = "/oauth2/revoke";
 
         private const string POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES = "/activities/"; 
         private const string POKITDOK_PLATFORM_API_ENDPOINT_AUTHORIZATIONS = "/authorizations/";
@@ -117,6 +117,11 @@ namespace pokitdokcsharp
         }
 
         ~PlatformClient()
+        {
+            Dispose();
+        }
+
+        public void Dispose()
         {
             DeAuthenticate();
             _accessTokenRenewer.Dispose();
