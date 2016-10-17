@@ -63,7 +63,6 @@ namespace ExampleApplication
                 clientSecret: ""
             );
 
-
             // Example activities query
             ResponseData activity = client.activities();
             print_response(activity, "all current activities");
@@ -108,6 +107,9 @@ namespace ExampleApplication
                 {"plan_number", "S5601034"},
                 });
             print_response(resp, "networkNPI");
+
+
+            client.Dispose();
 
         }
 

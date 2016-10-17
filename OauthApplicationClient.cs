@@ -174,9 +174,8 @@ namespace pokitdokcsharp
 
 		private string _apiBaseUrl;
 	    private string _apiTokenUrl;
-	    private string _apiLogoutUrl;
 
-		private OauthAccessToken _accessToken = new OauthAccessToken();
+	    private OauthAccessToken _accessToken = new OauthAccessToken();
 		private System.Object _accessTokenLock = new System.Object();
 		public Timer _accessTokenRenewer;
 		private string _userAgent;
@@ -384,15 +383,26 @@ namespace pokitdokcsharp
             {
                 return null;
             }
-
             try
             {
-                HttpWebRequest webRequest = CreateRequest(null, ApiLogoutUrl, "GET", null);
-                webRequest.Headers["Authorization"] = "Bearer " + AccessToken.access_token;
+                var request = new Dictionary<string, object>()
+                {
+                    {"token", AccessToken.access_token }
+                };
 
-				using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse) {
-					ProcessResponse(response);
-				}
+                var request_json_data = JsonConvert.SerializeObject(request);
+
+                HttpWebRequest webRequest = CreateRequest(request, ApiLogoutUrl, "POST");
+
+                byte[] request_bytes = Encoding.UTF8.GetBytes(request_json_data);
+
+                using (Stream postStream = webRequest.GetRequestStream()) {
+                    postStream.Write(request_bytes, 0, request_bytes.Length);
+                    postStream.Close();
+                }
+                using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse) {
+                    ProcessResponse(response);
+                }
 
             }
             catch (WebException ex)
@@ -405,6 +415,7 @@ namespace pokitdokcsharp
             }
             return null;
         }
+
 		/// <summary>
 		/// Raises the token expired callback event.
 		/// </summary>
@@ -872,11 +883,7 @@ namespace pokitdokcsharp
 			}
 		}
 
-	    public string ApiLogoutUrl
-	    {
-	        get { return this._apiLogoutUrl; }
-	        set { _apiLogoutUrl = value; }
-	    }
+	    public string ApiLogoutUrl { get; set; }
 
 	    /// <summary>
 		/// Gets or sets the API base URL.
