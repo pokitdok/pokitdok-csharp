@@ -173,10 +173,11 @@ namespace pokitdokcsharp
 		public const int REFRESH_TOKEN_DURATION = 55; // minutes
 
 		private string _apiBaseUrl;
-		private string _apiTokenUrl;
-		private OauthAccessToken _accessToken = new OauthAccessToken();
+	    private string _apiTokenUrl;
+
+	    private OauthAccessToken _accessToken = new OauthAccessToken();
 		private System.Object _accessTokenLock = new System.Object();
-		private Timer _accessTokenRenewer;
+		public Timer _accessTokenRenewer;
 		private string _userAgent;
 
 		private int _requestTimeout;
@@ -368,6 +369,51 @@ namespace pokitdokcsharp
             }
 
             return this.AccessToken;
+        }
+
+	    /// <summary>
+	    /// Calls an endpoint on the PokitDok server to remove client access tokens.
+	    /// </summary>
+	    /// <returns></returns>
+	    /// <exception cref="PokitDokException"></exception>
+        public OauthAccessToken DeAuthenticate()
+        {
+            // Access token is obtained during the first request. PD server will return 406 if no token is sent over
+            if (AccessToken.access_token == "")
+            {
+                return null;
+            }
+            try
+            {
+                var request = new Dictionary<string, object>()
+                {
+                    {"token", AccessToken.access_token }
+                };
+
+                var request_json_data = JsonConvert.SerializeObject(request);
+
+                HttpWebRequest webRequest = CreateRequest(request, ApiLogoutUrl, "POST");
+
+                byte[] request_bytes = Encoding.UTF8.GetBytes(request_json_data);
+
+                using (Stream postStream = webRequest.GetRequestStream()) {
+                    postStream.Write(request_bytes, 0, request_bytes.Length);
+                    postStream.Close();
+                }
+                using (HttpWebResponse response = webRequest.GetResponse() as HttpWebResponse) {
+                    ProcessResponse(response);
+                }
+
+            }
+            catch (WebException ex)
+            {
+                // If 404, proceed without exception. This allows client update to proceed server updates.
+                if (!ex.Message.Contains("404"))
+                {
+                    throw new PokitDokException("Error while deauthenticating client:  " + ex.Message, ex);
+                }
+            }
+            return null;
         }
 
 		/// <summary>
@@ -837,7 +883,9 @@ namespace pokitdokcsharp
 			}
 		}
 
-		/// <summary>
+	    public string ApiLogoutUrl { get; set; }
+
+	    /// <summary>
 		/// Gets or sets the API base URL.
 		/// </summary>
 		/// <value>The API base URL.</value>

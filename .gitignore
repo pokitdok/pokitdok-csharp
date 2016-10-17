@@ -8,3 +8,4 @@ TestResult.xml
 pokitdok-csharp.tar.gz
 packages/
 *.nupkg
+*.idea

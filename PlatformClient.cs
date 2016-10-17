@@ -11,6 +11,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 
 namespace pokitdokcsharp
@@ -20,7 +21,7 @@ namespace pokitdokcsharp
     ///		Consumes the REST based PokitDok platform API
     ///		https://platform.pokitdok.com/documentation/v4#/#overview
     /// </summary>
-    public class PlatformClient: OauthApplicationClient
+    public class PlatformClient: OauthApplicationClient, IDisposable
     {
         /// <summary>
         /// The default PokitDok API site url.
@@ -35,6 +36,11 @@ namespace pokitdokcsharp
         /// The Oauth token path.
         /// </summary>
         public const string POKITDOK_PLATFORM_API_TOKEN_PATH = "/oauth2/token";
+
+        /// <summary>
+        /// URL for invalidating a user's session
+        /// </summary>
+        public const string POKITDOK_PLATFORM_API_TOKEN_LOGOUT = "/oauth2/revoke";
 
         private const string POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES = "/activities/"; 
         private const string POKITDOK_PLATFORM_API_ENDPOINT_AUTHORIZATIONS = "/authorizations/";
@@ -73,6 +79,7 @@ namespace pokitdokcsharp
         private string _apiSite = POKITDOK_PLATFORM_API_SITE;
         private string _versionPath = POKITDOK_PLATFORM_API_VERSION_PATH;
         private string _tokenPath = POKITDOK_PLATFORM_API_TOKEN_PATH;
+        private string _logoutPath = POKITDOK_PLATFORM_API_TOKEN_LOGOUT;
 
         private dynamic _usage = null;
         private dynamic _data = null;
@@ -104,8 +111,20 @@ namespace pokitdokcsharp
 
             this.ApiBaseUrl = _apiSite + _versionPath;
             this.ApiTokenUrl = _apiSite + _tokenPath;
-
+            this.ApiLogoutUrl = _apiSite + _logoutPath;
             this.UserAgent = string.Format("csharp-pokitdok/{0}", typeof(PlatformClient).Assembly.GetName().Version);
+        }
+
+        ~PlatformClient()
+        {
+            Dispose();
+        }
+
+        public void Dispose()
+        {
+            DeAuthenticate();
+
+            _accessTokenRenewer?.Dispose();
         }
 
         /// <summary>
@@ -118,7 +137,6 @@ namespace pokitdokcsharp
             _errors = null;
 
         }
-
 
 
         /// <summary>
@@ -135,6 +153,8 @@ namespace pokitdokcsharp
 
             return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_ACTIVITIES)); 
         }
+
+
 
         /// <summary>
         /// Call the activities endpoint for a specific activityId.
@@ -975,6 +995,7 @@ namespace pokitdokcsharp
                 _apiSite = value;
                 this.ApiBaseUrl = _apiSite + _versionPath;
                 this.ApiTokenUrl = _apiSite + _tokenPath;
+                this.ApiLogoutUrl = _apiSite +_logoutPath;
             }
         }
 
