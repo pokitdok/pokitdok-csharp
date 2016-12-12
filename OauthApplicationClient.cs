@@ -29,10 +29,11 @@ namespace pokitdokcsharp
 	/// </summary>
 	public delegate void TokenRefreshDelegate(OauthAccessToken accessToken);
 
-	/// <summary>
-	/// PokitDok exception.
-	/// </summary>
-	public class PokitDokException : Exception 
+    /// <summary>
+    /// PokitDok exception.
+    /// </summary>
+    [Serializable]
+    public class PokitDokException : Exception 
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="pokitdokcsharp.PokitDokException"/> class.
