@@ -136,7 +136,6 @@ public class PlatformClientTest
         var deserializedException = (PokitDokException)formatter.Deserialize(ms2);
 
         // Assert
-        Assert.AreEqual(originalException.ResourceReferenceProperty, deserializedException.ResourceReferenceProperty);
         Assert.AreEqual(originalException.Message, deserializedException.Message);
     }
 
@@ -159,7 +158,6 @@ public class PlatformClientTest
         var deserializedException = (PokitDokException)formatter.Deserialize(ms2);
 
         // Assert
-        Assert.AreEqual(originalException.ResourceReferenceProperty, deserializedException.ResourceReferenceProperty);
         Assert.AreEqual(originalException.Message, deserializedException.Message);
     }
 
@@ -183,7 +181,6 @@ public class PlatformClientTest
         var deserializedException = (PokitDokException)formatter.Deserialize(ms2);
 
         // Assert
-        Assert.AreEqual(originalException.ResourceReferenceProperty, deserializedException.ResourceReferenceProperty);
         Assert.AreEqual(originalException.InnerException.Message, deserializedException.InnerException.Message);
         Assert.AreEqual(originalException.Message, deserializedException.Message);
     }

@@ -35,7 +35,6 @@ namespace pokitdokcsharp
     [Serializable]
     public class PokitDokException : Exception 
 	{
-        public string ResourceReferenceProperty { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="pokitdokcsharp.PokitDokException"/> class.
         /// </summary>
@@ -64,7 +63,6 @@ namespace pokitdokcsharp
         protected PokitDokException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            ResourceReferenceProperty = info.GetString("ResourceReferenceProperty");
         }
 
         /// <summary>
@@ -77,7 +75,6 @@ namespace pokitdokcsharp
         {
             if (info == null)
                 throw new ArgumentNullException("info");
-            info.AddValue("ResourceReferenceProperty", ResourceReferenceProperty);
             base.GetObjectData(info, context);
         }
     }
