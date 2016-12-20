@@ -85,7 +85,6 @@
     <Compile Include="OauthApplicationClient.cs" />
     <Compile Include="tests\data\ExampleRequests.cs" />
     <Compile Include="tests\PlatformClientTest.cs" />
-    <Compile Include="tests\PlatformApiTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
