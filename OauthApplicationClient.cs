@@ -19,7 +19,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Threading;
 using Newtonsoft.Json;
-
+using System.Security.Permissions;
 
 namespace pokitdokcsharp
 {
@@ -35,21 +35,52 @@ namespace pokitdokcsharp
     [Serializable]
     public class PokitDokException : Exception 
 	{
+        public string ResourceReferenceProperty { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="pokitdokcsharp.PokitDokException"/> class.
+        /// </summary>
+        /// <param name="message">Message.</param>
+        /// <param name="innerException">Inner exception.</param>
+        public PokitDokException(string message, Exception innerException) : base(message, innerException) {}
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="pokitdokcsharp.PokitDokException"/> class.
 		/// </summary>
 		/// <param name="message">Message.</param>
-		/// <param name="innerException">Inner exception.</param>
-		public PokitDokException(string message, Exception innerException) : 
-			base(message, innerException) {
-		}
-		/// <summary>
-		/// Initializes a new instance of the <see cref="pokitdokcsharp.PokitDokException"/> class.
-		/// </summary>
-		/// <param name="message">Message.</param>
-		public PokitDokException(string message) : base(message) {
-		}
-	}
+		public PokitDokException(string message) : base(message) {}
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="pokitdokcsharp.PokitDokException"/> class.
+        /// </summary>
+        public PokitDokException(){}
+
+
+        /// <summary>
+        /// Used for deserialization
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
+        protected PokitDokException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+            ResourceReferenceProperty = info.GetString("ResourceReferenceProperty");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="context"></param>
+        [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            if (info == null)
+                throw new ArgumentNullException("info");
+            info.AddValue("ResourceReferenceProperty", ResourceReferenceProperty);
+            base.GetObjectData(info, context);
+        }
+    }
 
 	/// <summary>
 	/// Store http response headers, body and status code
