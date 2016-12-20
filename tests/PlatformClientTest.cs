@@ -187,4 +187,69 @@ public class PlatformClientTest
         Assert.AreEqual(originalException.InnerException.Message, deserializedException.InnerException.Message);
         Assert.AreEqual(originalException.Message, deserializedException.Message);
     }
+
+    /// <summary>
+    /// Verify default constructor can be raised
+    /// </summary>
+    [Test]
+    public void TestPokitDokException_DefaultRaised()
+    {
+        var raised = false; 
+        try
+        {
+            throw new PokitDokException(); 
+        }
+        catch(PokitDokException e)
+        {
+            Assert.AreEqual("Exception of type 'pokitdokcsharp.PokitDokException' was thrown.", e.Message);
+            raised = true; 
+        }
+
+        Assert.IsTrue(raised); 
+    }
+
+
+    /// <summary>
+    /// Verify string constructor can be raised
+    /// </summary>
+    [Test]
+    public void TestPokitDokException_StringRaised()
+    {
+        var raised = false; 
+        try
+        {
+            throw new PokitDokException("Test Message."); 
+        }
+        catch(PokitDokException e)
+        {
+            Assert.AreEqual("Test Message.", e.Message);
+            raised = true; 
+        }
+
+        Assert.IsTrue(raised); 
+    }
+
+
+    /// <summary>
+    /// Verify string-exception constructor can be raised
+    /// </summary>
+    [Test]
+    public void TestPokitDokException_StringExceptionRaised()
+    {
+        var raised = false; 
+        WebException innerException = new WebException("Alternative Test Message"); 
+        try
+        {
+            throw new PokitDokException("Test Message.", innerException); 
+        }
+        catch(PokitDokException e)
+        {
+            Assert.AreEqual("Test Message.", e.Message);
+            Assert.AreEqual(e.InnerException.Message, innerException.Message);
+            Assert.AreEqual(e.InnerException, innerException);
+            raised = true; 
+        }
+
+        Assert.IsTrue(raised); 
+    }
 }
