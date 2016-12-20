@@ -42,11 +42,11 @@ namespace pokitdokcsharp
         /// <param name="innerException">Inner exception.</param>
         public PokitDokException(string message, Exception innerException) : base(message, innerException) {}
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="pokitdokcsharp.PokitDokException"/> class.
-		/// </summary>
-		/// <param name="message">Message.</param>
-		public PokitDokException(string message) : base(message) {}
+	/// <summary>
+	/// Initializes a new instance of the <see cref="pokitdokcsharp.PokitDokException"/> class.
+	/// </summary>
+	/// <param name="message">Message.</param>
+	public PokitDokException(string message) : base(message) {}
 
 
         /// <summary>
