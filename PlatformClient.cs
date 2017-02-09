@@ -117,14 +117,31 @@ namespace pokitdokcsharp
 
         ~PlatformClient()
         {
-            Dispose();
+            Dispose(false);
         }
 
         public void Dispose()
         {
-            DeAuthenticate();
+            Dispose(true);
+            GC.SuppressFinalize(this); 
+        }
 
-            _accessTokenRenewer?.Dispose();
+        private bool disposed;
+        /// <summary>
+        /// Protect against scenarios where the object has already been disposed of, 
+        /// but the GC has not processed the object. Avoids disposing the object twice.
+        /// </summary>
+        protected void Dispose(bool disposing)
+        {
+            if (!disposed) { 
+                if (disposing) { 
+                    DeAuthenticate();
+                    if (_accessTokenRenewer != null) { 
+                        _accessTokenRenewer.Dispose();
+                    }
+                    disposed = true; 
+                }
+            }
         }
 
         /// <summary>
