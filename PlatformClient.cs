@@ -136,11 +136,9 @@ namespace pokitdokcsharp
             if (!disposed) { 
                 if (disposing) { 
                     DeAuthenticate();
-                    if (_accessTokenRenewer != null) { 
-                        _accessTokenRenewer.Dispose();
-                    }
                     disposed = true; 
                 }
+                _accessTokenRenewer?.Dispose();
             }
         }
 
