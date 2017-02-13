@@ -21,7 +21,7 @@ namespace pokitdokcsharp
     ///		Consumes the REST based PokitDok platform API
     ///		https://platform.pokitdok.com/documentation/v4#/#overview
     /// </summary>
-    public class PlatformClient: OauthApplicationClient, IDisposable
+    public class PlatformClient: OauthApplicationClient
     {
         /// <summary>
         /// The default PokitDok API site url.
@@ -115,32 +115,6 @@ namespace pokitdokcsharp
             this.UserAgent = string.Format("csharp-pokitdok/{0}", typeof(PlatformClient).Assembly.GetName().Version);
         }
 
-        ~PlatformClient()
-        {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this); 
-        }
-
-        private bool disposed;
-        /// <summary>
-        /// Protect against scenarios where the object has already been disposed of, 
-        /// but the GC has not processed the object. Avoids disposing the object twice.
-        /// </summary>
-        protected void Dispose(bool disposing)
-        {
-            if (!disposed) { 
-                if (disposing) { 
-                    DeAuthenticate();
-                    disposed = true; 
-                }
-                _accessTokenRenewer?.Dispose();
-            }
-        }
 
         /// <summary>
         /// Init this instance.
