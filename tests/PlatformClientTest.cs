@@ -249,4 +249,23 @@ public class PlatformClientTest
 
         Assert.IsTrue(raised); 
     }
+
+    /// <summary>
+    /// Verify that the GC does not dispose of an already disposed of object.
+    /// </summary>
+    [Test]
+    public void TestPlatformClientDisposeOnlyOnce()
+    {
+
+        PlatformClient client = new PlatformClient("", "");
+        try
+        {
+            client.eligibility(new Dictionary<string, object> { });
+        }
+        catch (PokitDokException) { }
+
+        client.Dispose();
+        GC.Collect(); 
+        
+    }
 }

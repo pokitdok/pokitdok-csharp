@@ -203,7 +203,7 @@ namespace pokitdokcsharp
     /// Oauth 2.0 Client implementing Client Credentials Grant Authorization
     ///		http://tools.ietf.org/html/rfc6749#section-4.4
     /// </summary>
-    public class OauthApplicationClient
+    public class OauthApplicationClient : IDisposable
     {
         /// <summary>
         /// The default http request timeout.
@@ -234,6 +234,37 @@ namespace pokitdokcsharp
         TokenRefreshDelegate _tokenRefresh = null;
 
         private ResponseData _responseData = new ResponseData();
+
+
+        /// <summary>
+        /// Dispose of authentication resources
+        /// </summary>
+        ~OauthApplicationClient()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this); 
+        }
+
+        private bool disposed = false;
+        /// <summary>
+        /// Protect against scenarios where the object has already been disposed of, 
+        /// but the GC has not processed the object. Avoids disposing the object twice.
+        /// </summary>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed) { 
+                if (disposing) { 
+                    DeAuthenticate();
+                    _accessTokenRenewer?.Dispose();
+                    disposed = true; 
+                }
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="pokitdokcsharp.OauthApplicationClient"/> class.
