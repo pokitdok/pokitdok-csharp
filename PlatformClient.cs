@@ -321,11 +321,16 @@ namespace pokitdokcsharp
         /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
         /// 	The body is JSON formatted data.
         /// </returns>
-        public ResponseData claimsConvert(Dictionary<string, object> postData)
+        public ResponseData claimsConvert(string filepath)
         {
             init();
 
-            return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_CONVERT, postData));
+            return applyResponse(PostRequest(
+                POKITDOK_PLATFORM_API_ENDPOINT_CLAIMS_CONVERT, 
+                filepath,
+                "file",
+                "application/EDI-X12"
+                ));
 
         }
 
