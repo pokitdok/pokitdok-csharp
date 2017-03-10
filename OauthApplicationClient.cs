@@ -106,7 +106,14 @@ namespace pokitdokcsharp
         /// Gets or sets the HTTP status.
         /// </summary>
         /// <value>The status.</value>
+        [Obsolete("Use status_code instead")]
         public int status { get; set; }
+
+        /// <summary>
+        /// Gets or sets the HTTP status.
+        /// </summary>
+        /// <value>The status.</value>
+        public int status_code { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="pokitdokcsharp.ResponseData"/> class.
@@ -303,6 +310,16 @@ namespace pokitdokcsharp
 
             // Force use of TLS 1.2
             ServicePointManager.SecurityProtocol = (SecurityProtocolType) 3072;
+        }
+
+        /// <summary>
+        /// Get an access token and setup a timer to refresh the token
+        /// </summary>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when authentication fails or
+        /// when some unknown system error occurs.</exception>
+        public OauthAccessToken FetchAccessToken()
+        {
+            return Authenticate();
         }
 
         /// <summary>
@@ -942,6 +959,7 @@ namespace pokitdokcsharp
                 _responseData.header.Add(key, response.Headers[key]);
             }
             _responseData.status = (int) response.StatusCode;
+            _responseData.status_code = (int) response.StatusCode;
 
             return _responseData;
         }
