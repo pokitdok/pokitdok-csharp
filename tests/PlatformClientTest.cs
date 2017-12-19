@@ -28,7 +28,7 @@ public class PlatformClientTest
     public void AssertRequestDefaults(HttpWebRequest request, string method)
     {
         Assert.IsTrue(request.Address == new Uri(host));
-        Assert.IsTrue(request.Headers.ToString() == "Authorization: Bearer\r\nContent-Type: application/json\r\n\r\n");
+        Assert.IsTrue(request.Headers.ToString() == "Authorization: Bearer\r\nUser-Agent: \r\nContent-Type: application/json\r\n\r\n");
         Assert.IsTrue(request.Host == "localhost");
         Assert.IsTrue(request.KeepAlive == true);
         Assert.IsTrue(request.Method == method);

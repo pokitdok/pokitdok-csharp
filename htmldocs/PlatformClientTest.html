@@ -1,0 +1,845 @@
+<html>
+  <head>
+    <title>PlatformClientTest</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+      a { text-decoration: none }
+
+      div.SideBar {
+        padding-left: 1em;
+        padding-right: 1em;
+        right: 0;
+        float: right;
+        border: thin solid black;
+        background-color: #f2f2f2;
+      }
+    
+      .CollectionTitle { font-weight: bold }
+      .PageTitle { font-size: 150%; font-weight: bold }
+
+      .Summary { }
+      .Signature { }          
+      .Remarks { }
+      .Members { }
+      .Copyright { }
+      
+      .Section { font-size: 125%; font-weight: bold }
+      p.Summary {
+        margin-left: 1em;
+      }
+      .SectionBox { margin-left: 2em }
+      .NamespaceName { font-size: 105%; font-weight: bold }
+      .NamespaceSumary { }
+      .MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+      .Subsection { font-size: 105%; font-weight: bold }
+      .SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+      .CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+      
+      .TypesListing {
+        border-collapse: collapse;
+      }
+
+      td {
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+      }
+
+      .TypesListing td { 
+        margin: 0px;  
+        padding: .25em;
+        border: solid gray 1px;
+      }
+
+      .TypesListing th { 
+        margin: 0px;  
+        padding: .25em;
+        background-color: #f2f2f2;
+        border: solid gray 1px;
+      }
+
+      div.Footer {
+        border-top: 1px solid gray;
+        margin-top: 1.5em;
+        padding-top: 0.6em;
+        text-align: center;
+        color: gray;
+      }
+
+      span.NotEntered /* Documentation for this section has not yet been entered */ {
+        font-style: italic;
+        color: red;	
+      }
+
+      div.Header {
+        background: #B0C4DE;
+        border: double;
+        border-color: white;
+        border-width: 7px;
+        padding: 0.5em;
+      }
+
+      div.Header * {
+        font-size: smaller;
+      }
+
+      div.Note {
+      }
+
+      i.ParamRef {
+      }
+
+      i.subtitle {
+      }
+
+      ul.TypeMembersIndex {
+        text-align: left;
+        background: #F8F8F8;
+      }
+
+      ul.TypeMembersIndex li {
+        display: inline;
+        margin:  0.5em;
+      }
+
+      table.HeaderTable {
+      }
+
+      table.SignatureTable {
+      }
+
+      table.Documentation, table.Enumeration, table.TypeDocumentation {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table.Documentation tr th, table.TypeMembers tr th, table.Enumeration tr th, table.TypeDocumentation tr th {
+        background: whitesmoke;
+        padding: 0.8em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: bottom;
+      }
+
+      table.Documentation tr td, table.TypeMembers tr td, table.Enumeration tr td, table.TypeDocumentation tr td {
+        padding: 0.5em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      table.TypeMembers {
+        border: 1px solid #C0C0C0;
+        width: 100%;
+      }
+
+      table.TypeMembers tr td {
+        background: #F8F8F8;
+        border: white;
+      }
+
+      table.Documentation {
+      }
+
+      table.TypeMembers {
+      }
+
+      div.CodeExample {
+        width: 100%;
+        border: 1px solid #DDDDDD;
+        background-color: #F8F8F8;
+      }
+
+      div.CodeExample p {
+        margin: 0.5em;
+        border-bottom: 1px solid #DDDDDD;
+      }
+
+      div.CodeExample div {
+        margin: 0.5em;
+      }
+
+      h4 {
+        margin-bottom: 0;
+      }
+
+      div.Signature {
+        border: 1px solid #C0C0C0;
+        background: #F2F2F2;
+        padding: 1em;
+      }
+    </style>
+    <script type="text/JavaScript">
+      function toggle_display (block) {
+        var w = document.getElementById (block);
+        var t = document.getElementById (block + ":toggle");
+        if (w.style.display == "none") {
+          w.style.display = "block";
+          t.innerHTML = "⊟";
+        } else {
+          w.style.display = "none";
+          t.innerHTML = "⊞";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="index.html">pokitdok-csharp</a> : <a href="index.html"> Namespace</a></div>
+    <div class="SideBar">
+      <p>
+        <a href="#T:PlatformClientTest">Overview</a>
+      </p>
+      <p>
+        <a href="#T:PlatformClientTest:Signature">Signature</a>
+      </p>
+      <p>
+        <a href="#T:PlatformClientTest:Docs">Remarks</a>
+      </p>
+      <p>
+        <a href="#Members">Members</a>
+      </p>
+      <p>
+        <a href="#T:PlatformClientTest:Members">Member Details</a>
+      </p>
+    </div>
+    <h1 class="PageTitle" id="T:PlatformClientTest">PlatformClientTest  Class</h1>
+    <p class="Summary" id="T:PlatformClientTest:Summary">
+            Platform client test.
+            </p>
+    <div>
+      <h2>Syntax</h2>
+      <div class="Signature" id="T:PlatformClientTest:Signature">[NUnit.Framework.TestFixture]<br />public class  <b>PlatformClientTest</b></div>
+    </div>
+    <div class="Remarks" id="T:PlatformClientTest:Docs">
+      <h2 class="Section">Remarks</h2>
+      <div class="SectionBox" id="T:PlatformClientTest:Docs:Remarks">
+        <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+      </div>
+      <h2 class="Section">Requirements</h2>
+      <div class="SectionBox" id="T:PlatformClientTest:Docs:Version Information">
+        <b>Namespace: </b>
+        <br />
+        <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+      <h2 class="Section" id="Members">Members</h2>
+      <div class="SectionBox" id="_Members">
+        <p>
+								See Also: Inherited members from
+								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+							</p>
+        <h2 class="Section">Public Constructors</h2>
+        <div class="SectionBox" id="Public Constructors">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <b>
+                      <a href="#C:PlatformClientTest()">PlatformClientTest</a>
+                    </b>()</div>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Fields</h2>
+        <div class="SectionBox" id="Public Fields">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <b>
+                    <a href="#F:PlatformClientTest.host">host</a>
+                  </b>
+                </td>
+                <td>
+                  <i>
+                    <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>
+                  </i>. <span class="NotEntered">Documentation for this section has not yet been entered.</span></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Methods</h2>
+        <div class="SectionBox" id="Public Methods">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.AssertRequestDefaults(System.Net.HttpWebRequest,System.String)">AssertRequestDefaults</a>
+                  </b>(<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Net.HttpWebRequest">System.Net.HttpWebRequest</a>, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a>)<blockquote>
+            For every request, there are things we expect to remain constant. Verify that they do.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestCreateRequests()">TestCreateRequests</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestDELETE()">TestDELETE</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestGET()">TestGET</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPlatformClientDisposeOnlyOnce()">TestPlatformClientDisposeOnlyOnce</a>
+                  </b>()<blockquote>
+            Verify that the GC does not dispose of an already disposed of object.
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPokitDokException_DefaultConstructor()">TestPokitDokException_DefaultConstructor</a>
+                  </b>()<blockquote>
+            Verify base constructor
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPokitDokException_DefaultConstructorDeSerializable()">TestPokitDokException_DefaultConstructorDeSerializable</a>
+                  </b>()<blockquote>
+            Verify Default Constructor can be deserialized
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPokitDokException_DefaultRaised()">TestPokitDokException_DefaultRaised</a>
+                  </b>()<blockquote>
+            Verify default constructor can be raised
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPokitDokException_StringConstructor()">TestPokitDokException_StringConstructor</a>
+                  </b>()<blockquote>
+            Verify "String" Constructor
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPokitDokException_StringConstructorDeSerializable()">TestPokitDokException_StringConstructorDeSerializable</a>
+                  </b>()<blockquote>
+            Verify String Constructor can be Deserialized
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPokitDokException_StringExceptionConstructor()">TestPokitDokException_StringExceptionConstructor</a>
+                  </b>()<blockquote>
+            Verify "String-Exception" Constructor
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPokitDokException_StringExceptionConstructorDeSerializable()">TestPokitDokException_StringExceptionConstructorDeSerializable</a>
+                  </b>()<blockquote>
+            Verify String, Exception Constructor can be Deserialized
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPokitDokException_StringExceptionRaised()">TestPokitDokException_StringExceptionRaised</a>
+                  </b>()<blockquote>
+            Verify string-exception constructor can be raised
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPokitDokException_StringRaised()">TestPokitDokException_StringRaised</a>
+                  </b>()<blockquote>
+            Verify string constructor can be raised
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPokitDokException_VerifyInnerException()">TestPokitDokException_VerifyInnerException</a>
+                  </b>()<blockquote>
+            Verify "String-Exception" Constructor
+            </blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPOST()">TestPOST</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformClientTest.TestPUT()">TestPUT</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Members" id="T:PlatformClientTest:Members">
+      <h2 class="Section" id="MemberDetails">Member Details</h2>
+      <div class="SectionBox" id="_MemberDetails">
+        <h3 id="C:PlatformClientTest()">PlatformClientTest Constructor</h3>
+        <blockquote id="C:PlatformClientTest():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public  <b>PlatformClientTest</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="C:PlatformClientTest():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="C:PlatformClientTest():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.AssertRequestDefaults(System.Net.HttpWebRequest,System.String)">AssertRequestDefaults Method</h3>
+        <blockquote id="M:PlatformClientTest.AssertRequestDefaults(System.Net.HttpWebRequest,System.String):member">
+          <div class="msummary">
+            For every request, there are things we expect to remain constant. Verify that they do.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>AssertRequestDefaults</b> (<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Net.HttpWebRequest">System.Net.HttpWebRequest</a> request, <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> method)</div>
+          <h4 class="Subsection">Parameters</h4>
+          <blockquote class="SubsectionBox" id="M:PlatformClientTest.AssertRequestDefaults(System.Net.HttpWebRequest,System.String):Parameters">
+            <dl>
+              <dt>
+                <i>request</i>
+              </dt>
+              <dd>
+              </dd>
+              <dt>
+                <i>method</i>
+              </dt>
+              <dd>
+              </dd>
+            </dl>
+          </blockquote>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.AssertRequestDefaults(System.Net.HttpWebRequest,System.String):Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.AssertRequestDefaults(System.Net.HttpWebRequest,System.String):Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="F:PlatformClientTest.host">host Field</h3>
+        <blockquote id="F:PlatformClientTest.host:member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.String">string</a> <b>host</b> </div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="F:PlatformClientTest.host:Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="F:PlatformClientTest.host:Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestCreateRequests()">TestCreateRequests Method</h3>
+        <blockquote id="M:PlatformClientTest.TestCreateRequests():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestCreateRequests</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestCreateRequests():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestCreateRequests():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestDELETE()">TestDELETE Method</h3>
+        <blockquote id="M:PlatformClientTest.TestDELETE():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestDELETE</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestDELETE():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestDELETE():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestGET()">TestGET Method</h3>
+        <blockquote id="M:PlatformClientTest.TestGET():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestGET</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestGET():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestGET():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPlatformClientDisposeOnlyOnce()">TestPlatformClientDisposeOnlyOnce Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPlatformClientDisposeOnlyOnce():member">
+          <div class="msummary">
+            Verify that the GC does not dispose of an already disposed of object.
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPlatformClientDisposeOnlyOnce</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPlatformClientDisposeOnlyOnce():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPlatformClientDisposeOnlyOnce():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPokitDokException_DefaultConstructor()">TestPokitDokException_DefaultConstructor Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPokitDokException_DefaultConstructor():member">
+          <div class="msummary">
+            Verify base constructor
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPokitDokException_DefaultConstructor</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_DefaultConstructor():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_DefaultConstructor():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPokitDokException_DefaultConstructorDeSerializable()">TestPokitDokException_DefaultConstructorDeSerializable Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPokitDokException_DefaultConstructorDeSerializable():member">
+          <div class="msummary">
+            Verify Default Constructor can be deserialized
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPokitDokException_DefaultConstructorDeSerializable</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_DefaultConstructorDeSerializable():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_DefaultConstructorDeSerializable():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPokitDokException_DefaultRaised()">TestPokitDokException_DefaultRaised Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPokitDokException_DefaultRaised():member">
+          <div class="msummary">
+            Verify default constructor can be raised
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPokitDokException_DefaultRaised</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_DefaultRaised():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_DefaultRaised():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPokitDokException_StringConstructor()">TestPokitDokException_StringConstructor Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPokitDokException_StringConstructor():member">
+          <div class="msummary">
+            Verify "String" Constructor
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPokitDokException_StringConstructor</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringConstructor():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringConstructor():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPokitDokException_StringConstructorDeSerializable()">TestPokitDokException_StringConstructorDeSerializable Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPokitDokException_StringConstructorDeSerializable():member">
+          <div class="msummary">
+            Verify String Constructor can be Deserialized
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPokitDokException_StringConstructorDeSerializable</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringConstructorDeSerializable():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringConstructorDeSerializable():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPokitDokException_StringExceptionConstructor()">TestPokitDokException_StringExceptionConstructor Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPokitDokException_StringExceptionConstructor():member">
+          <div class="msummary">
+            Verify "String-Exception" Constructor
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPokitDokException_StringExceptionConstructor</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringExceptionConstructor():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringExceptionConstructor():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPokitDokException_StringExceptionConstructorDeSerializable()">TestPokitDokException_StringExceptionConstructorDeSerializable Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPokitDokException_StringExceptionConstructorDeSerializable():member">
+          <div class="msummary">
+            Verify String, Exception Constructor can be Deserialized
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPokitDokException_StringExceptionConstructorDeSerializable</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringExceptionConstructorDeSerializable():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringExceptionConstructorDeSerializable():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPokitDokException_StringExceptionRaised()">TestPokitDokException_StringExceptionRaised Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPokitDokException_StringExceptionRaised():member">
+          <div class="msummary">
+            Verify string-exception constructor can be raised
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPokitDokException_StringExceptionRaised</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringExceptionRaised():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringExceptionRaised():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPokitDokException_StringRaised()">TestPokitDokException_StringRaised Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPokitDokException_StringRaised():member">
+          <div class="msummary">
+            Verify string constructor can be raised
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPokitDokException_StringRaised</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringRaised():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_StringRaised():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPokitDokException_VerifyInnerException()">TestPokitDokException_VerifyInnerException Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPokitDokException_VerifyInnerException():member">
+          <div class="msummary">
+            Verify "String-Exception" Constructor
+            </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPokitDokException_VerifyInnerException</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_VerifyInnerException():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPokitDokException_VerifyInnerException():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPOST()">TestPOST Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPOST():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPOST</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPOST():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPOST():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformClientTest.TestPUT()">TestPUT Method</h3>
+        <blockquote id="M:PlatformClientTest.TestPUT():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPUT</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPUT():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformClientTest.TestPUT():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

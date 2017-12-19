@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using pokitdokcsharp;
 using pokitdokcsharp.tests.data;
 using NUnit.Framework;
@@ -12,7 +14,7 @@ public class PlatformApiTests
     private string _oopLoadedPriceUuid = null; 
     private void Assert200(ResponseData res)
     {
-        Assert.AreEqual(res.status_code, 200); 
+        Assert.AreEqual(200, res.status_code); 
     }
 
     [Test]
@@ -48,7 +50,8 @@ public class PlatformApiTests
     public void TestClaimsConvert()
     {
         // https://platform.pokitdok.com/documentation/v4/?csharp#claims-convert
-        Assert200(_client.claimsConvert("../../tests/files/secondary_claim_model_first_payer.837")); 
+        string path = "tests/files/secondary_claim_model_first_payer.837";
+        Assert200(_client.claimsConvert(path));
     }
 
     [Test]

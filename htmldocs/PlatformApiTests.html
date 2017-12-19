@@ -1,0 +1,934 @@
+<html>
+  <head>
+    <title>PlatformApiTests</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+      a { text-decoration: none }
+
+      div.SideBar {
+        padding-left: 1em;
+        padding-right: 1em;
+        right: 0;
+        float: right;
+        border: thin solid black;
+        background-color: #f2f2f2;
+      }
+    
+      .CollectionTitle { font-weight: bold }
+      .PageTitle { font-size: 150%; font-weight: bold }
+
+      .Summary { }
+      .Signature { }          
+      .Remarks { }
+      .Members { }
+      .Copyright { }
+      
+      .Section { font-size: 125%; font-weight: bold }
+      p.Summary {
+        margin-left: 1em;
+      }
+      .SectionBox { margin-left: 2em }
+      .NamespaceName { font-size: 105%; font-weight: bold }
+      .NamespaceSumary { }
+      .MemberName { font-size: 115%; font-weight: bold; margin-top: 1em }
+      .Subsection { font-size: 105%; font-weight: bold }
+      .SubsectionBox { margin-left: 2em; margin-bottom: 1em }
+
+      .CodeExampleTable { background-color: #f5f5dd; border: thin solid black; padding: .25em; }
+      
+      .TypesListing {
+        border-collapse: collapse;
+      }
+
+      td {
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+      }
+
+      .TypesListing td { 
+        margin: 0px;  
+        padding: .25em;
+        border: solid gray 1px;
+      }
+
+      .TypesListing th { 
+        margin: 0px;  
+        padding: .25em;
+        background-color: #f2f2f2;
+        border: solid gray 1px;
+      }
+
+      div.Footer {
+        border-top: 1px solid gray;
+        margin-top: 1.5em;
+        padding-top: 0.6em;
+        text-align: center;
+        color: gray;
+      }
+
+      span.NotEntered /* Documentation for this section has not yet been entered */ {
+        font-style: italic;
+        color: red;	
+      }
+
+      div.Header {
+        background: #B0C4DE;
+        border: double;
+        border-color: white;
+        border-width: 7px;
+        padding: 0.5em;
+      }
+
+      div.Header * {
+        font-size: smaller;
+      }
+
+      div.Note {
+      }
+
+      i.ParamRef {
+      }
+
+      i.subtitle {
+      }
+
+      ul.TypeMembersIndex {
+        text-align: left;
+        background: #F8F8F8;
+      }
+
+      ul.TypeMembersIndex li {
+        display: inline;
+        margin:  0.5em;
+      }
+
+      table.HeaderTable {
+      }
+
+      table.SignatureTable {
+      }
+
+      table.Documentation, table.Enumeration, table.TypeDocumentation {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table.Documentation tr th, table.TypeMembers tr th, table.Enumeration tr th, table.TypeDocumentation tr th {
+        background: whitesmoke;
+        padding: 0.8em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: bottom;
+      }
+
+      table.Documentation tr td, table.TypeMembers tr td, table.Enumeration tr td, table.TypeDocumentation tr td {
+        padding: 0.5em;
+        border: 1px solid gray;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      table.TypeMembers {
+        border: 1px solid #C0C0C0;
+        width: 100%;
+      }
+
+      table.TypeMembers tr td {
+        background: #F8F8F8;
+        border: white;
+      }
+
+      table.Documentation {
+      }
+
+      table.TypeMembers {
+      }
+
+      div.CodeExample {
+        width: 100%;
+        border: 1px solid #DDDDDD;
+        background-color: #F8F8F8;
+      }
+
+      div.CodeExample p {
+        margin: 0.5em;
+        border-bottom: 1px solid #DDDDDD;
+      }
+
+      div.CodeExample div {
+        margin: 0.5em;
+      }
+
+      h4 {
+        margin-bottom: 0;
+      }
+
+      div.Signature {
+        border: 1px solid #C0C0C0;
+        background: #F2F2F2;
+        padding: 1em;
+      }
+    </style>
+    <script type="text/JavaScript">
+      function toggle_display (block) {
+        var w = document.getElementById (block);
+        var t = document.getElementById (block + ":toggle");
+        if (w.style.display == "none") {
+          w.style.display = "block";
+          t.innerHTML = "⊟";
+        } else {
+          w.style.display = "none";
+          t.innerHTML = "⊞";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="CollectionTitle">
+      <a href="index.html">pokitdok-csharp</a> : <a href="index.html"> Namespace</a></div>
+    <div class="SideBar">
+      <p>
+        <a href="#T:PlatformApiTests">Overview</a>
+      </p>
+      <p>
+        <a href="#T:PlatformApiTests:Signature">Signature</a>
+      </p>
+      <p>
+        <a href="#T:PlatformApiTests:Docs">Remarks</a>
+      </p>
+      <p>
+        <a href="#Members">Members</a>
+      </p>
+      <p>
+        <a href="#T:PlatformApiTests:Members">Member Details</a>
+      </p>
+    </div>
+    <h1 class="PageTitle" id="T:PlatformApiTests">PlatformApiTests  Class</h1>
+    <p class="Summary" id="T:PlatformApiTests:Summary">
+            Platform client test.
+            </p>
+    <div>
+      <h2>Syntax</h2>
+      <div class="Signature" id="T:PlatformApiTests:Signature">[NUnit.Framework.TestFixture]<br />public class  <b>PlatformApiTests</b></div>
+    </div>
+    <div class="Remarks" id="T:PlatformApiTests:Docs">
+      <h2 class="Section">Remarks</h2>
+      <div class="SectionBox" id="T:PlatformApiTests:Docs:Remarks">
+        <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+      </div>
+      <h2 class="Section">Requirements</h2>
+      <div class="SectionBox" id="T:PlatformApiTests:Docs:Version Information">
+        <b>Namespace: </b>
+        <br />
+        <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+      <h2 class="Section" id="Members">Members</h2>
+      <div class="SectionBox" id="_Members">
+        <p>
+								See Also: Inherited members from
+								<a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Object">object</a>.
+							</p>
+        <h2 class="Section">Public Constructors</h2>
+        <div class="SectionBox" id="Public Constructors">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    <b>
+                      <a href="#C:PlatformApiTests()">PlatformApiTests</a>
+                    </b>()</div>
+                </td>
+                <td>
+                  <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <h2 class="Section">Public Methods</h2>
+        <div class="SectionBox" id="Public Methods">
+          <div class="SubsectionBox">
+            <table class="TypeMembers">
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestActivities()">TestActivities</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestAuthorizations()">TestAuthorizations</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestCashPrices()">TestCashPrices</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestClaims()">TestClaims</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestClaimsConvert()">TestClaimsConvert</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestClaimsStatus()">TestClaimsStatus</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestEligibility()">TestEligibility</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestIcdConvert()">TestIcdConvert</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestIdentityProofGenerate()">TestIdentityProofGenerate</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestIdentityValidProof()">TestIdentityValidProof</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestInsurancePrices()">TestInsurancePrices</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestMpc()">TestMpc</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestOopGetPrice()">TestOopGetPrice</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestOopLoadPrice()">TestOopLoadPrice</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestPharmacyFormulary()">TestPharmacyFormulary</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestPharmacyNpiNetwork()">TestPharmacyNpiNetwork</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestPharmacyPlans()">TestPharmacyPlans</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestPharmacyPlansNetwork()">TestPharmacyPlansNetwork</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestPlans()">TestPlans</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestProviders()">TestProviders</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestReferrals()">TestReferrals</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestSchedulingGet()">TestSchedulingGet</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+              <tr valign="top">
+                <td>
+                  <div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                    <a href="#M:PlatformApiTests.TestTradingPartners()">TestTradingPartners</a>
+                  </b>()<blockquote><span class="NotEntered">Documentation for this section has not yet been entered.</span></blockquote></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Members" id="T:PlatformApiTests:Members">
+      <h2 class="Section" id="MemberDetails">Member Details</h2>
+      <div class="SectionBox" id="_MemberDetails">
+        <h3 id="C:PlatformApiTests()">PlatformApiTests Constructor</h3>
+        <blockquote id="C:PlatformApiTests():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">public  <b>PlatformApiTests</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="C:PlatformApiTests():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="C:PlatformApiTests():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestActivities()">TestActivities Method</h3>
+        <blockquote id="M:PlatformApiTests.TestActivities():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestActivities</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestActivities():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestActivities():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestAuthorizations()">TestAuthorizations Method</h3>
+        <blockquote id="M:PlatformApiTests.TestAuthorizations():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestAuthorizations</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestAuthorizations():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestAuthorizations():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestCashPrices()">TestCashPrices Method</h3>
+        <blockquote id="M:PlatformApiTests.TestCashPrices():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestCashPrices</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestCashPrices():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestCashPrices():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestClaims()">TestClaims Method</h3>
+        <blockquote id="M:PlatformApiTests.TestClaims():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestClaims</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestClaims():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestClaims():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestClaimsConvert()">TestClaimsConvert Method</h3>
+        <blockquote id="M:PlatformApiTests.TestClaimsConvert():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestClaimsConvert</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestClaimsConvert():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestClaimsConvert():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestClaimsStatus()">TestClaimsStatus Method</h3>
+        <blockquote id="M:PlatformApiTests.TestClaimsStatus():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestClaimsStatus</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestClaimsStatus():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestClaimsStatus():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestEligibility()">TestEligibility Method</h3>
+        <blockquote id="M:PlatformApiTests.TestEligibility():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestEligibility</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestEligibility():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestEligibility():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestIcdConvert()">TestIcdConvert Method</h3>
+        <blockquote id="M:PlatformApiTests.TestIcdConvert():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestIcdConvert</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestIcdConvert():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestIcdConvert():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestIdentityProofGenerate()">TestIdentityProofGenerate Method</h3>
+        <blockquote id="M:PlatformApiTests.TestIdentityProofGenerate():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestIdentityProofGenerate</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestIdentityProofGenerate():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestIdentityProofGenerate():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestIdentityValidProof()">TestIdentityValidProof Method</h3>
+        <blockquote id="M:PlatformApiTests.TestIdentityValidProof():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestIdentityValidProof</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestIdentityValidProof():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestIdentityValidProof():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestInsurancePrices()">TestInsurancePrices Method</h3>
+        <blockquote id="M:PlatformApiTests.TestInsurancePrices():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestInsurancePrices</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestInsurancePrices():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestInsurancePrices():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestMpc()">TestMpc Method</h3>
+        <blockquote id="M:PlatformApiTests.TestMpc():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestMpc</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestMpc():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestMpc():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestOopGetPrice()">TestOopGetPrice Method</h3>
+        <blockquote id="M:PlatformApiTests.TestOopGetPrice():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestOopGetPrice</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestOopGetPrice():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestOopGetPrice():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestOopLoadPrice()">TestOopLoadPrice Method</h3>
+        <blockquote id="M:PlatformApiTests.TestOopLoadPrice():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestOopLoadPrice</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestOopLoadPrice():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestOopLoadPrice():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestPharmacyFormulary()">TestPharmacyFormulary Method</h3>
+        <blockquote id="M:PlatformApiTests.TestPharmacyFormulary():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPharmacyFormulary</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestPharmacyFormulary():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestPharmacyFormulary():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestPharmacyNpiNetwork()">TestPharmacyNpiNetwork Method</h3>
+        <blockquote id="M:PlatformApiTests.TestPharmacyNpiNetwork():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPharmacyNpiNetwork</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestPharmacyNpiNetwork():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestPharmacyNpiNetwork():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestPharmacyPlans()">TestPharmacyPlans Method</h3>
+        <blockquote id="M:PlatformApiTests.TestPharmacyPlans():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPharmacyPlans</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestPharmacyPlans():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestPharmacyPlans():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestPharmacyPlansNetwork()">TestPharmacyPlansNetwork Method</h3>
+        <blockquote id="M:PlatformApiTests.TestPharmacyPlansNetwork():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPharmacyPlansNetwork</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestPharmacyPlansNetwork():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestPharmacyPlansNetwork():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestPlans()">TestPlans Method</h3>
+        <blockquote id="M:PlatformApiTests.TestPlans():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestPlans</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestPlans():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestPlans():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestProviders()">TestProviders Method</h3>
+        <blockquote id="M:PlatformApiTests.TestProviders():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestProviders</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestProviders():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestProviders():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestReferrals()">TestReferrals Method</h3>
+        <blockquote id="M:PlatformApiTests.TestReferrals():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestReferrals</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestReferrals():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestReferrals():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestSchedulingGet()">TestSchedulingGet Method</h3>
+        <blockquote id="M:PlatformApiTests.TestSchedulingGet():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestSchedulingGet</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestSchedulingGet():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestSchedulingGet():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+        <h3 id="M:PlatformApiTests.TestTradingPartners()">TestTradingPartners Method</h3>
+        <blockquote id="M:PlatformApiTests.TestTradingPartners():member">
+          <div class="msummary">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2>Syntax</h2>
+          <div class="Signature">[NUnit.Framework.Test]<br />public <a href="http://www.go-mono.com/docs/monodoc.ashx?link=T:System.Void">void</a> <b>TestTradingPartners</b> ()</div>
+          <h2 class="Section">Remarks</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestTradingPartners():Remarks">
+            <span class="NotEntered">Documentation for this section has not yet been entered.</span>
+          </div>
+          <h2 class="Section">Requirements</h2>
+          <div class="SectionBox" id="M:PlatformApiTests.TestTradingPartners():Version Information">
+            <b>Namespace: </b>
+            <br />
+            <b>Assembly: </b>pokitdok-csharp (in pokitdok-csharp.dll)<br /><b>Assembly Versions: </b>1.17.6561.33355, 1.17.6561.34386, 1.17.6562.23038</div>
+          <hr size="1" />
+        </blockquote>
+      </div>
+    </div>
+    <hr size="1" />
+    <div class="Copyright">
+    </div>
+  </body>
+</html>

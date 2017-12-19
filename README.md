@@ -10,7 +10,7 @@ Install via [NuGet][nuget]:
 PM> Install-Package PokitDokPlatformClient
 ```
 
-Build source with [Xamarin][xamarin] Studio 5.7.1 or [Microsoft Visual Studio 2013][msvs].
+Build source with [Xamarin][xamarin] Studio or [Microsoft Visual Studio][msvs].
 See dependencies section below.
 
 [nuget]: https://www.nuget.org/packages/PokitDokPlatformClient
@@ -264,12 +264,11 @@ You may have luck with other CLI framework versions - let us know how it goes.
 
 ## Dependencies
 The PokitDok Platform API C# Client requires Json.Net, a popular high-performance JSON framework for .NET.
-* [Json.Net 6.0.8][json.net].
+* [Json.Net 10.0.3][json.net].
 
 Tests written using NUnit].
-* [NUnit 2.6.4][nunit]
+* [NUnit 3.9.0][nunit]
 
-[jnk]: http://james.newtonking.com/json
 [json.net]: http://www.newtonsoft.com/json
 [nunit]: https://www.nuget.org/packages/NUnit/
 
