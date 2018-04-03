@@ -329,7 +329,7 @@ namespace pokitdokcsharp
         /// when some unknown system error occurs.</exception>
         public OauthAccessToken Authenticate()
         {
-            if (_accessToken.refresh_token.Length > 0)
+            if (_accessToken.refresh_token != null && _accessToken.refresh_token.Length > 0)
             {
                 return AuthenticateRefreshToken();
             }
