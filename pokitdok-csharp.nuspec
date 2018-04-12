@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PokitDokPlatformClient</id>
-    <version>1.17.10</version>
+    <version>1.17.11</version>
     <authors>PokitDokDev</authors>
     <owners>PokitDokDev</owners>
     <licenseUrl>https://github.com/pokitdok/pokitdok-csharp/blob/master/LICENSE.txt</licenseUrl>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>PokitDok Platform API Client for C#</description>
     <releaseNotes>For use with PokitDok Platform API</releaseNotes>
-    <copyright>Copyright 2017</copyright>
+    <copyright>Copyright 2018</copyright>
     <tags>x12 eligibility claims health insurance price provider identity</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="10.0.3" />
