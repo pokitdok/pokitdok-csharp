@@ -183,4 +183,10 @@ public class PlatformApiTests
         Assert200(_client.tradingPartners("MOCKPAYER")); 
     }
 
+    [Test]
+    public void TestAppRegistrations() 
+    {
+        Assert200(_client.appRegistrations());
+    }
+
 }
