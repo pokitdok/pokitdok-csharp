@@ -15,7 +15,6 @@
     <tags>x12 eligibility claims health insurance price provider identity</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="10.0.3" />
-      <dependency id="NUnit" version="3.9.0" />
     </dependencies>
   </metadata>
 </package>
