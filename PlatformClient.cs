@@ -94,6 +94,8 @@ namespace pokitdokcsharp
         private const string POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_FORMULARY = "/pharmacy/formulary";
         private const string POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_NETWORK = "/pharmacy/network";
 
+        private const string POKITDOK_PLATFORM_API_ENDPOINT_APP_REGISTRATIONS = "/appregistrations/";
+
         private string _apiSite = POKITDOK_PLATFORM_API_SITE;
         private string _versionPath = POKITDOK_PLATFORM_API_VERSION_PATH;
         private string _tokenPath = POKITDOK_PLATFORM_API_TOKEN_PATH;
@@ -1036,6 +1038,94 @@ namespace pokitdokcsharp
             init();
         
             return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_PHARMACY_NETWORK+"/"+npi, parameters));
+        }
+
+        /// <summary>
+        /// List current app registrations.
+        /// </summary>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData appRegistrations() 
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_APP_REGISTRATIONS));
+        }
+
+        /// <summary>
+        //  Retrieve the app registration with the given UUID.
+        /// </summary>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData appRegistration(Guid uuid)
+        {
+            init();
+
+            return applyResponse(GetRequest(POKITDOK_PLATFORM_API_ENDPOINT_APP_REGISTRATIONS + uuid));
+        }
+
+        /// <summary>
+        //  Create an app registration.
+        /// </summary>
+        /// <param name="parameters">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData createAppRegistration(Dictionary<string, object> parameters)
+        {
+            init();
+
+            return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_APP_REGISTRATIONS, parameters));
+        }
+
+        /// <summary>
+        //  Edit the app registration with the given UUID.
+        /// </summary>
+        /// <param name="parameters">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData editAppRegistration(Guid uuid, Dictionary<string, object> parameters)
+        {
+            init();
+
+            return applyResponse(PutRequest(POKITDOK_PLATFORM_API_ENDPOINT_APP_REGISTRATIONS + uuid, parameters));
+        }
+
+        /// <summary>
+        //  Delete the app registration with the given UUID.
+        /// </summary>
+        /// <param name="parameters">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData deleteAppRegistration(Guid uuid)
+        {
+            init();
+
+            return applyResponse(DeleteRequest(POKITDOK_PLATFORM_API_ENDPOINT_APP_REGISTRATIONS + uuid));
+        }
+
+        /// <summary>
+        //  Undelete the app registration with the given UUID.
+        /// </summary>
+        /// <param name="parameters">See https://platform.pokitdok.com/documentation </param>
+        /// <exception cref="pokitdokcsharp.PokitDokException">Thrown when unknown system error occurs.</exception>
+        /// <returns>The http response as a <see cref="pokitdokcsharp.ResponseData"/> object.
+        /// 	The body is JSON formatted data.
+        /// </returns>
+        public ResponseData undeleteAppRegistration(Guid uuid)
+        {
+            init();
+
+            return applyResponse(PostRequest(POKITDOK_PLATFORM_API_ENDPOINT_APP_REGISTRATIONS + uuid + "/undelete", new Dictionary<string, object>()));
         }
 
         /// <summary>
